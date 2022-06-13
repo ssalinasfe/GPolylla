@@ -67,7 +67,8 @@ struct halfEdge {
 class Triangulation 
 {
 
-private:
+//private:
+public:
 
     typedef std::array<int,3> _triangle; 
     typedef std::pair<int,int> _edge;
@@ -271,7 +272,6 @@ private:
                
         
         //traverse the exterior edges and search their next prev halfedge
-        int v_origin, v_target;
         for(std::size_t i = n_halfedges; i < HalfEdges.size(); i++){
             if(HalfEdges.at(i).is_border){
                 //search prev of the halfedge

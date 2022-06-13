@@ -4,9 +4,9 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <polylla.hpp>
+#include <polylla.cu>
 
-#include <triangulation.hpp>
+#include <triangulation.cu>
 
 //#include <compresshalfedge.hpp>
 //#include <io_void.hpp>
