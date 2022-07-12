@@ -544,13 +544,13 @@ class Polylla
         elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
         std::cout<<"Copy to host in "<<elapsed_time_ms<<" ms"<<std::endl;
 
-        for(auto &e : seed_edges){
+        /*for(auto &e : seed_edges){
             polygon_seed = travel_triangles(e);
 
             if(has_BarrierEdgeTip(polygon_seed)){ //the polygon is send to reparation phase
                 barrieredge_tip_reparation(polygon_seed);
-            }//*/         
-        }   
+            }//      
+        }   */
 
 
         std::cout<<"Mesh with "<<m_polygons<<" polygons "<<n_frontier_edges/2<<" edges and "<<n_barrier_edge_tips<<" barrier-edge tips."<<std::endl;
