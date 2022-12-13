@@ -79,8 +79,7 @@ bool isWhitespace(std::string s){
 class Triangulation 
 {
 
-//private:
-public:
+private:
 
     typedef std::array<int,3> _triangle; 
     typedef std::pair<int,int> _edge;
@@ -208,7 +207,6 @@ public:
         //Generate interior halfedges using a a vector with the faces of the triangulation
     //if an interior half-edge is border, it is mark as border-edge
     //mark border-edges
-    /*
     void construct_interior_halfEdges_from_faces(std::vector<int> &faces){
         auto hash_for_pair = [](const std::pair<int, int>& p) {
             return std::hash<int>{}(p.first) ^ std::hash<int>{}(p.second);
@@ -224,6 +222,7 @@ public:
             int v2 = faces.at(3*i+2);
             
             he0.origin = v0;
+            //he0.target = v1;
             he0.next = index_he1;
             he0.prev = index_he2;
             //he0.face = i;
@@ -283,50 +282,7 @@ public:
             }
         }
     }
-*/
-    void construct_interior_halfEdges_from_faces(std::vector<int> &faces){
-        auto hash_for_pair = [](const std::pair<int, int>& p) {
-            return std::hash<int>{}(p.first) ^ std::hash<int>{}(p.second);
-        };
-        std::unordered_map<_edge, int, decltype(hash_for_pair)> map_edges(3*this->n_faces, hash_for_pair); //set of edges to calculate the boundary and twin edges
-        for(std::size_t i = 0; i < n_faces; i++){
-            for(std::size_t j = 0; j < 3; j++){
-                halfEdge he;
-                int v_origin = faces.at(3*i+j);
-                int v_target = faces.at(3*i+(j+1)%3);
-                he.origin = v_origin;
-                he.next = i*3+(j+1)%3;
-                he.prev = i*3+(j+2)%3;
-                he.is_border = false;
-                he.twin = -1;
-                Vertices.at(v_origin).incident_halfedge = i*3+j;
-                map_edges[std::make_pair(v_origin, v_target)] = i*3+j;
-                HalfEdges.push_back(he);
-            }
-        }
-        
-        //Calculate twin halfedge and boundary halfedges from set_edges
-        std::unordered_map<_edge,int, decltype(hash_for_pair)>::iterator it;
-        for(std::size_t i = 0; i < HalfEdges.size(); i++){
-            //if halfedge has no twin
-            if(HalfEdges.at(i).twin == -1){
-                int tgt = origin(next(i));
-                int org = origin(i);
-                _edge twin = std::make_pair(tgt, org);
-                it=map_edges.find(twin);
-                //if twin is found
-                if(it!=map_edges.end()){
-                    int index_twin = it->second;
-                    HalfEdges.at(i).twin = index_twin;
-                    HalfEdges.at(index_twin).twin = i;
-                }else{ //if twin is not found and halfedge is on the boundary
-                    HalfEdges.at(i).is_border = true;
-                    Vertices.at(org).is_border = true;
-                    Vertices.at(tgt).is_border = true;
-                }
-            }
-        }
-    }
+
     //Generate interior halfedges using faces and neigh vectors
     //also associate each vertex with an incident halfedge
     void construct_interior_halfEdges_from_faces_and_neighs(std::vector<int> &faces, std::vector<int> &neighs){
@@ -358,6 +314,7 @@ public:
                 Vertices[he.origin].incident_halfedge = i*3 + j;
             }
         }
+        this->n_halfedges = HalfEdges.size();
     }
 
     
@@ -368,7 +325,6 @@ public:
         //search interior edges labed as border, generates exterior edges
         //with the origin and target inverted and add at the of HalfEdges vector
         //std::cout<<"Size vector: "<<HalfEdges.size()<<std::endl;
-        this->n_halfedges = HalfEdges.size();
         for(std::size_t i = 0; i < this->n_halfedges; i++){
             if(HalfEdges.at(i).is_border){
                 halfEdge he_aux;
@@ -387,6 +343,7 @@ public:
         int nxtCCW, prvCCW;
         for(std::size_t i = n_halfedges; i < HalfEdges.size(); i++){
             if(HalfEdges.at(i).is_border){
+                
                 nxtCCW = CCW_edge_to_vertex(HalfEdges.at(i).twin);
                 while (HalfEdges.at(nxtCCW).is_border != true)
                     nxtCCW = this->CCW_edge_to_vertex(nxtCCW);
@@ -400,6 +357,8 @@ public:
         }
         this->n_halfedges = HalfEdges.size();
     }
+
+
 
 
     //Read the mesh from a file in OFF format
@@ -480,6 +439,10 @@ public:
 		else 
 				std::cout << "Unable to open node file"; 
 		offfile.close();
+        std::cout<<"pase"<<std::endl;
+        std::cout<<"n_vertices"<<this->n_vertices<<" "<<"n_faces"<<this->n_faces<<std::endl;
+        std::cout<<"vertices: "<<this->Vertices.size()<<" "<<"faces: "<<faces.size()<<std::endl;
+
         return faces;
     }
 
@@ -610,7 +573,8 @@ public:
         area = (Vertices.at(v2).x - Vertices.at(v1).x) * (Vertices.at(v1).y - Vertices.at(v0).y) - (Vertices.at(v2).y - Vertices.at(v1).y) * (Vertices.at(v1).x - Vertices.at(v0).x);
         if(area < 0)
             return true;
-        return false;
+        else
+            return false;
     }
 
     //Given a edge with vertex origin v, return the next coutnerclockwise edge of v with v as origin
@@ -769,51 +733,5 @@ public:
         return 3*f;
     }
 };
-
-// Here starts the gpu code!!!!!!!
-
-typedef int bit_vector_d;
-
-// device code, basic operations
-__device__ int twin_d(halfEdge *HalfEdges, int e)
-{
-    return HalfEdges[e].twin;
-}
-
-__device__ int next_d(halfEdge *HalfEdges, int e)
-{
-    return HalfEdges[e].next;
-}
-
-__device__ int prev_d(halfEdge *HalfEdges, int e)
-{
-    return HalfEdges[e].prev;
-}
-
-__device__ bool is_border_face_d(halfEdge *HalfEdges, int e)
-{
-    return HalfEdges[e].is_border;
-}
-
-__device__ bool is_interior_face_d(halfEdge *HalfEdges, int e)
-{
-   return !is_border_face_d(HalfEdges, e);
-}
-
-__device__ int origin_d(halfEdge *HalfEdges, int e)
-{
-    return HalfEdges[e].origin;
-}
-
-__device__ int target_d(halfEdge *HalfEdges, int e)
-{
-    //this->origin(HalfEdges.at(e).twin);
-    return origin_d(HalfEdges, twin_d(HalfEdges, e));
-}
-
-__device__ int incident_halfedge_d(int f)
-{
-    return 3*f;
-}
 
 #endif
