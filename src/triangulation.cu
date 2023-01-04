@@ -36,6 +36,8 @@ TODO:
 #ifndef TRIANGULATION_HPP
 #define TRIANGULATION_HPP
 
+#include <algorithm>
+#include <initializer_list>
 #include <array>
 #include <vector>
 #include <iostream>
