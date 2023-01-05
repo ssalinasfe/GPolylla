@@ -17,6 +17,8 @@
 #include <chrono>
 #include <iomanip>
 
+#define PARALLEL
+//#define SECUENTIAL
 
 #define print_e(eddddge) eddddge<<" ( "<<mesh_input->origin(eddddge)<<" - "<<mesh_input->target(eddddge)<<") "
 
@@ -106,292 +108,254 @@ public:
         //seed_edges = bit_vector(mesh_input->halfEdges(), false);
         
         // copy to device and initialize
-        auto t_start = std::chrono::high_resolution_clock::now();
-
-        // declare and initialize device arrays
-        //int *d_triangles;
-        int n_triangle = mesh_input->faces();
-
-        // copy halfedges to device
-        int n_halfedges = mesh_input->halfEdges();
-        halfEdge *halfedges_d, *halfedges_h = new halfEdge[n_halfedges];
-        halfedges_h = mesh_input->HalfEdges.data();
-        cudaMalloc(&halfedges_d, n_halfedges*sizeof(halfEdge) );
-        cudaMemcpy(halfedges_d, halfedges_h, n_halfedges*sizeof(halfEdge), cudaMemcpyHostToDevice );
-
-        // copy vertices to device
-        int n_vertices = mesh_input->vertices();
-        vertex *vertices_d, *vertices_h = new vertex[n_vertices];
-        vertices_h = mesh_input->Vertices.data();
-        cudaMalloc(&vertices_d, n_vertices*sizeof(vertex) );
-        cudaMemcpy(vertices_d, vertices_h, n_vertices*sizeof(vertex), cudaMemcpyHostToDevice );
-
-        bit_vector_d *max_edges_d;
-        cudaMalloc(&max_edges_d, n_halfedges*sizeof(bit_vector_d) );
-        cudaMemset(max_edges_d, 0, n_halfedges*sizeof(bit_vector_d));
-
-        // DEFINE GRID AND BLOCK SIZE
-        dim3 block, grid;
-        block = dim3(BSIZE, 1, 1);    
-        grid = dim3((n_triangle + BSIZE - 1)/BSIZE, 1, 1);
-
-
-        auto t_end = std::chrono::high_resolution_clock::now();
-        double elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"Copy vectors to device in "<<elapsed_time_ms<<" ms"<<std::endl;
-
-
-
-        gpuErrchk( cudaDeviceSynchronize() );
-        //Label max edges of each triangle
-        //for (size_t t = 0; t < mesh_input->faces(); t++){
-        t_start = std::chrono::high_resolution_clock::now();
-
-        // GPU
-        label_edges_max_d<<<(n_triangle + BSIZE - 1)/BSIZE, block>>>(max_edges_d, vertices_d, halfedges_d, n_triangle);
-        gpuErrchk( cudaDeviceSynchronize() );
-
-        // CPU
-        /*for(int i = 0; i < mesh_input->faces(); i++)
-            max_edges[label_max_edge(mesh_input->incident_halfedge(i))] = true;//*/
 
         
-        // copy back to host
-        /*bit_vector_d *h_max_edges = new bit_vector_d[n_halfedges];
-        cudaMemcpy( h_max_edges, max_edges_d, n_halfedges*sizeof(bit_vector_d), cudaMemcpyDeviceToHost );
-        //cudaMemcpy( max_edges, max_edges_d, n_halfedges*sizeof(bit_vector_d), cudaMemcpyDeviceToHost );
-        gpuErrchk( cudaDeviceSynchronize() );
+        #ifdef PARALLEL
+            gpuErrchk( cudaDeviceSynchronize() ); // clean gpu timers
+            auto t_start = std::chrono::high_resolution_clock::now();
 
-        int count = 0;
-        for(int i = 0; i < n_halfedges; i++){
-            //printf("%i %i %i\n", i, (int) h_max_edges[i], (int) max_edges[i]);
-            //assert(max_edges[i] == h_max_edges[i]);
-            if (max_edges[i] != h_max_edges[i]){
-                //printf("%i %i %i\n", i, (int) h_max_edges[i], (int) max_edges[i]);
-                //printf ("Distances: %f %f %f\n", mesh_input->distance(i), mesh_input->distance(mesh_input->next(i)), mesh_input->distance(mesh_input->prev(i)));
-                count++;
+            // declare and initialize device arrays
+            //int *d_triangles;
+            int n_triangle = mesh_input->faces();
+            // copy halfedges to device
+            int n_halfedges = mesh_input->halfEdges();
+            halfEdge *halfedges_d, *halfedges_h = new halfEdge[n_halfedges];
+            halfedges_h = mesh_input->HalfEdges.data();
+            cudaMalloc(&halfedges_d, n_halfedges*sizeof(halfEdge) );
+            cudaMemcpy(halfedges_d, halfedges_h, n_halfedges*sizeof(halfEdge), cudaMemcpyHostToDevice );
+
+            // copy vertices to device
+            int n_vertices = mesh_input->vertices();
+            vertex *vertices_d, *vertices_h = new vertex[n_vertices];
+            vertices_h = mesh_input->Vertices.data();
+            cudaMalloc(&vertices_d, n_vertices*sizeof(vertex) );
+            cudaMemcpy(vertices_d, vertices_h, n_vertices*sizeof(vertex), cudaMemcpyHostToDevice );
+
+            bit_vector_d *max_edges_d;
+            cudaMalloc(&max_edges_d, n_halfedges*sizeof(bit_vector_d) );
+            cudaMemset(max_edges_d, 0, n_halfedges*sizeof(bit_vector_d));
+
+            auto t_end = std::chrono::high_resolution_clock::now();
+            double elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+            std::cout<<"[GPU] Copy vectors to device in "<<elapsed_time_ms<<" ms"<<std::endl;
+        #endif
+            
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Label max edges
+        
+        #ifdef PARALLEL
+            t_start = std::chrono::high_resolution_clock::now();
+
+            label_edges_max_d<<<(n_triangle + BSIZE - 1)/BSIZE, BSIZE>>>(max_edges_d, vertices_d, halfedges_d, n_triangle);
+            gpuErrchk( cudaDeviceSynchronize() );
+
+            t_end = std::chrono::high_resolution_clock::now();
+            elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+            std::cout<<"[GPU] Labered max edges in "<<elapsed_time_ms<<" ms"<<std::endl;
+        #endif
+
+        #ifdef SECUENTIAL
+            t_start = std::chrono::high_resolution_clock::now();
+
+            for(int i = 0; i < mesh_input->faces(); i++)
+                max_edges[label_max_edge(mesh_input->incident_halfedge(i))] = true;
+
+            t_end = std::chrono::high_resolution_clock::now();
+            elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+            std::cout<<"[CPU] Labered max edges in "<<elapsed_time_ms<<" ms"<<std::endl;
+        #endif
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Label frontier edges
+
+        #ifdef PARALLEL            
+            t_start = std::chrono::high_resolution_clock::now();
+
+            bit_vector_d *frontier_edges_d;
+            cudaMalloc(&frontier_edges_d, sizeof(bit_vector_d)*n_halfedges);
+            label_phase<<<(n_halfedges + BSIZE - 1)/BSIZE, BSIZE>>>(halfedges_d, max_edges_d, frontier_edges_d, n_halfedges); 
+            cudaDeviceSynchronize();
+            
+            t_end = std::chrono::high_resolution_clock::now();
+            elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+            std::cout<<"[GPU] Labeled frontier edges in "<<elapsed_time_ms<<" ms"<<std::endl;
+        #endif
+
+        #ifdef SECUENTIAL
+            t_start = std::chrono::high_resolution_clock::now();
+
+            for (std::size_t e = 0; e < mesh_input->halfEdges(); e++){
+                if(is_frontier_edge(e)){
+                    frontier_edges[e] = true;
+                    n_frontier_edges++;
+                }
             }
-        }
-        printf ("Number of errors: %i\n", count); //*/
 
+            t_end = std::chrono::high_resolution_clock::now();
+            elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+            std::cout<<"[CPU] Labeled frontier edges in "<<elapsed_time_ms<<" ms"<<std::endl;
+        #endif
         
-        //for(int i = 0; i < n_halfedges; i++)
-        //    max_edges[i] = h_max_edges[i];
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Seed phase
 
-        
-        t_end = std::chrono::high_resolution_clock::now();
-        elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"Labered max edges in "<<elapsed_time_ms<<" ms"<<std::endl;
+        #ifdef PARALLEL
+            t_start = std::chrono::high_resolution_clock::now();
 
+            // GPU SEED PHASE
+            half *seed_edges_ad;
+            int *seed_edges_d;
+            cudaMalloc(&seed_edges_ad, sizeof(half)*n_halfedges);
+            cudaMemset(seed_edges_ad, 0, sizeof(half)*n_halfedges);
+            cudaMalloc(&seed_edges_d, sizeof(int)*n_halfedges);
+            seed_phase_d<<<(n_halfedges + BSIZE - 1)/BSIZE,BSIZE>>>(halfedges_d, max_edges_d, seed_edges_ad, n_halfedges); 
+            gpuErrchk( cudaDeviceSynchronize() );
 
+            int seed_len;
+            scan_parallel_tc_2<int>(seed_edges_d, seed_edges_ad, n_halfedges);
+            gpuErrchk( cudaDeviceSynchronize() );
+            cudaMemcpy( &seed_len, seed_edges_d + n_halfedges - 1, sizeof(int), cudaMemcpyDeviceToHost );
+            //int seed_len = scan(seed_edges_d, seed_edges_ad, n_halfedges); // ESTO SE PUEDE MEJORAR!
+            //gpuErrchk( cudaDeviceSynchronize() );
+            //printf ("-> %i %i %i %i\n", grid.x, grid.y, grid.z, (n_halfedges + BSIZE - 1)/BSIZE);
+            compaction_d<<<(n_halfedges + BSIZE - 1)/BSIZE,BSIZE>>>(seed_edges_d, seed_edges_d, seed_edges_ad, n_halfedges);
+            gpuErrchk( cudaDeviceSynchronize() );
+            //compaction_cub(seed_edges_d, d_num, max_edges_d, seed_edges_ad, n_halfedges);
+            //gpuErrchk( cudaDeviceSynchronize() );
+            //printf("\ndone GPU seed phase....\n\n");//*/
 
-        t_start = std::chrono::high_resolution_clock::now();
+            t_end = std::chrono::high_resolution_clock::now();
+            elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+            std::cout<<"[GPU] Labeled seed edges in "<<elapsed_time_ms<<" ms"<<std::endl;
+        #endif
 
-        // GPU
-        //block = dim3(BSIZE, 1, 1);    
-        //grid = dim3((n_halfedges + BSIZE - 1)/BSIZE, 1, 1);    
+        #ifdef SECUENTIAL
+            t_start = std::chrono::high_resolution_clock::now();
 
-        bit_vector_d *frontier_edges_d;
-        cudaMalloc(&frontier_edges_d, sizeof(bit_vector_d)*n_halfedges);
-        label_phase<<<(n_halfedges + BSIZE - 1)/BSIZE,block>>>(halfedges_d, max_edges_d, frontier_edges_d, n_halfedges); 
-        cudaDeviceSynchronize(); //*/
+            //label seeds edges,
+            for (std::size_t e = 0; e < mesh_input->halfEdges(); e++)
+                if(mesh_input->is_interior_face(e) && is_seed_edge(e))
+                    seed_edges.push_back(e);
 
+            t_end = std::chrono::high_resolution_clock::now();
+            elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+            std::cout<<"[CPU] Labeled seed edges in "<<elapsed_time_ms<<" ms"<<std::endl;
+        #endif
 
-        /* // CPU
-        //Label frontier edges
-        for (std::size_t e = 0; e < mesh_input->halfEdges(); e++){
-            if(is_frontier_edge(e)){
-                frontier_edges[e] = true;
-                n_frontier_edges++;
-            }
-        }
-        gpuErrchk( cudaDeviceSynchronize() );
-        // copy back to host
-        bit_vector_d *h_frontier_edges = new bit_vector_d[n_halfedges];
-        cudaMemcpy( h_frontier_edges, frontier_edges_d, n_halfedges*sizeof(bit_vector_d), cudaMemcpyDeviceToHost );
-        //cudaMemcpy( h_frontier_edges, frontier_edges_d, n_halfedges*sizeof(bit_vector_d), cudaMemcpyDeviceToHost );
-        gpuErrchk( cudaDeviceSynchronize() );
-        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Travel phase
 
-        for(int i = 0; i < n_halfedges; i++){
-            //printf("%i %i %i\n", i, (int) h_max_edges[i], (int) max_edges[i]);
-            assert(max_edges[i] == h_max_edges[i]);
-            //printf("%i %i %i\n", i, (int) h_frontier_edges[i], (int) frontier_edges[i]);
-        }
-        
-        for(int i = 0; i < n_halfedges; i++)
-            frontier_edges[i] = h_frontier_edges[i];//*/
-
-        t_end = std::chrono::high_resolution_clock::now();
-        elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"Labeled frontier edges in "<<elapsed_time_ms<<" ms"<<std::endl;
-        
-
-        t_start = std::chrono::high_resolution_clock::now();
-
-        // GPU SEED PHASE
-        half *seed_edges_ad;
-        int *seed_edges_d;
-        cudaMalloc(&seed_edges_ad, sizeof(half)*n_halfedges);
-        cudaMemset(seed_edges_ad, 0, sizeof(half)*n_halfedges);
-        cudaMalloc(&seed_edges_d, sizeof(int)*n_halfedges);
-        //gpuErrchk( cudaDeviceSynchronize() );
-        seed_phase_d<<<(n_halfedges + BSIZE - 1)/BSIZE,block>>>(halfedges_d, max_edges_d, seed_edges_ad, n_halfedges); 
-        gpuErrchk( cudaDeviceSynchronize() );
-
-        int seed_len;
-        scan_parallel_tc_2<int>(seed_edges_d, seed_edges_ad, n_halfedges);
-        gpuErrchk( cudaDeviceSynchronize() );
-        cudaMemcpy( &seed_len, seed_edges_d + n_halfedges - 1, sizeof(int), cudaMemcpyDeviceToHost );
-        //int seed_len = scan(seed_edges_d, seed_edges_ad, n_halfedges); // ESTO SE PUEDE MEJORAR!
-        //gpuErrchk( cudaDeviceSynchronize() );
-        //printf ("-> %i %i %i %i\n", grid.x, grid.y, grid.z, (n_halfedges + BSIZE - 1)/BSIZE);
-        compaction_d<<<(n_halfedges + BSIZE - 1)/BSIZE,BSIZE>>>(seed_edges_d, seed_edges_d, seed_edges_ad, n_halfedges);
-        gpuErrchk( cudaDeviceSynchronize() );
-        //compaction_cub(seed_edges_d, d_num, max_edges_d, seed_edges_ad, n_halfedges);
-        //gpuErrchk( cudaDeviceSynchronize() );
-        //printf("\ndone GPU seed phase....\n\n");//*/
-
-
-        /*//label seeds edges,
-        for (std::size_t e = 0; e < mesh_input->halfEdges(); e++)
-            if(mesh_input->is_interior_face(e) && is_seed_edge(e))
-                seed_edges.push_back(e);
-        t_end = std::chrono::high_resolution_clock::now();
-
-        // copy back to host
-        int *h_seed_edges = new int[n_halfedges];
-        gpuErrchk( cudaDeviceSynchronize() );
-        cudaMemcpy( h_seed_edges, seed_edges_d, seed_len*sizeof(int), cudaMemcpyDeviceToHost );
-        gpuErrchk( cudaDeviceSynchronize() );
-
-        printf("Number of seeds: %i\n", seed_len);
-        for (int i = 0; i < seed_len; i++){
-            if (seed_edges[i] != h_seed_edges[i])
-                printf ("%i %i %i\n", i, h_seed_edges[i], seed_edges[i]);
-            //assert(h_seed_edges[i] == seed_edges[i]);
-        }//
-
-        for (int i = 0; i < seed_len; i++)
-            seed_edges[i] = h_seed_edges[i]; */
-
-
-        t_end = std::chrono::high_resolution_clock::now();
-        elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"Labeled seed edges in "<<elapsed_time_ms<<" ms"<<std::endl;
-
-
-        t_start = std::chrono::high_resolution_clock::now();
-        // GPU
-        // TRAVEL PHASE IN GPU!!!!
-        int *output_seed_d;
-        halfEdge *output_HalfEdges_d;
-        cudaMalloc(&output_HalfEdges_d, sizeof(halfEdge)*n_halfedges);
-        travel_phase_d<<<(n_halfedges + BSIZE - 1)/BSIZE,block>>>(output_HalfEdges_d, halfedges_d, max_edges_d, frontier_edges_d, n_halfedges);
-        gpuErrchk( cudaDeviceSynchronize() );
-        cudaMalloc(&output_seed_d , sizeof(int)*seed_len);
-        search_frontier_edge_d<<<(seed_len+BSIZE-1)/BSIZE,block>>>(output_seed_d, halfedges_d, frontier_edges_d, seed_edges_d, seed_len);
-        gpuErrchk( cudaDeviceSynchronize() );
-
- 
-
-        /*//Travel phase: Generate polygon mesh
         int polygon_seed;
-        //Foreach seed edge generate polygon
-        for(auto &e : seed_edges){
-            polygon_seed = travel_triangles(e);
-            if(!has_BarrierEdgeTip(polygon_seed)){ //If the polygon is a simple polygon then is part of the mesh
-                output_seeds.push_back(polygon_seed);
-            }else{ //Else, the polygon is send to reparation phase
-                auto t_start_repair = std::chrono::high_resolution_clock::now();
-                barrieredge_tip_reparation(polygon_seed);
-                auto t_end_repair = std::chrono::high_resolution_clock::now();
-                t_repair += std::chrono::duration<double, std::milli>(t_end_repair-t_start_repair).count();
-            }         
-        }    
 
-        //printf ("aca\n");
-        // COPY OUTPUT_SEED TO HOST
-        int *output_seed_h = new int[seed_len];
-        cudaMemcpy(output_seed_h, output_seed_d, sizeof(int)*seed_len, cudaMemcpyDeviceToHost);
-        for (uint i = 0; i < seed_len; i++) {
-            printf("%i %i %i\n",i,output_seed_h[i],output_seeds[i]);
-            output_seeds[i] == output_seed_h[i];
-            //assert(output_seed_h[i] == output_seeds[i]);
-        }*/
+        #ifdef PARALLEL
+            t_start = std::chrono::high_resolution_clock::now();
+            
+            int *output_seed_d;
+            halfEdge *output_HalfEdges_d;
+            cudaMalloc(&output_HalfEdges_d, sizeof(halfEdge)*n_halfedges);
+            travel_phase_d<<<(n_halfedges + BSIZE - 1)/BSIZE,BSIZE>>>(output_HalfEdges_d, halfedges_d, max_edges_d, frontier_edges_d, n_halfedges);
+            gpuErrchk( cudaDeviceSynchronize() );
+            cudaMalloc(&output_seed_d , sizeof(int)*seed_len);
+            search_frontier_edge_d<<<(seed_len+BSIZE-1)/BSIZE,BSIZE>>>(output_seed_d, halfedges_d, frontier_edges_d, seed_edges_d, seed_len);
+            gpuErrchk( cudaDeviceSynchronize() );
 
-        t_end = std::chrono::high_resolution_clock::now();
-        t_traversal = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"Traversal phase in "<<t_traversal<<" ms"<<std::endl;
+            t_end = std::chrono::high_resolution_clock::now();
+            t_traversal = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+            std::cout<<"[GPU] Traversal phase in "<<t_traversal<<" ms"<<std::endl;
+        #endif
 
-        t_start = std::chrono::high_resolution_clock::now();
-        // back to host
-        bit_vector_d *h_max_edges = new bit_vector_d[n_halfedges];
-        cudaMemcpy( h_max_edges, max_edges_d, n_halfedges*sizeof(bit_vector_d), cudaMemcpyDeviceToHost );
-        gpuErrchk( cudaDeviceSynchronize() );
-        bit_vector_d *h_frontier_edges = new bit_vector_d[n_halfedges];
-        cudaMemcpy( h_frontier_edges, frontier_edges_d, n_halfedges*sizeof(bit_vector_d), cudaMemcpyDeviceToHost );
-        int *h_seed_edges = new int[n_halfedges];
-        gpuErrchk( cudaDeviceSynchronize() );
-        cudaMemcpy( h_seed_edges, seed_edges_d, seed_len*sizeof(int), cudaMemcpyDeviceToHost );
-        int *output_seed_h = new int[seed_len];
-        cudaMemcpy(output_seed_h, output_seed_d, sizeof(int)*seed_len, cudaMemcpyDeviceToHost);
-        gpuErrchk( cudaDeviceSynchronize() );
+        // Back to host
+        #ifdef PARALLEL
+            t_start = std::chrono::high_resolution_clock::now();
 
+            bit_vector_d *h_max_edges = new bit_vector_d[n_halfedges];
+            cudaMemcpy( h_max_edges, max_edges_d, n_halfedges*sizeof(bit_vector_d), cudaMemcpyDeviceToHost );
+            bit_vector_d *h_frontier_edges = new bit_vector_d[n_halfedges];
+            cudaMemcpy( h_frontier_edges, frontier_edges_d, n_halfedges*sizeof(bit_vector_d), cudaMemcpyDeviceToHost );
+            int *h_seed_edges = new int[n_halfedges];
+            cudaMemcpy( h_seed_edges, seed_edges_d, seed_len*sizeof(int), cudaMemcpyDeviceToHost );
+            int *output_seed_h = new int[seed_len];
+            cudaMemcpy(output_seed_h, output_seed_d, sizeof(int)*seed_len, cudaMemcpyDeviceToHost);
+            gpuErrchk( cudaDeviceSynchronize() );
 
-        t_end = std::chrono::high_resolution_clock::now();
-        elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"Back to host in "<<elapsed_time_ms<<" ms"<<std::endl;
+            t_end = std::chrono::high_resolution_clock::now();
+            elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+            std::cout<<"[GPU] Back to host in "<<elapsed_time_ms<<" ms"<<std::endl;
 
-        // standard output, time not measured
-        for (int i = 0; i < n_halfedges; i++)
-            max_edges[i] = h_max_edges[i];
-        for (int i = 0; i < n_halfedges; i++)
-            frontier_edges[i] = h_frontier_edges[i];
-        //for (int i = 0; i < seed_len; i++)
-        //    seed_edges[i] = h_seed_edges[i];
-        //for (int i = 0; i < seed_len; i++)
-        //    output_seeds[i] = output_seed_h[i];
-        std::vector<int> aux_seed_edges(h_seed_edges, h_seed_edges + seed_len);
-        std::vector<int> aux_output(output_seed_h, output_seed_h + seed_len);
-        seed_edges = aux_seed_edges;
-        output_seeds = aux_output;
-        gpuErrchk( cudaDeviceSynchronize() );
+            // standard output, time not measured
+            for (int i = 0; i < n_halfedges; i++)
+                max_edges[i] = h_max_edges[i];
+            for (int i = 0; i < n_halfedges; i++)
+                frontier_edges[i] = h_frontier_edges[i];
+            //for (int i = 0; i < seed_len; i++)
+            //    seed_edges[i] = h_seed_edges[i];
+            //for (int i = 0; i < seed_len; i++)
+            //    output_seeds[i] = output_seed_h[i];
+            std::vector<int> aux_seed_edges(h_seed_edges, h_seed_edges + seed_len);
+            std::vector<int> aux_output(output_seed_h, output_seed_h + seed_len);
+            seed_edges = aux_seed_edges;
+            output_seeds = aux_output;
+            gpuErrchk( cudaDeviceSynchronize() );
+        #endif
 
-        this->m_polygons = output_seeds.size();
+        // Only Repair Phase
+        #ifdef PARALLEL
+            //Foreach seed edge generate polygon
+            for(auto &e : seed_edges){
+                polygon_seed = travel_triangles(e);
 
-        
-        // repair phase
-        int polygon_seed;
-        //Foreach seed edge generate polygon
-        for(auto &e : seed_edges){
-            polygon_seed = travel_triangles(e);
-
-            if(has_BarrierEdgeTip(polygon_seed)){ //the polygon is send to reparation phase
-                printf("aca\n");
-                auto t_start_repair = std::chrono::high_resolution_clock::now();
-                barrieredge_tip_reparation(polygon_seed);
-                output_seeds.push_back(polygon_seed);
-                auto t_end_repair = std::chrono::high_resolution_clock::now();
-                t_repair += std::chrono::duration<double, std::milli>(t_end_repair-t_start_repair).count();
-            }//*/         
-        }
-        std::cout<<"CPU repair phase in "<<t_repair<<" ms"<<std::endl;
-
-        // time
-        t_traversal_and_repair = t_traversal + t_repair;
-
-        int count = 0;
-        for (std::size_t e = 0; e < mesh_input->halfEdges(); e++){
-            if(is_frontier_edge(e)){
-                //printf("%i\n",frontier_edges[count]);
-                n_frontier_edges++;
-                count++;
+                if(has_BarrierEdgeTip(polygon_seed)){ //the polygon is send to reparation phase
+                    auto t_start_repair = std::chrono::high_resolution_clock::now();
+                    barrieredge_tip_reparation(polygon_seed);
+                    output_seeds.push_back(polygon_seed);
+                    auto t_end_repair = std::chrono::high_resolution_clock::now();
+                    t_repair += std::chrono::duration<double, std::milli>(t_end_repair-t_start_repair).count();
+                }//*/         
             }
-        }
+            std::cout<<"[GPU] Only secuential repair phase in "<<t_repair<<" ms"<<std::endl;
 
-        std::cout<<"Mesh with "<<m_polygons<<" polygons "<<n_frontier_edges/2<<" edges and "<<n_barrier_edge_tips<<" barrier-edge tips."<<std::endl;
-        //mesh_input->print_pg(std::to_string(mesh_input->vertices()) + ".pg");    
+            // time
+            t_traversal_and_repair = t_traversal + t_repair;
+
+            int count = 0;
+            for (std::size_t e = 0; e < mesh_input->halfEdges(); e++){
+                if(is_frontier_edge(e)){
+                    n_frontier_edges++;
+                    count++;
+                }
+            }
+
+            this->m_polygons = output_seeds.size();
+            std::cout<<"[GPU] Mesh with "<<m_polygons<<" polygons "<<n_frontier_edges/2<<" edges and "<<n_barrier_edge_tips<<" barrier-edge tips."<<std::endl;
+            //mesh_input->print_pg(std::to_string(mesh_input->vertices()) + ".pg");    
+        #endif
+
+
+
+        #ifdef SECUENTIAL
+            //Foreach seed edge generate polygon
+            t_start = std::chrono::high_resolution_clock::now();
+            for(auto &e : seed_edges){
+                polygon_seed = travel_triangles(e);
+                if(!has_BarrierEdgeTip(polygon_seed)){ //If the polygon is a simple polygon then is part of the mesh
+                    output_seeds.push_back(polygon_seed);
+                }else{ //Else, the polygon is send to reparation phase
+                    auto t_start_repair = std::chrono::high_resolution_clock::now();
+                    barrieredge_tip_reparation(polygon_seed);
+                    auto t_end_repair = std::chrono::high_resolution_clock::now();
+                    t_repair += std::chrono::duration<double, std::milli>(t_end_repair-t_start_repair).count();
+                }         
+            }    
+            t_end = std::chrono::high_resolution_clock::now();
+            t_traversal_and_repair = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+            t_traversal = t_traversal_and_repair - t_repair;
+            std::cout<<"[CPU] Traversal and repair phase in "<<t_traversal<<" ms"<<std::endl;
+            
+            this->m_polygons = output_seeds.size();
+            std::cout<<"[CPU] Mesh with "<<m_polygons<<" polygons "<<n_frontier_edges/2<<" edges and "<<n_barrier_edge_tips<<" barrier-edge tips."<<std::endl;
+        #endif
+
         
     }
 

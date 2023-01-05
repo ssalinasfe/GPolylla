@@ -83,10 +83,20 @@ __device__ float distance_d(halfEdge *HalfEdges, vertex *Vertices, int e){
     return powf(x1-x2,2) + powf(y1-y2,2);
 }
 
+__device__ int Equality(double a, double b, double epsilon)
+{
+  return fabs(a - b) < epsilon;
+}
+ 
+__device__ int GreaterEqualthan(double a, double b, double epsilon){
+        return Equality(a,b,epsilon) || a > b;
+}
+
 __device__ int compute_max_edge_d(halfEdge *HalfEdges, vertex *Vertices, int e){
-    float dist0 = distance_d(HalfEdges, Vertices, e); //min
-    float dist1 = distance_d(HalfEdges, Vertices, next_d(HalfEdges, e)); //mid
-    float dist2 = distance_d(HalfEdges, Vertices, prev_d(HalfEdges, e)); //max
+    double epsion = 0.0000000001f;
+    float l0 = distance_d(HalfEdges, Vertices, e); //min
+    float l1 = distance_d(HalfEdges, Vertices, next_d(HalfEdges, e)); //mid
+    float l2 = distance_d(HalfEdges, Vertices, prev_d(HalfEdges, e)); //max
 
     /*float m1 = fmaxf(dist0, dist1);
     float m2 = fmaxf(m1, dist2);    
@@ -107,14 +117,21 @@ __device__ int compute_max_edge_d(halfEdge *HalfEdges, vertex *Vertices, int e){
 
     __syncthreads();
     // compare two numbers at a time
-    float m1 = fmaxf(dist0, dist1);
-    float m2 = fmaxf(dist2, m1);
-    if(m2 == dist0)
-        return e;
-    else if(m2 == dist1)
-        return next_d(HalfEdges, e);
-    else
-        return prev_d(HalfEdges, e);
+   //if((l0 >= l1 && l1 >= l2) || (l0 >= l2 && l2 >= l1))
+   if( (GreaterEqualthan(l0,l1,epsion) && GreaterEqualthan(l1,l2,epsion)) || ( GreaterEqualthan(l0,l2,epsion) && GreaterEqualthan(l2,l1,epsion)))
+   {
+           return e;
+   }
+   //else if((l1 >= l0 && l0 >= l2) || (l1 >= l2 && l2 >= l0))
+   else if((GreaterEqualthan(l1,l0,epsion) && GreaterEqualthan(l0,l2,epsion)) || ( GreaterEqualthan(l1,l2,epsion) && GreaterEqualthan(l2,l0,epsion)))
+   {
+           return next_d(HalfEdges, e);
+   }
+   else
+   {
+           return prev_d(HalfEdges, e);
+   }
+   __syncthreads();
 
 }
 
