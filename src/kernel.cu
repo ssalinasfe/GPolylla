@@ -71,11 +71,11 @@ inline void gpuAssert(cudaError_t code, const char *file, int line, bool abort=t
 
 
 // Compute the distante of edge e
-__device__ double distance_d(halfEdge *HalfEdges, vertex *Vertices, int e){
-    double x1 = Vertices[origin_d(HalfEdges, e)].x;
-    double y1 = Vertices[origin_d(HalfEdges, e)].y;
-    double x2 = Vertices[target_d(HalfEdges, e)].x;
-    double y2 = Vertices[target_d(HalfEdges, e)].y;
+__device__ float distance_d(halfEdge *HalfEdges, vertex *Vertices, int e){
+    float x1 = Vertices[origin_d(HalfEdges, e)].x;
+    float y1 = Vertices[origin_d(HalfEdges, e)].y;
+    float x2 = Vertices[target_d(HalfEdges, e)].x;
+    float y2 = Vertices[target_d(HalfEdges, e)].y;
 
     //printf ("distance_d: %i %f %f %f %f\n", e, (float) x1, (float) y1, (float) x2, (float) y2);
     //printf ("origin_d: %i %f %f and target_d: %i %f %f\n", origin_d(HalfEdges, e), (float) x1, (float) y1, target_d(HalfEdges, e), (float) x2, (float) y2);
@@ -84,12 +84,12 @@ __device__ double distance_d(halfEdge *HalfEdges, vertex *Vertices, int e){
 }
 
 __device__ int compute_max_edge_d(halfEdge *HalfEdges, vertex *Vertices, int e){
-    double dist0 = distance_d(HalfEdges, Vertices, e); //min
-    double dist1 = distance_d(HalfEdges, Vertices, next_d(HalfEdges, e)); //mid
-    double dist2 = distance_d(HalfEdges, Vertices, prev_d(HalfEdges, e)); //max
+    float dist0 = distance_d(HalfEdges, Vertices, e); //min
+    float dist1 = distance_d(HalfEdges, Vertices, next_d(HalfEdges, e)); //mid
+    float dist2 = distance_d(HalfEdges, Vertices, prev_d(HalfEdges, e)); //max
 
-    double m1 = fmaxf(dist2, dist0);
-    double m2 = fmaxf(m1, dist1);    
+    /*float m1 = fmaxf(dist0, dist1);
+    float m2 = fmaxf(m1, dist2);    
 
     //__syncthreads();
     //printf ("off: %i dist0: %f, dist1: %f, dist2: %f, m1: %f, m2: %f\n", e, (float) dist0, (float) dist1, (float) dist2, (float) m1, (float) m2);
@@ -103,7 +103,19 @@ __device__ int compute_max_edge_d(halfEdge *HalfEdges, vertex *Vertices, int e){
         return next_d(HalfEdges, e);
     else
         return prev_d(HalfEdges, e);
-    return -1;
+    return -1;*/
+
+    __syncthreads();
+    // compare two numbers at a time
+    float m1 = fmaxf(dist0, dist1);
+    float m2 = fmaxf(dist2, m1);
+    if(m2 == dist0)
+        return e;
+    else if(m2 == dist1)
+        return next_d(HalfEdges, e);
+    else
+        return prev_d(HalfEdges, e);
+
 }
 
 __device__ bool is_frontier_edge_d(halfEdge *halfedges, bit_vector_d *max_edges, const int e)
@@ -194,16 +206,23 @@ int scan(int *d_out, int *d_in, int num_items){
 }
 
 __device__ int CW_edge_to_vertex_d(halfEdge *HalfEdges, int e)
-{
-    int twn, nxt;
+{   int twn, nxt;
     twn = twin_d(HalfEdges, e);
     nxt = next_d(HalfEdges, twn);
     return nxt;
+    /*int twn, nxt;
+    twn = twin_d(HalfEdges, e);
+    nxt = next_d(HalfEdges, twn);
+    return nxt;*/
 }    
 
 __device__ int CCW_edge_to_vertex_d(halfEdge *HalfEdges, int e)
 {
     int twn, nxt;
+    nxt = HalfEdges[e].prev;
+    twn = HalfEdges[nxt].twin;
+    return twn;
+    /*int twn, nxt;
     if(is_border_face_d(HalfEdges, e)){
         nxt = HalfEdges[e].prev;
         twn = HalfEdges[nxt].twin;
@@ -212,7 +231,7 @@ __device__ int CCW_edge_to_vertex_d(halfEdge *HalfEdges, int e)
     nxt = HalfEdges[e].next;
     nxt = HalfEdges[nxt].next;
     twn = HalfEdges[nxt].twin;
-    return twn;
+    return twn;*/
 }    
 __device__ int search_next_frontier_edge_d(halfEdge *HalfEdges, bit_vector_d *frontier_edges, const int e)
 {

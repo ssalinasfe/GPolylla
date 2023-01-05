@@ -360,6 +360,7 @@ public:
 
         this->m_polygons = output_seeds.size();
 
+        
         // repair phase
         int polygon_seed;
         //Foreach seed edge generate polygon
@@ -383,7 +384,7 @@ public:
         int count = 0;
         for (std::size_t e = 0; e < mesh_input->halfEdges(); e++){
             if(is_frontier_edge(e)){
-                printf("%i\n",frontier_edges[count]);
+                //printf("%i\n",frontier_edges[count]);
                 n_frontier_edges++;
                 count++;
             }
@@ -742,7 +743,6 @@ private:
     void barrieredge_tip_reparation(const int e)
     {
         this->n_polygons_to_repair++;
-        int x, y, i;
         int t1, t2;
         int middle_edge, v_bet;
 
