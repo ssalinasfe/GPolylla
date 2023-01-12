@@ -471,3 +471,9 @@ void scan_parallel_tc_2(T *out, half *in, int n) {
 }
 
 
+__global__ void kernel (bit_vector_d *d_in, int n) {
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    if (i < n) {
+       printf ("in[%i] = %i\n", i, d_in[i]);
+    }
+}
