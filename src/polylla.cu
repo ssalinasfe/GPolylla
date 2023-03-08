@@ -150,7 +150,7 @@ public:
 
         auto t_end = std::chrono::high_resolution_clock::now();
         double elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"[GPU] Copy vectors to device in "<<elapsed_time_ms<<" ms"<<std::endl;
+        //std::cout<<"[GPU] Copy vectors to device in "<<elapsed_time_ms<<" ms"<<std::endl;
         t_copy_to_device_d = elapsed_time_ms;
             
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -207,7 +207,7 @@ public:
 
         t_end = std::chrono::high_resolution_clock::now();
         elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"[GPU] Labered max edges in "<<elapsed_time_ms<<" ms"<<std::endl;
+        //std::cout<<"[GPU] Labered max edges in "<<elapsed_time_ms<<" ms"<<std::endl;
         t_label_max_edges_d = elapsed_time_ms;
        
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -222,7 +222,7 @@ public:
         
         t_end = std::chrono::high_resolution_clock::now();
         elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"[GPU] Labeled frontier edges in "<<elapsed_time_ms<<" ms"<<std::endl;
+        //std::cout<<"[GPU] Labeled frontier edges in "<<elapsed_time_ms<<" ms"<<std::endl;
         t_label_frontier_edges_d = elapsed_time_ms;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -254,7 +254,7 @@ public:
 
         t_end = std::chrono::high_resolution_clock::now();
         elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"[GPU] Labeled seed edges in "<<elapsed_time_ms<<" ms"<<std::endl;
+        //std::cout<<"[GPU] Labeled seed edges in "<<elapsed_time_ms<<" ms"<<std::endl;
         t_label_seed_edges_d = elapsed_time_ms;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -272,7 +272,7 @@ public:
         
         t_end = std::chrono::high_resolution_clock::now();
         t_traversal_1_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"[GPU] Traversal phase 1 in "<<t_traversal_1_d<<" ms"<<std::endl;
+        //std::cout<<"[GPU] Traversal phase 1 in "<<t_traversal_1_d<<" ms"<<std::endl;
 
         t_start = std::chrono::high_resolution_clock::now();
         cudaMalloc(&output_seed_d , sizeof(int)*seed_len);
@@ -281,7 +281,7 @@ public:
 
         t_end = std::chrono::high_resolution_clock::now();
         t_traversal_2_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"[GPU] Traversal phase (search frontier edge) in "<<t_traversal_2_d<<" ms"<<std::endl;
+        //std::cout<<"[GPU] Traversal phase (search frontier edge) in "<<t_traversal_2_d<<" ms"<<std::endl;
 
         // Back to host
         t_start = std::chrono::high_resolution_clock::now();
@@ -298,7 +298,7 @@ public:
 
         t_end = std::chrono::high_resolution_clock::now();
         elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"[GPU] Back to host in "<<elapsed_time_ms<<" ms"<<std::endl;
+        //std::cout<<"[GPU] Back to host in "<<elapsed_time_ms<<" ms"<<std::endl;
         t_back_to_host_d = elapsed_time_ms;
 
         // standard output, time not measured
@@ -331,7 +331,7 @@ public:
         }
 
         this->m_polygons = output_seeds.size();
-        std::cout<<"[GPU] Mesh with "<<m_polygons<<" polygons "<<n_frontier_edges/2<<" edges and "<<n_barrier_edge_tips<<" barrier-edge tips."<<std::endl;
+        //std::cout<<"[GPU] Mesh with "<<m_polygons<<" polygons "<<n_frontier_edges/2<<" edges and "<<n_barrier_edge_tips<<" barrier-edge tips."<<std::endl;
         //mesh_input->print_pg(std::to_string(mesh_input->vertices()) + ".pg");    
      
     }
@@ -339,7 +339,7 @@ public:
 
     void print_stats(std::string filename){
         //Time
-        std::cout<<"Time to generate Triangulation: "<<mesh_input->get_triangulation_generation_time()<<" ms"<<std::endl;
+        /*std::cout<<"Time to generate Triangulation: "<<mesh_input->get_triangulation_generation_time()<<" ms"<<std::endl;
         std::cout<<"Time to copy to device: "<<t_copy_to_device_d<<" ms"<<std::endl;
         std::cout<<"Time to label max edges "<<t_label_max_edges_d<<" ms"<<std::endl;
         std::cout<<"Time to label frontier edges "<<t_label_frontier_edges_d<<" ms"<<std::endl;
@@ -350,7 +350,7 @@ public:
         std::cout<<"Time to traversal "<<t_traversal_2_d<<" ms"<<std::endl;
         std::cout<<"Time to repair "<<t_repair_d<<" ms"<<std::endl;
         std::cout<<"Time to back to host: "<<t_back_to_host_d<<" ms"<<std::endl;
-        std::cout<<"Time to generate polygonal mesh "<<t_label_max_edges_d + t_label_frontier_edges_d + t_label_seed_edges_d + t_traversal_and_repair_d<<" ms"<<std::endl;
+        std::cout<<"Time to generate polygonal mesh "<<t_label_max_edges_d + t_label_frontier_edges_d + t_label_seed_edges_d + t_traversal_and_repair_d<<" ms"<<std::endl;//*/
 
         //Memory
         long long m_max_edges =  sizeof(decltype(max_edges.back())) * max_edges.capacity();
@@ -421,7 +421,7 @@ public:
         for(std::size_t v = 0; v < mesh_input->vertices(); v++)
             out<<mesh_input->get_PointX(v)<<" "<<mesh_input->get_PointY(v)<<" 0"<<std::endl; 
         //print polygons
-        printf("-------> 1\n");
+        //printf("-------> 1\n");
         int size_poly;
         int e_curr;
         for(auto &e_init : output_seeds){
@@ -443,7 +443,7 @@ public:
             //count++;
             //printf("-------> 1.1 %d\n", count);
         }
-        printf("-------> 2\n");
+        //printf("-------> 2\n");
       //  out<<"}"<<std::endl;
         out.close();
     }

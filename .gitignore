@@ -6,6 +6,8 @@ build/*/*/*
 !build/generatemesh_withplotting.sh
 data/*
 data/*/*
+experiments/*.off
+experiments/*.json
 
 !data/datagenerator.sh
 !data/datagenerator_withplotting.sh
