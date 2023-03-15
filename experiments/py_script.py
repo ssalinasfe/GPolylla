@@ -1,15 +1,3 @@
-# %% [markdown]
-# # Experimentos
-# 
-# Los experimentos se harán en una cuadrilla $[0,1]^2$, para esto, los puntos se intersan aleatoriamente dentro del dominio. 
-# 
-# Se define la función **move_point** para mover los puntos muy cercanos al borde por un $\epsilon$, y se insertan en el borde cercano
-# 
-# Luego se eliminan los puntos repetidos y la wea.
-# 
-# ![image info](https://cdn.shopify.com/s/files/1/0414/9228/3547/files/quienes01.jpg?v=1614317195)
-
-# %%
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.collections import PatchCollection
@@ -57,41 +45,34 @@ def add_box(arr, tolerance):
 np.random.seed(545)
 rng = 4554
 
-# %% [markdown]
-# # Random point generation
 
-# %%
-startVertice = 1000
-stopVertice = 10000
-stepVertices = startVertice
-tolerance = 0.001
+numVertices = 1000
+tolerance = 1/numVertices
 
-RandomSample = np.random.rand(stopVertice - 4,2)
+RandomSample = np.random.rand(numVertices - 2,2)
+print("step 1 done!")
+
 RandomSample = add_box(RandomSample, tolerance)
 
+print("step 2 done!")
+
+randomDelaunay = Delaunay(RandomSample)
+
+print("step 3 done!")
+
+randomPoints = RandomSample
+randomTriangles = [("triangle", randomDelaunay.simplices)]
+
 import meshio
+name = str(numVertices)
 
-for i in range(startVertice, stopVertice, stepVertices):
-    RandomSubSample = RandomSample[:i]
-    # each subSample generates a new triangulation
-    randomDelaunay = Delaunay(RandomSubSample)
-    randomTriangles =  [("triangle", randomDelaunay.simplices)]
-    meshio.write_points_cells(str(len(RandomSubSample)) + "_random.off", RandomSubSample, randomTriangles)
+meshio.write_points_cells(name+"_uniform.off", randomPoints, randomTriangles)
 
+print("step 4 done!")
 
-# %% [markdown]
-# # Experiment
-# 
-# In this section we run the benchmark
-
-# %%
 import os
 
 folder = "../build"
 
-#os.system(folder + "/Polylla 100_random.off 100_random.out")
-
-for i in range(startVertice, stopVertice, stepVertices):
-    os.system(folder + "/Polylla " + str(i) + "_random.off " + str(i) + "random.out")
-
+os.system(folder + "/Polylla "+name+"_uniform.off "+name+"_uniform_out")
 
