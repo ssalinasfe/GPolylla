@@ -46,7 +46,7 @@ np.random.seed(545)
 rng = 4554
 
 
-numVertices = 1000
+numVertices = 7000000
 tolerance = 1/numVertices
 
 RandomSample = np.random.rand(numVertices - 2,2)
@@ -76,3 +76,5 @@ folder = "../build"
 
 os.system(folder + "/Polylla "+name+"_uniform.off "+name+"_uniform_out")
 
+
+print("step 5 done!")

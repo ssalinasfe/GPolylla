@@ -154,7 +154,7 @@ public:
             }
         }
         else 
-            std::cout << "Unable to open node file"; 
+            std::cout << "Unable to open ele file"; 
         elefile.close();
 
         return faces;
@@ -202,7 +202,7 @@ public:
             }
         }
         else 
-            std::cout << "Unable to open node file"; 
+            std::cout << "Unable to open neight file"; 
         neighfile.close();
         return neighs;
     }
@@ -480,7 +480,7 @@ public:
 
 		}
 		else 
-				std::cout << "Unable to open node file"; 
+				std::cout << "Unable to open OFF file"; 
 		offfile.close();
         return faces;
     }
