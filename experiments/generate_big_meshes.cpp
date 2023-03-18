@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 
     std::cout << "Generating mesh with " << n << " points" << std::endl;
 
-    FILE *fp = fopen("big_mesh_c.off", "w");
+    FILE *fp = fopen("big_mesh_4.off", "w");
     
     fprintf(fp, "OFF\n");
     fprintf(fp, "%d %d %d\n", n, int(2*(sqrt_n-1)*(sqrt_n-1)),int(0));

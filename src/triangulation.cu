@@ -207,88 +207,9 @@ public:
         return neighs;
     }
 
-        //Generate interior halfedges using a a vector with the faces of the triangulation
-    //if an interior half-edge is border, it is mark as border-edge
-    //mark border-edges
-    /*
     void construct_interior_halfEdges_from_faces(std::vector<int> &faces){
-        auto hash_for_pair = [](const std::pair<int, int>& p) {
-            return std::hash<int>{}(p.first) ^ std::hash<int>{}(p.second);
-        };
-        std::unordered_map<_edge, int, decltype(hash_for_pair)> map_edges(3*this->n_faces, hash_for_pair); //set of edges to calculate the boundary and twin edges
-        for(std::size_t i = 0; i < n_faces; i++){
-            halfEdge he0, he1, he2;
-            int index_he0 = i*3+0;
-            int index_he1 = i*3+1;
-            int index_he2 = i*3+2;
-            int v0 = faces.at(3*i+0);
-            int v1 = faces.at(3*i+1);
-            int v2 = faces.at(3*i+2);
-            
-            he0.origin = v0;
-            he0.next = index_he1;
-            he0.prev = index_he2;
-            //he0.face = i;
-            he0.is_border = false;
-            he0.twin = -1;
-            //falta twin
-            Vertices.at(v0).incident_halfedge = index_he0;
-            
-            map_edges[std::make_pair(v0, v1)] = index_he0;
-            HalfEdges.push_back(he0);
-            
-            he1.origin = v1;
-            //he1.target = v2;
-            he1.next = index_he2;
-            he1.prev = index_he0;
-            //he1.face = i;
-            he1.is_border = false;
-            he1.twin = -1;
-            Vertices.at(v1).incident_halfedge = index_he1;
-            
-            map_edges[std::make_pair(v1, v2)] = index_he1;
-            HalfEdges.push_back(he1);
-
-            he2.origin = v2;
-            //he2.target = v0;
-            he2.next = index_he0;
-            he2.prev = index_he1;
-            //he2.face = i;
-            he2.is_border = false;
-            he2.twin = -1;
-            Vertices.at(v2).incident_halfedge = index_he2;
-
-            map_edges[std::make_pair(v2, v0)] = index_he2;            
-            HalfEdges.push_back(he2);
-        }
-        this->n_halfedges = HalfEdges.size();
-
-        //Calculate twin halfedge and boundary halfedges from set_edges
-        std::unordered_map<_edge,int, decltype(hash_for_pair)>::iterator it;
-        for(std::size_t i = 0; i < HalfEdges.size(); i++){
-            //if halfedge has no twin
-            if(HalfEdges.at(i).twin == -1){
-                int tgt = origin(next(i));
-                int org = origin(i);
-                _edge twin = std::make_pair(tgt, org);
-                it=map_edges.find(twin);
-                //if twin is found
-                if(it!=map_edges.end()){
-                    int index_twin = it->second;
-                    HalfEdges.at(i).twin = index_twin;
-                    HalfEdges.at(index_twin).twin = i;
-                }else{ //if twin is not found and halfedge is on the boundary
-                    HalfEdges.at(i).is_border = true;
-                    Vertices.at(org).is_border = true;
-                    Vertices.at(tgt).is_border = true;
-                }
-            }
-        }
-    }
-*/
-    void construct_interior_halfEdges_from_faces(std::vector<int> &faces){
-        auto hash_for_pair = [](const std::pair<int, int>& p) {
-            return std::hash<int>{}(p.first) ^ std::hash<int>{}(p.second);
+        auto hash_for_pair = [n = 3*this->n_faces](const std::pair<int, int>& p) {
+            return std::hash<int>{}(p.first)*n + std::hash<int>{}(p.second);
         };
         std::unordered_map<_edge, int, decltype(hash_for_pair)> map_edges(3*this->n_faces, hash_for_pair); //set of edges to calculate the boundary and twin edges
         for(std::size_t i = 0; i < n_faces; i++){
@@ -511,10 +432,6 @@ public:
         //std::cout<<"Constructing exterior halfedges"<<std::endl;
         construct_exterior_halfEdges();
 
-        triangle_list.reserve(n_faces);
-        for(std::size_t i = 0; i < n_faces; i++)
-            triangle_list.push_back(3*i);
-
         //std::cout<<"Constructing triangles"<<std::endl;
         auto t_end = std::chrono::high_resolution_clock::now();
         t_triangulation_generation = std::chrono::duration<double, std::milli>(t_end-t_start).count();
@@ -529,13 +446,68 @@ public:
         construct_interior_halfEdges_from_faces(faces);
         construct_exterior_halfEdges();
 
-        triangle_list.reserve(n_faces);
-        for(std::size_t i = 0; i < n_faces; i++)
-            triangle_list.push_back(3*i);
-
         auto t_end = std::chrono::high_resolution_clock::now();
         t_triangulation_generation = std::chrono::duration<double, std::milli>(t_end-t_start).count();
     }
+
+
+    Triangulation(int size){
+        
+
+        int n = size;
+        int sqrt_n = (int)sqrt(size);
+
+        n_vertices = size;
+
+
+        std::vector<int> faces;
+
+        this->Vertices.reserve(this->n_vertices);
+        faces.reserve(2*(n-sqrt_n));
+
+        int estimado = 2*(n-sqrt_n);
+
+        std::cout<<"Generating points  "<<std::endl;
+        for (int i = 0; i < sqrt_n; i++)
+            for (int j = 0; j < sqrt_n; j++)
+            {
+                vertex ve;
+                ve.x =  (float)i;
+                ve.y =  (float)j;
+                this->Vertices.push_back(ve);
+            }
+        
+        std::cout<<"Generating triangles "<<std::endl;
+        for (int i = 0; i < n-sqrt_n; i++)
+        {
+            if (i % sqrt_n != sqrt_n-1){
+                faces.push_back(i);
+                faces.push_back(i+1);
+                faces.push_back(i+sqrt_n+1);
+
+                faces.push_back(i);
+                faces.push_back(i+sqrt_n+1);
+                faces.push_back(i+sqrt_n);
+            }
+        }
+
+        n_faces = faces.size()/3;
+        std::cout<<"estimao "<< n_faces<<" final "<<n_faces<<std::endl;
+
+        std::cout<<"Constructing halfedges "<<std::endl;
+        auto t_start = std::chrono::high_resolution_clock::now();
+
+        
+        HalfEdges.reserve(3*n_vertices);
+
+        construct_interior_halfEdges_from_faces(faces);
+        construct_exterior_halfEdges();
+
+        auto t_end = std::chrono::high_resolution_clock::now();
+        t_triangulation_generation = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+        std::cout<<"Triangulation generation time: "<<t_triangulation_generation<<std::endl;
+    }
+
 
     // Copy constructor
     Triangulation(const Triangulation &t) {

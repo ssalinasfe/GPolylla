@@ -15,6 +15,23 @@
 
 int main(int argc, char **argv) {
 
+
+
+    int size = atoi(argv[1]);
+    std::string output = std::string(argv[2]);
+
+    Polylla mesh(size);
+    std::cout<<"Done!"<<std::endl;
+
+    mesh.print_stats(output+".json");
+    std::cout<<"output json in "<<output<<".json"<<std::endl;
+
+    mesh.print_OFF(output+".off");
+    std::cout<<"output off in "<<output<<".off"<<std::endl;
+   
+    
+
+/*
     if(argc == 5)
     {
         std::string node_file = std::string(argv[1]);
@@ -59,7 +76,7 @@ int main(int argc, char **argv) {
         std::cout<<"Usage: "<<argv[0]<<" <node_file .node> <ele_file .ele> <neigh_file .neigh> <output name>"<<std::endl;
         return 0;
     }
-    
+*/    
 
     
     

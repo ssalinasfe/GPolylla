@@ -184,7 +184,10 @@ __device__ bool is_seed_edge_d(halfEdge *HalfEdges, bit_vector_d *max_edges, int
 }
 
 __global__ void seed_phase_d(halfEdge *HalfEdges, bit_vector_d *max_edges, half *seed_edges, int n){
-    int off = threadIdx.x + blockDim.x*blockIdx.x;
+    int x = threadIdx.x + blockIdx.x * blockDim.x; 
+    // Calculate the row index of the Pd element, denote by y
+    int y = threadIdx.y + blockIdx.y * blockDim.y;
+    int off = x + y * blockDim.x * gridDim.x;
     if (off < n){
         //seed_edges[off] = 0;
         if(is_interior_face_d(HalfEdges, off) && is_seed_edge_d(HalfEdges, max_edges, off))
@@ -196,9 +199,10 @@ __global__ void seed_phase_d(halfEdge *HalfEdges, bit_vector_d *max_edges, half 
 __global__ void compaction_d(int *output, int *input, half *condition, int n){
     int off = threadIdx.x + blockDim.x*blockIdx.x;
     //printf("hola %i %i %i\n", off, input[off], condition[off]);
+    int index = input[off];
     if (off < n){
         if ((int)condition[off] ==  1)
-            output[input[off]] = off;//*/
+            output[index] = off;//*/
         //printf("hola %i %i %i %i\n", off, output[input[off]], input[off], condition[off]);
     }
 }
@@ -289,7 +293,12 @@ __global__ void travel_phase_d(halfEdge *output, halfEdge *HalfEdges, bit_vector
 //Travel in CCW order around the edges of vertex v from the edge e looking for the next frontier edge
 __global__ void search_frontier_edge_d(int *output, halfEdge *HalfEdges, bit_vector_d *frontier_edges, int *seed_edges, int n)
 {
-    int off = threadIdx.x + blockIdx.x*blockDim.x;
+    //int off = threadIdx.x + blockIdx.x*blockDim.x;
+    
+    int x = threadIdx.x + blockIdx.x * blockDim.x; 
+    // Calculate the row index of the Pd element, denote by y
+    int y = threadIdx.y + blockIdx.y * blockDim.y;
+    int off = x + y * blockDim.x * gridDim.x;
     if (off < n){
         int nxt = seed_edges[off];
         //printf("%i %i\n",off,seed_edges[off]);

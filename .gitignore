@@ -8,6 +8,8 @@ data/*
 data/*/*
 experiments/*.off
 experiments/*.json
+experiments/*.out
+experiments/*
 
 !data/datagenerator.sh
 !data/datagenerator_withplotting.sh
