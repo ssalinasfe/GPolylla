@@ -7,9 +7,8 @@ build/*/*/*
 data/*
 data/*/*
 experiments/*.off
-experiments/*.json
-experiments/*.out
-experiments/*
+experiments/*/*.off
+experiments/*/*/*.off
 
 !data/datagenerator.sh
 !data/datagenerator_withplotting.sh
