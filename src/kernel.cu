@@ -279,11 +279,7 @@ __global__ void travel_phase_d(halfEdge *output, halfEdge *HalfEdges, bit_vector
     if (off < n){
         output[off] = HalfEdges[off];
         //printf ("aca-gpu %i\n", off);
-        if (!is_frontier_edge_d(HalfEdges,max_edges,off)){
-            output[off].next = search_next_frontier_edge_d(HalfEdges,frontier_edges,off);
-            output[off].prev = search_prev_frontier_edge_d(HalfEdges,frontier_edges,off);
-        }
-        else{
+        if (is_frontier_edge_d(HalfEdges,max_edges,off)){
             output[off].next = search_next_frontier_edge_d(HalfEdges,frontier_edges,next_d(HalfEdges,off));
             output[off].prev = search_prev_frontier_edge_d(HalfEdges,frontier_edges,prev_d(HalfEdges,off));
         }

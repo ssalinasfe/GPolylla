@@ -27,6 +27,12 @@ The algorithm needs a initial triangulation as input, any triangulations will wo
 
 The algorithm supports two file formats as input, the output is an [.off file](https://en.wikipedia.org/wiki/OFF_(file_format)) and an .ale file use for the VEM.
 
+### Compiling
+
+Compile as
+
+   cmake -DCMAKE_CUDA_ARCHITECTURES=70 ..
+
 ### Input as  .node, .ele, .neigh files
 
 Triangulation is represented as a [.node file](https://www.cs.cmu.edu/~quake/triangle.node.html) with the nodes of the triangulations and the [boundary marker](https://www.cs.cmu.edu/~quake/triangle.markers.html), [.ele file](https://www.cs.cmu.edu/~quake/triangle.ele.html) with the triangles of the triangulations and a [.neigh file ](https://www.cs.cmu.edu/~quake/triangle.neigh.html) with the adjacencies of each triangle. 
