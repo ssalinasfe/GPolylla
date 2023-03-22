@@ -17,7 +17,8 @@
 #include <chrono>
 #include <iomanip>
 
-
+#include <malloc_count-0.7.1/malloc_count.h>
+#include <malloc_count-0.7.1/stack_count.h>
 
 #define PARALLEL
 
@@ -76,6 +77,12 @@ private:
     double t_traversal_and_repair_h = 0;
     double t_traversal_h = 0;
     double t_repair_h = 0;
+
+    int n_halfedges;
+    int n_triangle;
+    int n_vertices;
+    int seed_len;
+
     
 public:
 
@@ -133,8 +140,8 @@ public:
         // copy to device and initialize
 
         // declare and initialize device arrays
-        int n_triangle = mesh_input->faces();
-        int n_halfedges = mesh_input->halfEdges();
+        n_triangle = mesh_input->faces();
+        n_halfedges = mesh_input->halfEdges();
 
 
         // copy halfedges to device
@@ -142,7 +149,7 @@ public:
         halfedges_h = mesh_input->HalfEdges.data();
 
         // copy vertices to device
-        int n_vertices = mesh_input->vertices();
+        n_vertices = mesh_input->vertices();
         vertices_h = new vertex[n_vertices];
         vertices_h = mesh_input->Vertices.data();
 
@@ -161,8 +168,9 @@ public:
 
         cudaMemcpy(max_edges_d, max_edges.data(), max_edges.size()*sizeof(bit_vector_d), cudaMemcpyHostToDevice );
 
+        gpuErrchk( cudaDeviceSynchronize() );
         auto t_end = std::chrono::high_resolution_clock::now();
-        double t_copy_to_device_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+        t_copy_to_device_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
         std::cout<<"[GPU] Copy vectors to device in "<<t_copy_to_device_d<<" ms"<<std::endl;
             
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -217,7 +225,6 @@ public:
         t_label_seed_edges_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
         std::cout<<"[GPU] Labeled seed edges in "<<t_label_seed_edges_d<<" ms"<<std::endl;
 
-        int seed_len;
 
         t_start = std::chrono::high_resolution_clock::now();
         scan_parallel_tc_2<int>(seed_edges_bd, seed_edges_ad, n_halfedges);
@@ -335,6 +342,8 @@ public:
         this->m_polygons = output_seeds.size();
         //std::cout<<"[GPU] Mesh with "<<m_polygons<<" polygons "<<n_frontier_edges/2<<" edges and "<<n_barrier_edge_tips<<" barrier-edge tips."<<std::endl;
         //mesh_input->print_pg(std::to_string(mesh_input->vertices()) + ".pg");    
+
+        
      
 
         // cudaFree(max_edges_d);
@@ -367,16 +376,23 @@ public:
         std::cout<<"Time to back to host: "<<t_back_to_host_d<<" ms"<<std::endl;
         std::cout<<"Time to generate polygonal mesh "<<t_label_max_edges_d + t_label_frontier_edges_d + t_label_seed_edges_d + t_traversal_and_repair_d<<" ms"<<std::endl;//*/
 
+       
+
         //Memory
-        long long m_max_edges =  sizeof(decltype(max_edges.back())) * max_edges.capacity();
-        long long m_frontier_edge = sizeof(decltype(frontier_edges.back())) * frontier_edges.capacity();
-        long long m_seed_edges = sizeof(decltype(seed_edges.back())) * seed_edges.capacity();
-        long long m_seed_bet_mar = sizeof(decltype(seed_bet_mark.back())) * seed_bet_mark.capacity();
-        long long m_triangle_list = sizeof(decltype(triangle_list.back())) * triangle_list.capacity();
+        long long m_max_edges =  n_halfedges*sizeof(bit_vector_d);
+        long long m_frontier_edge =  sizeof(bit_vector_d)*n_halfedges;
+        long long m_seed_edges = sizeof(int)*n_halfedges + sizeof(int)*n_halfedges;
+        long long m_seed_bet_mar = sizeof(half)*n_halfedges;
+        long long m_triangle_list = sizeof(int)*n_triangle;
         long long m_mesh_input = mesh_input->get_size_vertex_half_edge();
         long long m_mesh_output = mesh_output->get_size_vertex_half_edge();
         long long m_vertices_input = mesh_input->get_size_vertex_struct();
         long long m_vertices_output = mesh_output->get_size_vertex_struct();
+
+        size_t free_byte;
+        size_t total_byte;
+        cudaMemGetInfo(&free_byte, &total_byte);
+        size_t m_memory_total = total_byte - free_byte;
 
         
         std::ofstream out(filename);
@@ -416,7 +432,9 @@ public:
         out<<"\t\"memory_mesh_output\": "<<m_mesh_output<<","<<std::endl;
         out<<"\t\"memory_vertices_input\": "<<m_vertices_input<<","<<std::endl;
         out<<"\t\"memory_vertices_output\": "<<m_vertices_output<<","<<std::endl;
-        out<<"\t\"memory_total\": "<<m_max_edges + m_frontier_edge + m_seed_edges + m_seed_bet_mar + m_triangle_list + m_mesh_input + m_mesh_output + m_vertices_input + m_vertices_output<<std::endl;
+        out<<"\t\"memory_total\": "<<m_max_edges + m_frontier_edge + m_seed_edges + m_seed_bet_mar + m_triangle_list + m_mesh_input + m_mesh_output + m_vertices_input + m_vertices_output<<","<<std::endl;
+        out<<"\t\"memory_total_gpu\": "<<m_memory_total<<std::endl;
+        //out<<"\t\"memory_total_cpu\": "<<malloc_count()<<std::endl;
         out<<"}"<<std::endl;
         out.close();
     }

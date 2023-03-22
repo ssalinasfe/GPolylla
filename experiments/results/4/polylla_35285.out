@@ -1,0 +1,21 @@
+Ejecutando Polylla con tamaño 75255625
+Generating points  
+Generating triangles 
+estimao 150476552 final 150476552
+Constructing halfedges 
+Triangulation generation time: 309757
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 1054.47 ms
+[GPU] Labered max edges in 12.1811 ms
+[GPU] Labeled frontier edges in 9.47347 ms
+[GPU] Labeled seed edges in 9.47398 ms
+[GPU] Labeled seed scan in 4.85304 ms
+[GPU] Labeled seed compaction in 3.24543 ms
+[GPU] Traversal phase 1 in 33.9755 ms
+[GPU] Traversal phase (search frontier edge) in 6.696 ms
+[GPU] Back to host in 907.656 ms
+Done!
+Printing JSON file as uniform_75255625.json
+output json in uniform_75255625.json
+Tiempo de ejecución: 341.740 segundos
