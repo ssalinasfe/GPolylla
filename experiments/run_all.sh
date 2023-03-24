@@ -2,7 +2,7 @@
 
 # Calculamos la diferencia entre los valores extremos y la cantidad de valores que queremos obtener
 diff=$((100000000-1000000))
-interval=$((diff/4))
+interval=$((diff/7))
 
 # Inicializamos un array para almacenar los 5 valores equidistantes con raíz cuadrada entera
 values=()
