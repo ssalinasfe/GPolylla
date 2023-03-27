@@ -1,0 +1,741 @@
+Sun 26 Mar 2023 05:05:31 PM -03
+Start: 1000000, End: 100000000, Intervalo: 3193548, Diferencia: 99000000, NSAMPLES: 31
+Valores: 1000000 4194304 7387524 10582009 13771521 16966161 20160100 23357889 26553409 29746116 32936121 36132121 39325441 42510400 45711121 48902049 52099524 55294096 58476609 61669609 64866916 68062500 71250481 74459641 77651344 80838081 84033889 87216921 90421081 93605625 96805921 100000000
+
+Sun 26 Mar 2023 05:05:31 PM -03
+Ejecutando Polylla con tamaño 1000000
+Generating points  
+Generating triangles 
+estimao 1996002 final 1996002
+Constructing halfedges 
+Triangulation generation time: 3180.19
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 19.6223 ms
+[GPU] Labered max edges in 0.218454 ms
+[GPU] Labeled frontier edges in 0.13742 ms
+[GPU] Labeled seed edges in 0.790988 ms
+[GPU] Labeled seed scan in 0.406711 ms
+[GPU] Labeled seed compaction in 0.061126 ms
+[GPU] Traversal phase 1 in 0.411048 ms
+[GPU] Traversal phase (search frontier edge) in 0.7918 ms
+[GPU] Back to host in 12.7901 ms
+Done!
+Printing JSON file as uniform_1000000.json
+output json in uniform_1000000.json
+Tiempo de ejecución: 4.700 segundos
+
+Sun 26 Mar 2023 05:05:36 PM -03
+Ejecutando Polylla con tamaño 4194304
+Generating points  
+Generating triangles 
+estimao 8380418 final 8380418
+Constructing halfedges 
+Triangulation generation time: 14747.3
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 61.6723 ms
+[GPU] Labered max edges in 0.786511 ms
+[GPU] Labeled frontier edges in 0.535766 ms
+[GPU] Labeled seed edges in 0.842276 ms
+[GPU] Labeled seed scan in 0.603554 ms
+[GPU] Labeled seed compaction in 0.199588 ms
+[GPU] Traversal phase 1 in 1.65297 ms
+[GPU] Traversal phase (search frontier edge) in 0.818802 ms
+[GPU] Back to host in 55.7149 ms
+Done!
+Printing JSON file as uniform_4194304.json
+output json in uniform_4194304.json
+Tiempo de ejecución: 17.489 segundos
+
+Sun 26 Mar 2023 05:05:53 PM -03
+Ejecutando Polylla con tamaño 7387524
+Generating points  
+Generating triangles 
+estimao 14764178 final 14764178
+Constructing halfedges 
+Triangulation generation time: 27074.5
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 102.561 ms
+[GPU] Labered max edges in 1.29409 ms
+[GPU] Labeled frontier edges in 0.945762 ms
+[GPU] Labeled seed edges in 1.00812 ms
+[GPU] Labeled seed scan in 0.774428 ms
+[GPU] Labeled seed compaction in 0.336237 ms
+[GPU] Traversal phase 1 in 2.90107 ms
+[GPU] Traversal phase (search frontier edge) in 0.931957 ms
+[GPU] Back to host in 98.2515 ms
+Done!
+Printing JSON file as uniform_7387524.json
+output json in uniform_7387524.json
+Tiempo de ejecución: 31.429 segundos
+
+Sun 26 Mar 2023 05:06:25 PM -03
+Ejecutando Polylla con tamaño 10582009
+Generating points  
+Generating triangles 
+estimao 21151008 final 21151008
+Constructing halfedges 
+Triangulation generation time: 38525.3
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 150.261 ms
+[GPU] Labered max edges in 1.84549 ms
+[GPU] Labeled frontier edges in 1.33214 ms
+[GPU] Labeled seed edges in 1.53835 ms
+[GPU] Labeled seed scan in 0.994825 ms
+[GPU] Labeled seed compaction in 0.473708 ms
+[GPU] Traversal phase 1 in 4.14828 ms
+[GPU] Traversal phase (search frontier edge) in 1.11395 ms
+[GPU] Back to host in 137.015 ms
+Done!
+Printing JSON file as uniform_10582009.json
+output json in uniform_10582009.json
+Tiempo de ejecución: 43.952 segundos
+
+Sun 26 Mar 2023 05:07:09 PM -03
+Ejecutando Polylla con tamaño 13771521
+Generating points  
+Generating triangles 
+estimao 27528200 final 27528200
+Constructing halfedges 
+Triangulation generation time: 48145.5
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 188.017 ms
+[GPU] Labered max edges in 2.32408 ms
+[GPU] Labeled frontier edges in 1.73111 ms
+[GPU] Labeled seed edges in 1.78906 ms
+[GPU] Labeled seed scan in 1.16767 ms
+[GPU] Labeled seed compaction in 0.610467 ms
+[GPU] Traversal phase 1 in 5.41146 ms
+[GPU] Traversal phase (search frontier edge) in 1.31878 ms
+[GPU] Back to host in 180.597 ms
+Done!
+Printing JSON file as uniform_13771521.json
+output json in uniform_13771521.json
+Tiempo de ejecución: 54.977 segundos
+
+Sun 26 Mar 2023 05:08:04 PM -03
+Ejecutando Polylla con tamaño 16966161
+Generating points  
+Generating triangles 
+estimao 33915848 final 33915848
+Constructing halfedges 
+Triangulation generation time: 56882.1
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 238.047 ms
+[GPU] Labered max edges in 2.84938 ms
+[GPU] Labeled frontier edges in 2.14157 ms
+[GPU] Labeled seed edges in 2.1995 ms
+[GPU] Labeled seed scan in 1.36849 ms
+[GPU] Labeled seed compaction in 0.747106 ms
+[GPU] Traversal phase 1 in 6.5653 ms
+[GPU] Traversal phase (search frontier edge) in 1.55798 ms
+[GPU] Back to host in 211.242 ms
+Done!
+Printing JSON file as uniform_16966161.json
+output json in uniform_16966161.json
+Tiempo de ejecución: 64.757 segundos
+
+Sun 26 Mar 2023 05:09:08 PM -03
+Ejecutando Polylla con tamaño 20160100
+Generating points  
+Generating triangles 
+estimao 40302242 final 40302242
+Constructing halfedges 
+Triangulation generation time: 71949.7
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 228.667 ms
+[GPU] Labered max edges in 3.37223 ms
+[GPU] Labeled frontier edges in 2.54007 ms
+[GPU] Labeled seed edges in 2.58226 ms
+[GPU] Labeled seed scan in 1.55042 ms
+[GPU] Labeled seed compaction in 0.882913 ms
+[GPU] Traversal phase 1 in 7.92607 ms
+[GPU] Traversal phase (search frontier edge) in 1.85011 ms
+[GPU] Back to host in 238.384 ms
+Done!
+Printing JSON file as uniform_20160100.json
+output json in uniform_20160100.json
+Tiempo de ejecución: 81.653 segundos
+
+Sun 26 Mar 2023 05:10:30 PM -03
+Ejecutando Polylla con tamaño 23357889
+Generating points  
+Generating triangles 
+estimao 46696448 final 46696448
+Constructing halfedges 
+Triangulation generation time: 83215.7
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 326.79 ms
+[GPU] Labered max edges in 3.91214 ms
+[GPU] Labeled frontier edges in 2.9325 ms
+[GPU] Labeled seed edges in 3.00227 ms
+[GPU] Labeled seed scan in 1.84788 ms
+[GPU] Labeled seed compaction in 1.0224 ms
+[GPU] Traversal phase 1 in 9.08468 ms
+[GPU] Traversal phase (search frontier edge) in 2.14271 ms
+[GPU] Back to host in 287.413 ms
+Done!
+Printing JSON file as uniform_23357889.json
+output json in uniform_23357889.json
+Tiempo de ejecución: 95.604 segundos
+
+Sun 26 Mar 2023 05:12:06 PM -03
+Ejecutando Polylla con tamaño 26553409
+Generating points  
+Generating triangles 
+estimao 53086208 final 53086208
+Constructing halfedges 
+Triangulation generation time: 93002.1
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 358.713 ms
+[GPU] Labered max edges in 4.41574 ms
+[GPU] Labeled frontier edges in 3.33994 ms
+[GPU] Labeled seed edges in 3.37916 ms
+[GPU] Labeled seed scan in 2.05455 ms
+[GPU] Labeled seed compaction in 1.15739 ms
+[GPU] Traversal phase 1 in 10.343 ms
+[GPU] Traversal phase (search frontier edge) in 2.41747 ms
+[GPU] Back to host in 348.507 ms
+Done!
+Printing JSON file as uniform_26553409.json
+output json in uniform_26553409.json
+Tiempo de ejecución: 106.711 segundos
+
+Sun 26 Mar 2023 05:13:52 PM -03
+Ejecutando Polylla con tamaño 29746116
+Generating points  
+Generating triangles 
+estimao 59470418 final 59470418
+Constructing halfedges 
+Triangulation generation time: 112255
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 318.187 ms
+[GPU] Labered max edges in 4.92626 ms
+[GPU] Labeled frontier edges in 3.74814 ms
+[GPU] Labeled seed edges in 3.79074 ms
+[GPU] Labeled seed scan in 2.22946 ms
+[GPU] Labeled seed compaction in 1.2944 ms
+[GPU] Traversal phase 1 in 11.6607 ms
+[GPU] Traversal phase (search frontier edge) in 2.69126 ms
+[GPU] Back to host in 380.097 ms
+Done!
+Printing JSON file as uniform_29746116.json
+output json in uniform_29746116.json
+Tiempo de ejecución: 126.082 segundos
+
+Sun 26 Mar 2023 05:15:59 PM -03
+Ejecutando Polylla con tamaño 32936121
+Generating points  
+Generating triangles 
+estimao 65849288 final 65849288
+Constructing halfedges 
+Triangulation generation time: 129289
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 440.835 ms
+[GPU] Labered max edges in 5.47326 ms
+[GPU] Labeled frontier edges in 4.1392 ms
+[GPU] Labeled seed edges in 4.17636 ms
+[GPU] Labeled seed scan in 2.41156 ms
+[GPU] Labeled seed compaction in 1.43225 ms
+[GPU] Traversal phase 1 in 12.8853 ms
+[GPU] Traversal phase (search frontier edge) in 2.96042 ms
+[GPU] Back to host in 423.924 ms
+Done!
+Printing JSON file as uniform_32936121.json
+output json in uniform_32936121.json
+Tiempo de ejecución: 145.377 segundos
+
+Sun 26 Mar 2023 05:18:24 PM -03
+Ejecutando Polylla con tamaño 36132121
+Generating points  
+Generating triangles 
+estimao 72240200 final 72240200
+Constructing halfedges 
+Triangulation generation time: 127548
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 491.322 ms
+[GPU] Labered max edges in 6.01902 ms
+[GPU] Labeled frontier edges in 4.54249 ms
+[GPU] Labeled seed edges in 4.57607 ms
+[GPU] Labeled seed scan in 2.58573 ms
+[GPU] Labeled seed compaction in 1.57035 ms
+[GPU] Traversal phase 1 in 14.1508 ms
+[GPU] Traversal phase (search frontier edge) in 3.23644 ms
+[GPU] Back to host in 472.926 ms
+Done!
+Printing JSON file as uniform_36132121.json
+output json in uniform_36132121.json
+Tiempo de ejecución: 144.094 segundos
+
+Sun 26 Mar 2023 05:20:48 PM -03
+Ejecutando Polylla con tamaño 39325441
+Generating points  
+Generating triangles 
+estimao 78625800 final 78625800
+Constructing halfedges 
+Triangulation generation time: 153954
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 494.528 ms
+[GPU] Labered max edges in 6.55526 ms
+[GPU] Labeled frontier edges in 4.95391 ms
+[GPU] Labeled seed edges in 4.99201 ms
+[GPU] Labeled seed scan in 2.7882 ms
+[GPU] Labeled seed compaction in 1.70762 ms
+[GPU] Traversal phase 1 in 15.4442 ms
+[GPU] Traversal phase (search frontier edge) in 3.50987 ms
+[GPU] Back to host in 487.465 ms
+Done!
+Printing JSON file as uniform_39325441.json
+output json in uniform_39325441.json
+Tiempo de ejecución: 171.572 segundos
+
+Sun 26 Mar 2023 05:23:40 PM -03
+Ejecutando Polylla con tamaño 42510400
+Generating points  
+Generating triangles 
+estimao 84994722 final 84994722
+Constructing halfedges 
+Triangulation generation time: 211921
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 546.018 ms
+[GPU] Labered max edges in 7.01911 ms
+[GPU] Labeled frontier edges in 5.34747 ms
+[GPU] Labeled seed edges in 5.38083 ms
+[GPU] Labeled seed scan in 2.97632 ms
+[GPU] Labeled seed compaction in 1.8427 ms
+[GPU] Traversal phase 1 in 16.6488 ms
+[GPU] Traversal phase (search frontier edge) in 3.78277 ms
+[GPU] Back to host in 601.025 ms
+Done!
+Printing JSON file as uniform_42510400.json
+output json in uniform_42510400.json
+Tiempo de ejecución: 234.361 segundos
+
+Sun 26 Mar 2023 05:27:34 PM -03
+Ejecutando Polylla con tamaño 45711121
+Generating points  
+Generating triangles 
+estimao 91395200 final 91395200
+Constructing halfedges 
+Triangulation generation time: 178004
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 588.853 ms
+[GPU] Labered max edges in 7.54006 ms
+[GPU] Labeled frontier edges in 5.75126 ms
+[GPU] Labeled seed edges in 5.79145 ms
+[GPU] Labeled seed scan in 3.15256 ms
+[GPU] Labeled seed compaction in 1.98031 ms
+[GPU] Traversal phase 1 in 17.9234 ms
+[GPU] Traversal phase (search frontier edge) in 4.07258 ms
+[GPU] Back to host in 579.898 ms
+Done!
+Printing JSON file as uniform_45711121.json
+output json in uniform_45711121.json
+Tiempo de ejecución: 199.737 segundos
+
+Sun 26 Mar 2023 05:30:54 PM -03
+Ejecutando Polylla con tamaño 48902049
+Generating points  
+Generating triangles 
+estimao 97776128 final 97776128
+Constructing halfedges 
+Triangulation generation time: 194752
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 705.425 ms
+[GPU] Labered max edges in 8.01312 ms
+[GPU] Labeled frontier edges in 6.14448 ms
+[GPU] Labeled seed edges in 6.16923 ms
+[GPU] Labeled seed scan in 3.33384 ms
+[GPU] Labeled seed compaction in 2.11535 ms
+[GPU] Traversal phase 1 in 19.0613 ms
+[GPU] Traversal phase (search frontier edge) in 4.36834 ms
+[GPU] Back to host in 621.489 ms
+Done!
+Printing JSON file as uniform_48902049.json
+output json in uniform_48902049.json
+Tiempo de ejecución: 217.224 segundos
+
+Sun 26 Mar 2023 05:34:31 PM -03
+Ejecutando Polylla con tamaño 52099524
+Generating points  
+Generating triangles 
+estimao 104170178 final 104170178
+Constructing halfedges 
+Triangulation generation time: 219371
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 594.679 ms
+[GPU] Labered max edges in 8.55727 ms
+[GPU] Labeled frontier edges in 6.54251 ms
+[GPU] Labeled seed edges in 6.5884 ms
+[GPU] Labeled seed scan in 3.51838 ms
+[GPU] Labeled seed compaction in 2.25344 ms
+[GPU] Traversal phase 1 in 20.2267 ms
+[GPU] Traversal phase (search frontier edge) in 4.67393 ms
+[GPU] Back to host in 671.268 ms
+Done!
+Printing JSON file as uniform_52099524.json
+output json in uniform_52099524.json
+Tiempo de ejecución: 243.453 segundos
+
+Sun 26 Mar 2023 05:38:34 PM -03
+Ejecutando Polylla con tamaño 55294096
+Generating points  
+Generating triangles 
+estimao 110558450 final 110558450
+Constructing halfedges 
+Triangulation generation time: 235550
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 600.529 ms
+[GPU] Labered max edges in 9.05004 ms
+[GPU] Labeled frontier edges in 6.94797 ms
+[GPU] Labeled seed edges in 6.97544 ms
+[GPU] Labeled seed scan in 3.70681 ms
+[GPU] Labeled seed compaction in 2.39109 ms
+[GPU] Traversal phase 1 in 21.4721 ms
+[GPU] Traversal phase (search frontier edge) in 5.01045 ms
+[GPU] Back to host in 724.391 ms
+Done!
+Printing JSON file as uniform_55294096.json
+output json in uniform_55294096.json
+Tiempo de ejecución: 260.897 segundos
+
+Sun 26 Mar 2023 05:42:55 PM -03
+Ejecutando Polylla con tamaño 58476609
+Generating points  
+Generating triangles 
+estimao 116922632 final 116922632
+Constructing halfedges 
+Triangulation generation time: 271079
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 821.105 ms
+[GPU] Labered max edges in 9.4834 ms
+[GPU] Labeled frontier edges in 7.35293 ms
+[GPU] Labeled seed edges in 7.37435 ms
+[GPU] Labeled seed scan in 3.8952 ms
+[GPU] Labeled seed compaction in 2.52841 ms
+[GPU] Traversal phase 1 in 23.0206 ms
+[GPU] Traversal phase (search frontier edge) in 5.34417 ms
+[GPU] Back to host in 839.378 ms
+Done!
+Printing JSON file as uniform_58476609.json
+output json in uniform_58476609.json
+Tiempo de ejecución: 301.560 segundos
+
+Sun 26 Mar 2023 05:47:57 PM -03
+Ejecutando Polylla con tamaño 61669609
+Generating points  
+Generating triangles 
+estimao 123307808 final 123307808
+Constructing halfedges 
+Triangulation generation time: 259798
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 1142.17 ms
+[GPU] Labered max edges in 10.0445 ms
+[GPU] Labeled frontier edges in 7.73767 ms
+[GPU] Labeled seed edges in 7.78901 ms
+[GPU] Labeled seed scan in 4.08793 ms
+[GPU] Labeled seed compaction in 2.6662 ms
+[GPU] Traversal phase 1 in 24.0463 ms
+[GPU] Traversal phase (search frontier edge) in 5.70665 ms
+[GPU] Back to host in 760.108 ms
+Done!
+Printing JSON file as uniform_61669609.json
+output json in uniform_61669609.json
+Tiempo de ejecución: 291.621 segundos
+
+Sun 26 Mar 2023 05:52:48 PM -03
+Ejecutando Polylla con tamaño 64866916
+Generating points  
+Generating triangles 
+estimao 129701618 final 129701618
+Constructing halfedges 
+Triangulation generation time: 294175
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 879.665 ms
+[GPU] Labered max edges in 10.5744 ms
+[GPU] Labeled frontier edges in 8.15968 ms
+[GPU] Labeled seed edges in 8.18032 ms
+[GPU] Labeled seed scan in 4.26986 ms
+[GPU] Labeled seed compaction in 2.80185 ms
+[GPU] Traversal phase 1 in 25.3901 ms
+[GPU] Traversal phase (search frontier edge) in 6.08156 ms
+[GPU] Back to host in 805.621 ms
+Done!
+Printing JSON file as uniform_64866916.json
+output json in uniform_64866916.json
+Tiempo de ejecución: 324.445 segundos
+
+Sun 26 Mar 2023 05:58:13 PM -03
+Ejecutando Polylla con tamaño 68062500
+Generating points  
+Generating triangles 
+estimao 136092002 final 136092002
+Constructing halfedges 
+Triangulation generation time: 282693
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 1156.7 ms
+[GPU] Labered max edges in 11.1395 ms
+[GPU] Labeled frontier edges in 8.57864 ms
+[GPU] Labeled seed edges in 8.58393 ms
+[GPU] Labeled seed scan in 4.42028 ms
+[GPU] Labeled seed compaction in 2.93848 ms
+[GPU] Traversal phase 1 in 26.7601 ms
+[GPU] Traversal phase (search frontier edge) in 6.03015 ms
+[GPU] Back to host in 835.915 ms
+Done!
+Printing JSON file as uniform_68062500.json
+output json in uniform_68062500.json
+Tiempo de ejecución: 317.053 segundos
+
+Sun 26 Mar 2023 06:03:30 PM -03
+Ejecutando Polylla con tamaño 71250481
+Generating points  
+Generating triangles 
+estimao 142467200 final 142467200
+Constructing halfedges 
+Triangulation generation time: 298250
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 753.778 ms
+[GPU] Labered max edges in 11.5165 ms
+[GPU] Labeled frontier edges in 8.96567 ms
+[GPU] Labeled seed edges in 8.96029 ms
+[GPU] Labeled seed scan in 4.61883 ms
+[GPU] Labeled seed compaction in 3.07543 ms
+[GPU] Traversal phase 1 in 27.9197 ms
+[GPU] Traversal phase (search frontier edge) in 6.31879 ms
+[GPU] Back to host in 1003.33 ms
+Done!
+Printing JSON file as uniform_71250481.json
+output json in uniform_71250481.json
+Tiempo de ejecución: 334.321 segundos
+
+Sun 26 Mar 2023 06:09:04 PM -03
+Ejecutando Polylla con tamaño 74459641
+Generating points  
+Generating triangles 
+estimao 148884768 final 148884768
+Constructing halfedges 
+Triangulation generation time: 335372
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 836.431 ms
+[GPU] Labered max edges in 12.0675 ms
+[GPU] Labeled frontier edges in 9.38113 ms
+[GPU] Labeled seed edges in 9.37592 ms
+[GPU] Labeled seed scan in 4.80259 ms
+[GPU] Labeled seed compaction in 3.21487 ms
+[GPU] Traversal phase 1 in 29.154 ms
+[GPU] Traversal phase (search frontier edge) in 6.62206 ms
+[GPU] Back to host in 976.552 ms
+Done!
+Printing JSON file as uniform_74459641.json
+output json in uniform_74459641.json
+Tiempo de ejecución: 372.536 segundos
+
+Sun 26 Mar 2023 06:15:17 PM -03
+Ejecutando Polylla con tamaño 77651344
+Generating points  
+Generating triangles 
+estimao 155267442 final 155267442
+Constructing halfedges 
+Triangulation generation time: 359368
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 919.11 ms
+[GPU] Labered max edges in 12.5558 ms
+[GPU] Labeled frontier edges in 9.77526 ms
+[GPU] Labeled seed edges in 9.77894 ms
+[GPU] Labeled seed scan in 5.63659 ms
+[GPU] Labeled seed compaction in 3.34928 ms
+[GPU] Traversal phase 1 in 30.1394 ms
+[GPU] Traversal phase (search frontier edge) in 6.93702 ms
+[GPU] Back to host in 1030.8 ms
+Done!
+Printing JSON file as uniform_77651344.json
+output json in uniform_77651344.json
+Tiempo de ejecución: 399.472 segundos
+
+Sun 26 Mar 2023 06:21:56 PM -03
+Ejecutando Polylla con tamaño 80838081
+Generating points  
+Generating triangles 
+estimao 161640200 final 161640200
+Constructing halfedges 
+Triangulation generation time: 370217
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 2369.05 ms
+[GPU] Labered max edges in 13.0076 ms
+[GPU] Labeled frontier edges in 10.1553 ms
+[GPU] Labeled seed edges in 10.1674 ms
+[GPU] Labeled seed scan in 5.1716 ms
+[GPU] Labeled seed compaction in 3.48549 ms
+[GPU] Traversal phase 1 in 31.7632 ms
+[GPU] Traversal phase (search frontier edge) in 7.25943 ms
+[GPU] Back to host in 1143.8 ms
+Done!
+Printing JSON file as uniform_80838081.json
+output json in uniform_80838081.json
+Tiempo de ejecución: 412.097 segundos
+
+Sun 26 Mar 2023 06:28:48 PM -03
+Ejecutando Polylla con tamaño 84033889
+Generating points  
+Generating triangles 
+estimao 168031112 final 168031112
+Constructing halfedges 
+Triangulation generation time: 367544
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 1033.69 ms
+[GPU] Labered max edges in 13.5116 ms
+[GPU] Labeled frontier edges in 10.5716 ms
+[GPU] Labeled seed edges in 10.5638 ms
+[GPU] Labeled seed scan in 5.37884 ms
+[GPU] Labeled seed compaction in 3.6242 ms
+[GPU] Traversal phase 1 in 33.0468 ms
+[GPU] Traversal phase (search frontier edge) in 7.58342 ms
+[GPU] Back to host in 1192.77 ms
+Done!
+Printing JSON file as uniform_84033889.json
+output json in uniform_84033889.json
+Tiempo de ejecución: 408.377 segundos
+
+Sun 26 Mar 2023 06:35:37 PM -03
+Ejecutando Polylla con tamaño 87216921
+Generating points  
+Generating triangles 
+estimao 174396488 final 174396488
+Constructing halfedges 
+Triangulation generation time: 403551
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 1298.42 ms
+[GPU] Labered max edges in 14.0306 ms
+[GPU] Labeled frontier edges in 10.9622 ms
+[GPU] Labeled seed edges in 10.9365 ms
+[GPU] Labeled seed scan in 5.53043 ms
+[GPU] Labeled seed compaction in 3.76111 ms
+[GPU] Traversal phase 1 in 34.143 ms
+[GPU] Traversal phase (search frontier edge) in 7.91625 ms
+[GPU] Back to host in 1395.85 ms
+Done!
+Printing JSON file as uniform_87216921.json
+output json in uniform_87216921.json
+Tiempo de ejecución: 448.345 segundos
+
+Sun 26 Mar 2023 06:43:05 PM -03
+Ejecutando Polylla con tamaño 90421081
+Generating points  
+Generating triangles 
+estimao 180804128 final 180804128
+Constructing halfedges 
+Triangulation generation time: 453209
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 1339.47 ms
+[GPU] Labered max edges in 14.5538 ms
+[GPU] Labeled frontier edges in 11.3511 ms
+[GPU] Labeled seed edges in 11.3471 ms
+[GPU] Labeled seed scan in 5.72603 ms
+[GPU] Labeled seed compaction in 3.89653 ms
+[GPU] Traversal phase 1 in 35.437 ms
+[GPU] Traversal phase (search frontier edge) in 8.27664 ms
+[GPU] Back to host in 1441.65 ms
+Done!
+Printing JSON file as uniform_90421081.json
+output json in uniform_90421081.json
+Tiempo de ejecución: 496.417 segundos
+
+Sun 26 Mar 2023 06:51:22 PM -03
+Ejecutando Polylla con tamaño 93605625
+Generating points  
+Generating triangles 
+estimao 187172552 final 187172552
+Constructing halfedges 
+Triangulation generation time: 413072
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 1060.82 ms
+[GPU] Labered max edges in 14.9724 ms
+[GPU] Labeled frontier edges in 11.7547 ms
+[GPU] Labeled seed edges in 11.7216 ms
+[GPU] Labeled seed scan in 5.90276 ms
+[GPU] Labeled seed compaction in 4.03522 ms
+[GPU] Traversal phase 1 in 36.6598 ms
+[GPU] Traversal phase (search frontier edge) in 8.62869 ms
+[GPU] Back to host in 1245.32 ms
+Done!
+Printing JSON file as uniform_93605625.json
+output json in uniform_93605625.json
+Tiempo de ejecución: 456.640 segundos
+
+Sun 26 Mar 2023 06:58:58 PM -03
+Ejecutando Polylla con tamaño 96805921
+Generating points  
+Generating triangles 
+estimao 193572488 final 193572488
+Constructing halfedges 
+Triangulation generation time: 483122
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 1596.88 ms
+[GPU] Labered max edges in 15.4552 ms
+[GPU] Labeled frontier edges in 12.1591 ms
+[GPU] Labeled seed edges in 12.1322 ms
+[GPU] Labeled seed scan in 6.09133 ms
+[GPU] Labeled seed compaction in 4.17165 ms
+[GPU] Traversal phase 1 in 38.0581 ms
+[GPU] Traversal phase (search frontier edge) in 9.02401 ms
+[GPU] Back to host in 1329.33 ms
+Done!
+Printing JSON file as uniform_96805921.json
+output json in uniform_96805921.json
+Tiempo de ejecución: 532.397 segundos
+
+Sun 26 Mar 2023 07:07:51 PM -03
+Ejecutando Polylla con tamaño 100000000
+Generating points  
+Generating triangles 
+estimao 199960002 final 199960002
+Constructing halfedges 
+Triangulation generation time: 426962
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 1235.51 ms
+[GPU] Labered max edges in 15.8993 ms
+[GPU] Labeled frontier edges in 12.5442 ms
+[GPU] Labeled seed edges in 12.5384 ms
+[GPU] Labeled seed scan in 6.28273 ms
+[GPU] Labeled seed compaction in 4.30979 ms
+[GPU] Traversal phase 1 in 39.1378 ms
+[GPU] Traversal phase (search frontier edge) in 9.41073 ms
+[GPU] Back to host in 1324.83 ms
+Done!
+Printing JSON file as uniform_100000000.json
+output json in uniform_100000000.json
+Tiempo de ejecución: 477.481 segundos
+
+Sun 26 Mar 2023 07:15:48 PM -03
