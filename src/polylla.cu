@@ -218,12 +218,28 @@ public:
 
         t_start = std::chrono::high_resolution_clock::now();
 
-        seed_phase_d<<<blockDim,gridDim>>>(halfedges_d, max_edges_d, seed_edges_ad, n_halfedges); 
+        seed_phase_d<<<(n_halfedges + BSIZE - 1)/BSIZE, BSIZE>>>(halfedges_d, max_edges_d, seed_edges_ad, n_halfedges); 
         gpuErrchk( cudaDeviceSynchronize() );
 
         t_end = std::chrono::high_resolution_clock::now();
         t_label_seed_edges_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
         std::cout<<"[GPU] Labeled seed edges in "<<t_label_seed_edges_d<<" ms"<<std::endl;
+
+        //call print_all_halfedges kernel
+       // print_all_halfedges<<<(n_halfedges + BSIZE - 1)/BSIZE, BSIZE>>>(halfedges_d, n_halfedges);
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Repair phase
+
+        // print vertex 291
+        //std::cout<<"Vertex 291: "<<mesh_input->get_PointX(291)<<" "<<mesh_input->get_PointY(291)<<std::endl;
+
+        std::cout<<"[GPU] Repair phase..."<<std::endl;
+
+        repair_phase_d<<<(n_vertices + BSIZE - 1)/BSIZE,BSIZE>>>(halfedges_d, frontier_edges_d, vertices_d, seed_edges_ad, n_vertices);
+        gpuErrchk( cudaDeviceSynchronize() );
+//
+        std::cout<<"[GPU] Repair phase done"<<std::endl;
 
 
         t_start = std::chrono::high_resolution_clock::now();
@@ -261,6 +277,8 @@ public:
         t_label_seed_compaction_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
         std::cout<<"[GPU] Labeled seed compaction in "<<t_label_seed_compaction_d<<" ms"<<std::endl;
 
+
+
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Travel phase
 
@@ -291,6 +309,20 @@ public:
         t_end = std::chrono::high_resolution_clock::now();
         t_traversal_2_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
         std::cout<<"[GPU] Traversal phase (search frontier edge) in "<<t_traversal_2_d<<" ms"<<std::endl;
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Repair overwrite_seed
+
+        t_start = std::chrono::high_resolution_clock::now();
+        overwrite_seed<<<(seed_len + BSIZE - 1)/BSIZE,BSIZE>>>(halfedges_d, output_seed_d, seed_len);
+        gpuErrchk( cudaDeviceSynchronize() );
+
+        t_end = std::chrono::high_resolution_clock::now();
+        t_repair_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+        std::cout<<"[GPU] Repair phase in "<<t_repair_d<<" ms"<<std::endl;
+
+
 
         // Back to host
         t_start = std::chrono::high_resolution_clock::now();
@@ -334,13 +366,12 @@ public:
 
         //print output_seed
         for (int i = 0; i < seed_len; i++){
-            //std::cout<<output_seed_h[i]<<" ";
+            std::cout<<output_seed_h[i]<<" ";
             output_seeds.push_back(output_seed_h[i]);
-            
         }
 
         this->m_polygons = output_seeds.size();
-        //std::cout<<"[GPU] Mesh with "<<m_polygons<<" polygons "<<n_frontier_edges/2<<" edges and "<<n_barrier_edge_tips<<" barrier-edge tips."<<std::endl;
+        std::cout<<"[GPU] Mesh with "<<m_polygons<<" polygons "<<n_frontier_edges/2<<" edges and "<<n_barrier_edge_tips<<" barrier-edge tips."<<std::endl;
         //mesh_input->print_pg(std::to_string(mesh_input->vertices()) + ".pg");    
 
         
@@ -458,15 +489,18 @@ public:
         //printf("-------> 1\n");
         int size_poly;
         int e_curr;
+        //std::cout<<"aca"<<std::endl;
         for(auto &e_init : output_seeds){
             size_poly = 1;
             e_curr = mesh_output->next(e_init);
+          //  std::cout<<"poly"<<"e_init"<<e_init<<std::endl;
             while(e_init != e_curr){
+            //    std::cout<<"e_init"<<e_init<<"e_curr"<<e_curr<<std::endl;
                 size_poly++;
                 e_curr = mesh_output->next(e_curr);
             }
             out<<size_poly<<" ";            
-
+            
             out<<mesh_output->origin(e_init)<<" ";
             e_curr = mesh_output->next(e_init);
             while(e_init != e_curr){

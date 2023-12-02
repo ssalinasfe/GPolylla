@@ -46,7 +46,25 @@ __device__ int incident_halfedge_d(int f)
     return 3*f;
 }
 
+__device__ int edge_of_vertex_d(vertex *vertices, int v)
+{
+    return vertices[v].incident_halfedge;
+}
 
+__device__ int CW_edge_to_vertex_d(halfEdge *HalfEdges, int e)
+{   int twn, nxt;
+    twn = twin_d(HalfEdges, e);
+    nxt = next_d(HalfEdges, twn);
+    return nxt;
+}    
+
+__device__ int CCW_edge_to_vertex_d(halfEdge *HalfEdges, int e)
+{
+    int twn, prv;
+    prv = HalfEdges[e].prev;
+    twn = HalfEdges[prv].twin;
+    return twn;
+}    
 
 
 
@@ -226,34 +244,7 @@ int scan(int *d_out, int *d_in, int num_items){
     return *len;
 }
 
-__device__ int CW_edge_to_vertex_d(halfEdge *HalfEdges, int e)
-{   int twn, nxt;
-    twn = twin_d(HalfEdges, e);
-    nxt = next_d(HalfEdges, twn);
-    return nxt;
-    /*int twn, nxt;
-    twn = twin_d(HalfEdges, e);
-    nxt = next_d(HalfEdges, twn);
-    return nxt;*/
-}    
 
-__device__ int CCW_edge_to_vertex_d(halfEdge *HalfEdges, int e)
-{
-    int twn, nxt;
-    nxt = HalfEdges[e].prev;
-    twn = HalfEdges[nxt].twin;
-    return twn;
-    /*int twn, nxt;
-    if(is_border_face_d(HalfEdges, e)){
-        nxt = HalfEdges[e].prev;
-        twn = HalfEdges[nxt].twin;
-        return twn;
-    }
-    nxt = HalfEdges[e].next;
-    nxt = HalfEdges[nxt].next;
-    twn = HalfEdges[nxt].twin;
-    return twn;*/
-}    
 __device__ int search_next_frontier_edge_d(halfEdge *HalfEdges, bit_vector_d *frontier_edges, const int e)
 {
     int nxt = e;
@@ -481,4 +472,99 @@ __global__ void kernel (bit_vector_d *d_in, int n) {
     if (i < n) {
        printf ("in[%i] = %i\n", i, d_in[i]);
     }
+}
+__global__ void print_all_halfedges(halfEdge *HalfEdges, int n) {
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    if (i < n) {
+       printf ("halfedge[%i] = %i %i %i %i %i %i \n", i, HalfEdges[i].origin, target_d(HalfEdges,i), HalfEdges[i].twin, HalfEdges[i].next, HalfEdges[i].prev, HalfEdges[i].is_border);
+    }
+}
+
+
+
+
+__device__ int degree_d(halfEdge *HalfEdges, vertex *vertices, int v)
+{
+    int e_curr = edge_of_vertex_d(vertices, v);
+    int e_next = CCW_edge_to_vertex_d(HalfEdges, e_curr);
+    int adv = 1;
+    while (e_next != e_curr)
+    {
+        //printf("aca13 %i %i %i %i\n", origin_d(HalfEdges,e_curr), target_d(HalfEdges,e_curr), origin_d(HalfEdges,e_next), target_d(HalfEdges,e_next));
+        e_next = CCW_edge_to_vertex_d(HalfEdges, e_next);
+        adv++;
+    }
+    return adv;
+}
+
+
+
+//Given a barrier-edge tip v, return the middle edge incident to v
+//The function first calculate the degree of v - 1 and then divide it by 2, after travel to until the middle-edge
+//input: vertex v
+//output: edge incident to v
+__device__ int calculate_middle_edge_d(halfEdge *HalfEdges, bit_vector_d *frontier_edges, vertex *vertices, const int v){
+    //print x
+    int frontieredge_with_bet = search_next_frontier_edge_d(HalfEdges, frontier_edges, edge_of_vertex_d(vertices, v));
+    int internal_edges = degree_d(HalfEdges, vertices, v) - 1; //internal-edges incident to v
+    int adv = (internal_edges%2 == 0) ? internal_edges/2 - 1 : internal_edges/2 ;
+    int nxt = CW_edge_to_vertex_d(HalfEdges, frontieredge_with_bet);
+    //back to traversing the edges of v_bet until select the middle-edge
+    while (adv != 0){
+        nxt = CW_edge_to_vertex_d(HalfEdges, nxt);
+        adv--;
+    }
+    return nxt;
+}
+
+//Return the number of frontier edges of a vertex
+__device__ int count_frontier_edges_d(halfEdge *HalfEdges, bit_vector_d *frontier_edges, vertex *vertices, int v){
+    int e = edge_of_vertex_d(vertices, v);
+    int count = 0;
+    do{
+        if(frontier_edges[e] == 1)
+            count++;
+        e = CW_edge_to_vertex_d(HalfEdges, e);
+    }while(e != edge_of_vertex_d( vertices, v));
+    return count;
+}
+
+    // new repair phase
+__global__ void repair_phase_d(halfEdge *HalfEdges, bit_vector_d *frontier_edges, vertex *vertices, half *seed_edges, int n){
+    int v = threadIdx.x + blockDim.x*blockIdx.x;
+    if (v < n){
+
+        if(count_frontier_edges_d(HalfEdges, frontier_edges, vertices, v) == 1){
+
+            //middle edge that contains v_bet
+            int middle_edge = calculate_middle_edge_d(HalfEdges, frontier_edges, vertices, v);
+
+            //middle edge that contains v_bet
+            int t1 = middle_edge;
+            int t2 = twin_d(HalfEdges, middle_edge);
+
+            //edges of middle-edge are labeled as frontier-edge
+            frontier_edges[t1] = 1;
+            frontier_edges[t2] = 1;
+
+            seed_edges[t1] = 1;
+            seed_edges[t2] = 1;
+        }
+    }  
+}
+
+__global__ void overwrite_seed(halfEdge *HalfEdges, int *seed_edges, int n){
+    int i = threadIdx.x + blockDim.x*blockIdx.x;
+        if (i < n){        
+            int e_init = seed_edges[i];
+            int e_curr = next_d(HalfEdges, e_init);
+            int min = e_init;
+            while(e_init != e_curr){
+                if (e_curr < min){
+                    min = e_curr;
+                }
+                e_curr = next_d(HalfEdges, e_curr);
+            }
+            seed_edges[i] = min;
+        }  
 }
