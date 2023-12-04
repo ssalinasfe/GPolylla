@@ -226,7 +226,7 @@ public:
         std::cout<<"[GPU] Labeled seed edges in "<<t_label_seed_edges_d<<" ms"<<std::endl;
 
         //call print_all_halfedges kernel
-       // print_all_halfedges<<<(n_halfedges + BSIZE - 1)/BSIZE, BSIZE>>>(halfedges_d, n_halfedges);
+       print_all_halfedges<<<(n_halfedges + BSIZE - 1)/BSIZE, BSIZE>>>(halfedges_d, n_halfedges);
         
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Repair phase
@@ -315,7 +315,8 @@ public:
         // Repair overwrite_seed
 
         t_start = std::chrono::high_resolution_clock::now();
-        overwrite_seed<<<(seed_len + BSIZE - 1)/BSIZE,BSIZE>>>(halfedges_d, output_seed_d, seed_len);
+        
+        //overwrite_seed<<<(seed_len + BSIZE - 1)/BSIZE,BSIZE>>>(output_HalfEdges_d, output_seed_d, seed_len);
         gpuErrchk( cudaDeviceSynchronize() );
 
         t_end = std::chrono::high_resolution_clock::now();
@@ -361,7 +362,7 @@ public:
         cudaMemcpy(h_halfedges, output_HalfEdges_d, sizeof(halfEdge)*n_halfedges, cudaMemcpyDeviceToHost);
         gpuErrchk( cudaDeviceSynchronize() );
         for (int i = 0; i < n_halfedges; i++)
-        mesh_output->HalfEdges[i] = h_halfedges[i];
+            mesh_output->HalfEdges[i] = h_halfedges[i];
 
 
         //print output_seed
@@ -374,8 +375,6 @@ public:
         std::cout<<"[GPU] Mesh with "<<m_polygons<<" polygons "<<n_frontier_edges/2<<" edges and "<<n_barrier_edge_tips<<" barrier-edge tips."<<std::endl;
         //mesh_input->print_pg(std::to_string(mesh_input->vertices()) + ".pg");    
 
-        
-     
 
         // cudaFree(max_edges_d);
         // cudaFree(frontier_edges_d);
@@ -489,13 +488,13 @@ public:
         //printf("-------> 1\n");
         int size_poly;
         int e_curr;
-        //std::cout<<"aca"<<std::endl;
+        std::cout<<"aca"<<std::endl;
         for(auto &e_init : output_seeds){
             size_poly = 1;
             e_curr = mesh_output->next(e_init);
-          //  std::cout<<"poly"<<"e_init"<<e_init<<std::endl;
+            //std::cout<<"poly"<<"e_init"<<e_init<<std::endl;
             while(e_init != e_curr){
-            //    std::cout<<"e_init"<<e_init<<"e_curr"<<e_curr<<std::endl;
+              //  std::cout<<"e_init "<<e_init<<" e_curr "<<e_curr<<std::endl;
                 size_poly++;
                 e_curr = mesh_output->next(e_curr);
             }

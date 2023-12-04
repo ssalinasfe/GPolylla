@@ -277,25 +277,6 @@ __global__ void travel_phase_d(halfEdge *output, halfEdge *HalfEdges, bit_vector
     }
 }
 
-//Travel in CCW order around the edges of vertex v from the edge e looking for the next frontier edge
-__global__ void search_frontier_edge_d(int *output, halfEdge *HalfEdges, bit_vector_d *frontier_edges, int *seed_edges, int n)
-{
-    //int off = threadIdx.x + blockIdx.x*blockDim.x;
-    
-    int x = threadIdx.x + blockIdx.x * blockDim.x; 
-    // Calculate the row index of the Pd element, denote by y
-    int y = threadIdx.y + blockIdx.y * blockDim.y;
-    int off = x + y * blockDim.x * gridDim.x;
-    if (off < n){
-        int nxt = seed_edges[off];
-        //printf("%i %i\n",off,seed_edges[off]);
-        while(!frontier_edges[nxt])
-        {
-            nxt = CW_edge_to_vertex_d(HalfEdges, nxt);
-        }  
-        output[off] = nxt;
-    }
-}
 
 
 // cub version of the scan parallel
@@ -553,18 +534,48 @@ __global__ void repair_phase_d(halfEdge *HalfEdges, bit_vector_d *frontier_edges
     }  
 }
 
+//Travel in CCW order around the edges of vertex v from the edge e looking for the next frontier edge
+__global__ void search_frontier_edge_d(int *output, halfEdge *HalfEdges, bit_vector_d *frontier_edges, int *seed_edges, int n)
+{
+    //int off = threadIdx.x + blockIdx.x*blockDim.x;
+    
+    int x = threadIdx.x + blockIdx.x * blockDim.x; 
+    // Calculate the row index of the Pd element, denote by y
+    int y = threadIdx.y + blockIdx.y * blockDim.y;
+    int off = x + y * blockDim.x * gridDim.x;
+    if (off < n){
+        int nxt = seed_edges[off];
+        //printf("%i %i\n",off,seed_edges[off]);
+        while(!frontier_edges[nxt])
+        {
+            nxt = CW_edge_to_vertex_d(HalfEdges, nxt);
+        }  
+        output[off] = nxt;
+    }
+}
+
+
 __global__ void overwrite_seed(halfEdge *HalfEdges, int *seed_edges, int n){
-    int i = threadIdx.x + blockDim.x*blockIdx.x;
+        int x = threadIdx.x + blockIdx.x * blockDim.x; 
+        // Calculate the row index of the Pd element, denote by y
+        int y = threadIdx.y + blockIdx.y * blockDim.y;
+        int i = x + y * blockDim.x * gridDim.x;
         if (i < n){        
+
             int e_init = seed_edges[i];
+            int min_ind = e_init;
+
             int e_curr = next_d(HalfEdges, e_init);
-            int min = e_init;
             while(e_init != e_curr){
-                if (e_curr < min){
-                    min = e_curr;
-                }
+
+                min_ind = min(min_ind, e_curr);
+                printf("pene %i %i %i\n",i,e_curr,min_ind);
+                //if (e_curr < min_ind){
+                //    min_ind = e_curr;
+                //}
                 e_curr = next_d(HalfEdges, e_curr);
             }
-            seed_edges[i] = min;
+            printf("aca %i %i %i\n", i ,e_init,min_ind);
+            seed_edges[i] = min_ind;
         }  
 }
