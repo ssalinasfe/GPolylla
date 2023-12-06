@@ -5,6 +5,9 @@
 #SBATCH --ntasks=1                   # Numero de tareas
 #SBATCH --gres=gpu:A100:1            # Asignar un GPU A100
 
+# run as:
+# sbatch run_benchmark.slurm ../../../build 32  
+
 date
 
 FOLDER=$1

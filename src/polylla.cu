@@ -62,12 +62,13 @@ private:
     double t_label_max_edges_d = 0;
     double t_label_frontier_edges_d = 0;
     double t_label_seed_edges_d = 0;
+    double t_label_extra_frontier_edge_d = 0;
     double t_label_seed_scan_d = 0;
     double t_label_seed_compaction_d = 0;
     double t_traversal_and_repair_d = 0;
     double t_traversal_1_d = 0;
     double t_traversal_2_d = 0;
-    double t_repair_d = 0;
+    double t_overwrite_seed_d = 0;
     double t_back_to_host_d = 0;
 
     // Times Host
@@ -175,6 +176,7 @@ public:
             
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Label max edges
+        gpuErrchk( cudaDeviceSynchronize() );
         t_start = std::chrono::high_resolution_clock::now();
         
         // copy max edges to device
@@ -192,6 +194,7 @@ public:
         bit_vector_d *frontier_edges_d;
         cudaMalloc(&frontier_edges_d, sizeof(bit_vector_d)*n_halfedges);
         
+        gpuErrchk( cudaDeviceSynchronize() );
         t_start = std::chrono::high_resolution_clock::now();
         label_phase<<<(n_halfedges + BSIZE - 1)/BSIZE, BSIZE>>>(halfedges_d, max_edges_d, frontier_edges_d, n_halfedges); 
         cudaDeviceSynchronize();
@@ -213,9 +216,13 @@ public:
         cudaMalloc(&seed_edges_d, sizeof(int)*n_halfedges);
 
 
-        dim3 blockDim(1024,1024,1);
-        dim3 gridDim((n_halfedges+1024*1024-1)/(1024*1024),1,1);
+        //dim3 blockDim(1024,1024,1);
+        //dim3 gridDim((n_halfedges+1024*1024-1)/(1024*1024),1,1);
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Label seed edges 1
+
+        gpuErrchk( cudaDeviceSynchronize() );
         t_start = std::chrono::high_resolution_clock::now();
 
         seed_phase_d<<<(n_halfedges + BSIZE - 1)/BSIZE, BSIZE>>>(halfedges_d, max_edges_d, seed_edges_ad, n_halfedges); 
@@ -226,7 +233,7 @@ public:
         std::cout<<"[GPU] Labeled seed edges in "<<t_label_seed_edges_d<<" ms"<<std::endl;
 
         //call print_all_halfedges kernel
-       print_all_halfedges<<<(n_halfedges + BSIZE - 1)/BSIZE, BSIZE>>>(halfedges_d, n_halfedges);
+       //print_all_halfedges<<<(n_halfedges + BSIZE - 1)/BSIZE, BSIZE>>>(halfedges_d, n_halfedges);
         
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Repair phase
@@ -234,14 +241,22 @@ public:
         // print vertex 291
         //std::cout<<"Vertex 291: "<<mesh_input->get_PointX(291)<<" "<<mesh_input->get_PointY(291)<<std::endl;
 
-        std::cout<<"[GPU] Repair phase..."<<std::endl;
+        //std::cout<<"[GPU] label extra frontier edge kernel..."<<std::endl;
 
-        repair_phase_d<<<(n_vertices + BSIZE - 1)/BSIZE,BSIZE>>>(halfedges_d, frontier_edges_d, vertices_d, seed_edges_ad, n_vertices);
+        gpuErrchk( cudaDeviceSynchronize() );
+        t_start = std::chrono::high_resolution_clock::now();
+        
+        label_extra_frontier_edge_d<<<(n_vertices + BSIZE - 1)/BSIZE,BSIZE>>>(halfedges_d, frontier_edges_d, vertices_d, seed_edges_ad, n_vertices);
         gpuErrchk( cudaDeviceSynchronize() );
 //
-        std::cout<<"[GPU] Repair phase done"<<std::endl;
+        t_end = std::chrono::high_resolution_clock::now();
+        t_label_extra_frontier_edge_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+        std::cout<<"[GPU] Labeled extra frontier edge in "<<t_label_extra_frontier_edge_d<<" ms"<<std::endl;
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Label seed edges 2, Scan...
 
+        gpuErrchk( cudaDeviceSynchronize() );
         t_start = std::chrono::high_resolution_clock::now();
         scan_parallel_tc_2<int>(seed_edges_bd, seed_edges_ad, n_halfedges);
         gpuErrchk( cudaDeviceSynchronize() );
@@ -256,7 +271,12 @@ public:
         //gpuErrchk( cudaDeviceSynchronize() );
         //printf ("-> %i %i %i %i\n", grid.x, grid.y, grid.z, (n_halfedges + BSIZE - 1)/BSIZE);
 
+     
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Label seed edges 3, Compaction
+
+        gpuErrchk( cudaDeviceSynchronize() );
         t_start = std::chrono::high_resolution_clock::now();
         compaction_d<<<(n_halfedges + BSIZE - 1)/BSIZE,BSIZE>>>(seed_edges_d, seed_edges_bd, seed_edges_ad, n_halfedges);
         gpuErrchk( cudaDeviceSynchronize() );
@@ -279,14 +299,16 @@ public:
 
 
 
+
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Travel phase
+        // Travel 
 
         
         int *output_seed_d;
         halfEdge *output_HalfEdges_d;
         cudaMalloc(&output_HalfEdges_d, sizeof(halfEdge)*n_halfedges);
 
+        gpuErrchk( cudaDeviceSynchronize() );
         t_start = std::chrono::high_resolution_clock::now();
         travel_phase_d<<<(n_halfedges + BSIZE - 1)/BSIZE,BSIZE>>>(output_HalfEdges_d, halfedges_d, max_edges_d, frontier_edges_d, n_halfedges);
         gpuErrchk( cudaDeviceSynchronize() );
@@ -295,6 +317,9 @@ public:
         t_traversal_1_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
         std::cout<<"[GPU] Traversal phase 1 in "<<t_traversal_1_d<<" ms"<<std::endl;
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Repair search frontier edge
+
         
         cudaMalloc(&output_seed_d , sizeof(int)*seed_len);        
 
@@ -302,6 +327,7 @@ public:
         dim3 gridDim2((seed_len+1024*1024-1)/(1024*1024),1,1);
 
 
+        gpuErrchk( cudaDeviceSynchronize() );
         t_start = std::chrono::high_resolution_clock::now();
         search_frontier_edge_d<<<blockDim2,gridDim2>>>(output_seed_d, halfedges_d, frontier_edges_d, seed_edges_d, seed_len);
         gpuErrchk( cudaDeviceSynchronize() );
@@ -312,20 +338,20 @@ public:
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Repair overwrite_seed
+        // Repair overwrite seed
 
+        gpuErrchk( cudaDeviceSynchronize() );
         t_start = std::chrono::high_resolution_clock::now();
         
-        //overwrite_seed<<<(seed_len + BSIZE - 1)/BSIZE,BSIZE>>>(output_HalfEdges_d, output_seed_d, seed_len);
+        overwrite_seed_d<<<(seed_len + BSIZE - 1)/BSIZE,BSIZE>>>(output_HalfEdges_d, output_seed_d, seed_len);
         gpuErrchk( cudaDeviceSynchronize() );
 
         t_end = std::chrono::high_resolution_clock::now();
-        t_repair_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"[GPU] Repair phase in "<<t_repair_d<<" ms"<<std::endl;
-
-
+        t_overwrite_seed_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+        std::cout<<"[GPU] Rapair overwrite seed in "<<t_overwrite_seed_d<<" ms"<<std::endl;
 
         // Back to host
+        gpuErrchk( cudaDeviceSynchronize() );
         t_start = std::chrono::high_resolution_clock::now();
         bit_vector_d *h_max_edges = new bit_vector_d[n_halfedges];
         cudaMemcpy( h_max_edges, max_edges_d, n_halfedges*sizeof(bit_vector_d), cudaMemcpyDeviceToHost );
@@ -345,8 +371,10 @@ public:
         // standard output, time not measured
         for (int i = 0; i < n_halfedges; i++)
             max_edges[i] = h_max_edges[i];
-        for (int i = 0; i < n_halfedges; i++)
+        for (int i = 0; i < n_halfedges; i++){
             frontier_edges[i] = h_frontier_edges[i];
+            //std::cout<< i <<" "<<h_frontier_edges[i]<<"\n";
+        }
         //for (int i = 0; i < seed_len; i++)
         //    seed_edges[i] = h_seed_edges[i];
         //for (int i = 0; i < seed_len; i++)
@@ -367,7 +395,7 @@ public:
 
         //print output_seed
         for (int i = 0; i < seed_len; i++){
-            std::cout<<output_seed_h[i]<<" ";
+            //std::cout<<output_seed_h[i]<<" ";
             output_seeds.push_back(output_seed_h[i]);
         }
 
@@ -443,6 +471,7 @@ public:
         out<<"\"d_time_to_label_max_edges\": "<<t_label_max_edges_d<<","<<std::endl;
         out<<"\"d_time_to_label_frontier_edges\": "<<t_label_frontier_edges_d<<","<<std::endl;
         out<<"\"d_time_to_label_seed_edges\": "<<t_label_seed_edges_d<<","<<std::endl;
+        out<<"\"d_time_to_label_extra_frontier_edge\": "<<t_label_extra_frontier_edge_d<<","<<std::endl;
         out<<"\"d_time_to_label_scan_edges\": "<<t_label_seed_scan_d<<","<<std::endl;
         out<<"\"d_time_to_label_compaction_edges\": "<<t_label_seed_compaction_d<<","<<std::endl;
         out<<"\"d_time_to_label_total\": "<<t_label_max_edges_d+t_label_frontier_edges_d+t_label_seed_edges_d<<","<<std::endl;
@@ -450,7 +479,7 @@ public:
         out<<"\"d_time_to_traversal\": "<<t_traversal_1_d<<","<<std::endl;
         out<<"\"d_time_to_traversal_search_frontier_edge\": "<<t_traversal_2_d<<","<<std::endl;
         out<<"\"d_time_to_back_to_host\": "<<t_back_to_host_d<<","<<std::endl;
-        out<<"\"d_time_to_repair\": "<<t_repair_d<<","<<std::endl;
+        out<<"\"d_time_to_overwrite_seed\": "<<t_overwrite_seed_d<<","<<std::endl;
         out<<"\"d_time_to_generate_polygonal_mesh\": "<<t_label_max_edges_d + t_label_frontier_edges_d + t_label_seed_edges_d + t_traversal_and_repair_d<<","<<std::endl;
         
         out<<"\t\"memory_max_edges\": "<<m_max_edges<<","<<std::endl;
@@ -488,7 +517,7 @@ public:
         //printf("-------> 1\n");
         int size_poly;
         int e_curr;
-        std::cout<<"aca"<<std::endl;
+        //std::cout<<"aca"<<std::endl;
         for(auto &e_init : output_seeds){
             size_poly = 1;
             e_curr = mesh_output->next(e_init);

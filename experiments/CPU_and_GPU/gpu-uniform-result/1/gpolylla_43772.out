@@ -1,0 +1,201 @@
+Mon Dec  4 07:01:11 PM -03 2023
+Start: 1000000, End: 44312500, Intervalo: 1353515, Diferencia: 43312500, NSAMPLES: 32
+Mon Dec  4 07:01:11 PM -03 2023
+Ejecutando Polylla con tamaño 1000000
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.662 segundos
+
+Mon Dec  4 07:01:13 PM -03 2023
+Ejecutando Polylla con tamaño 2353515
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.710 segundos
+
+Mon Dec  4 07:01:15 PM -03 2023
+Ejecutando Polylla con tamaño 3707030
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.765 segundos
+
+Mon Dec  4 07:01:17 PM -03 2023
+Ejecutando Polylla con tamaño 5060545
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.680 segundos
+
+Mon Dec  4 07:01:19 PM -03 2023
+Ejecutando Polylla con tamaño 6414060
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.693 segundos
+
+Mon Dec  4 07:01:21 PM -03 2023
+Ejecutando Polylla con tamaño 7767575
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.721 segundos
+
+Mon Dec  4 07:01:23 PM -03 2023
+Ejecutando Polylla con tamaño 9121090
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.743 segundos
+
+Mon Dec  4 07:01:25 PM -03 2023
+Ejecutando Polylla con tamaño 10474605
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.581 segundos
+
+Mon Dec  4 07:01:26 PM -03 2023
+Ejecutando Polylla con tamaño 11828120
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.578 segundos
+
+Mon Dec  4 07:01:29 PM -03 2023
+Ejecutando Polylla con tamaño 13181635
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.621 segundos
+
+Mon Dec  4 07:01:30 PM -03 2023
+Ejecutando Polylla con tamaño 14535150
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.546 segundos
+
+Mon Dec  4 07:01:32 PM -03 2023
+Ejecutando Polylla con tamaño 15888665
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.552 segundos
+
+Mon Dec  4 07:01:33 PM -03 2023
+Ejecutando Polylla con tamaño 17242180
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.689 segundos
+
+Mon Dec  4 07:01:35 PM -03 2023
+Ejecutando Polylla con tamaño 18595695
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.701 segundos
+
+Mon Dec  4 07:01:37 PM -03 2023
+Ejecutando Polylla con tamaño 19949210
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.511 segundos
+
+Mon Dec  4 07:01:40 PM -03 2023
+Ejecutando Polylla con tamaño 21302725
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.774 segundos
+
+Mon Dec  4 07:01:42 PM -03 2023
+Ejecutando Polylla con tamaño 22656240
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.560 segundos
+
+Mon Dec  4 07:01:45 PM -03 2023
+Ejecutando Polylla con tamaño 24009755
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.769 segundos
+
+Mon Dec  4 07:01:46 PM -03 2023
+Ejecutando Polylla con tamaño 25363270
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.764 segundos
+
+Mon Dec  4 07:01:48 PM -03 2023
+Ejecutando Polylla con tamaño 26716785
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.741 segundos
+
+Mon Dec  4 07:01:50 PM -03 2023
+Ejecutando Polylla con tamaño 28070300
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.540 segundos
+
+Mon Dec  4 07:01:52 PM -03 2023
+Ejecutando Polylla con tamaño 29423815
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.729 segundos
+
+Mon Dec  4 07:01:54 PM -03 2023
+Ejecutando Polylla con tamaño 30777330
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.511 segundos
+
+Mon Dec  4 07:01:56 PM -03 2023
+Ejecutando Polylla con tamaño 32130845
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.762 segundos
+
+Mon Dec  4 07:01:59 PM -03 2023
+Ejecutando Polylla con tamaño 33484360
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.395 segundos
+
+Mon Dec  4 07:02:00 PM -03 2023
+Ejecutando Polylla con tamaño 34837875
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.773 segundos
+
+Mon Dec  4 07:02:02 PM -03 2023
+Ejecutando Polylla con tamaño 36191390
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.590 segundos
+
+Mon Dec  4 07:02:04 PM -03 2023
+Ejecutando Polylla con tamaño 37544905
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.584 segundos
+
+Mon Dec  4 07:02:06 PM -03 2023
+Ejecutando Polylla con tamaño 38898420
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.564 segundos
+
+Mon Dec  4 07:02:08 PM -03 2023
+Ejecutando Polylla con tamaño 40251935
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.576 segundos
+
+Mon Dec  4 07:02:10 PM -03 2023
+Ejecutando Polylla con tamaño 41605450
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.939 segundos
+
+Mon Dec  4 07:02:12 PM -03 2023
+Ejecutando Polylla con tamaño 42958965
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.725 segundos
+
+Mon Dec  4 07:02:14 PM -03 2023
+Ejecutando Polylla con tamaño 44312480
+Tiempo de ejecución: slurmstepd: error: execve(): //../../../../build/GPolylla: No such file or directory
+srun: error: nodeGPU01: task 0: Exited with exit code 2
+1.542 segundos
+
+Mon Dec  4 07:02:16 PM -03 2023

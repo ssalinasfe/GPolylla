@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=polylla           # Nombre del trabajo
+#SBATCH --job-name=GPolylla           # Nombre del trabajo
 #SBATCH --output=polylla_%j.out      # Nombre del archivo de salida
 #SBATCH --error=polylla_%j.err       # Nombre del archivo de error
 #SBATCH --ntasks=1                   # Numero de tareas

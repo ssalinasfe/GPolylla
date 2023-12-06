@@ -4,7 +4,6 @@
 #SBATCH --error=gpolylla_%j.err       # Nombre del archivo de error
 #SBATCH --ntasks=1                   # Numero de tareas
 #SBATCH --gres=gpu:A100:1            # Asignar un GPU A100
-#SBATCH --chdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/1
 
 date
 
