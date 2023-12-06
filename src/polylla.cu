@@ -253,7 +253,59 @@ public:
         t_label_extra_frontier_edge_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
         std::cout<<"[GPU] Labeled extra frontier edge in "<<t_label_extra_frontier_edge_d<<" ms"<<std::endl;
 
+
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Travel 
+
+        
+        //int *output_seed_d;
+        halfEdge *output_HalfEdges_d;
+        cudaMalloc(&output_HalfEdges_d, sizeof(halfEdge)*n_halfedges);
+
+        gpuErrchk( cudaDeviceSynchronize() );
+        t_start = std::chrono::high_resolution_clock::now();
+        travel_phase_d<<<(n_halfedges + BSIZE - 1)/BSIZE,BSIZE>>>(output_HalfEdges_d, halfedges_d, max_edges_d, frontier_edges_d, n_halfedges);
+        gpuErrchk( cudaDeviceSynchronize() );
+        
+        t_end = std::chrono::high_resolution_clock::now();
+        t_traversal_1_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+        std::cout<<"[GPU] Traversal phase 1 in "<<t_traversal_1_d<<" ms"<<std::endl;
+
+
+        //int seed_len = scan(seed_edges_d, seed_edges_ad, n_halfedges); // ESTO SE PUEDE MEJORAR!
+        //gpuErrchk( cudaDeviceSynchronize() );
+        //printf ("-> %i %i %i %i\n", grid.x, grid.y, grid.z, (n_halfedges + BSIZE - 1)/BSIZE);
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Repair search frontier edge
+ 
+
+        gpuErrchk( cudaDeviceSynchronize() );
+        t_start = std::chrono::high_resolution_clock::now();
+        search_frontier_edge_d<<<(n_halfedges + BSIZE - 1)/BSIZE,BSIZE>>>(halfedges_d, frontier_edges_d, seed_edges_ad, n_halfedges);
+        gpuErrchk( cudaDeviceSynchronize() );
+
+        t_end = std::chrono::high_resolution_clock::now();
+        t_traversal_2_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+        std::cout<<"[GPU] Traversal phase (search frontier edge) in "<<t_traversal_2_d<<" ms"<<std::endl;
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Repair overwrite seed
+
+        gpuErrchk( cudaDeviceSynchronize() );
+        t_start = std::chrono::high_resolution_clock::now();
+        
+        overwrite_seed_d<<<(n_halfedges + BSIZE - 1)/BSIZE,BSIZE>>>(output_HalfEdges_d, seed_edges_ad, n_halfedges);
+        gpuErrchk( cudaDeviceSynchronize() );
+
+        t_end = std::chrono::high_resolution_clock::now();
+        t_overwrite_seed_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+        std::cout<<"[GPU] Rapair overwrite seed in "<<t_overwrite_seed_d<<" ms"<<std::endl;
+
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Label seed edges 2, Scan...
 
         gpuErrchk( cudaDeviceSynchronize() );
@@ -273,6 +325,7 @@ public:
 
      
 
+
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Label seed edges 3, Compaction
 
@@ -284,71 +337,20 @@ public:
         //gpuErrchk( cudaDeviceSynchronize() );
         //printf("\ndone GPU seed phase....\n\n");//*/
 
-        /*// copy seed edges to device and print
-        int *seed_edges_ah = new int[n_halfedges];
-        cudaMemcpy(seed_edges_ah, seed_edges_d, n_halfedges*sizeof(int), cudaMemcpyDeviceToHost );
-        for (int i = 0; i < n_halfedges; i++) {
-            if ((int)seed_edges_ah[i] != 0) {
-                printf("%i ", (int)seed_edges_ah[i]);
-            }
-        }*/
+        // copy seed edges to device and print
+        //int *seed_edges_ah = new int[seed_len];
+        //cudaMemcpy(seed_edges_ah, seed_edges_d, seed_len*sizeof(int), cudaMemcpyDeviceToHost );
+        //printf("\nseed edges: ");
+        //for (int i = 0; i < seed_len; i++) {
+        //    //if ((int)seed_edges_ah[i] != 0) {
+        //        printf("%i ", seed_edges_ah[i]);
+        //}
      
         t_end = std::chrono::high_resolution_clock::now();
         t_label_seed_compaction_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
         std::cout<<"[GPU] Labeled seed compaction in "<<t_label_seed_compaction_d<<" ms"<<std::endl;
 
 
-
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Travel 
-
-        
-        int *output_seed_d;
-        halfEdge *output_HalfEdges_d;
-        cudaMalloc(&output_HalfEdges_d, sizeof(halfEdge)*n_halfedges);
-
-        gpuErrchk( cudaDeviceSynchronize() );
-        t_start = std::chrono::high_resolution_clock::now();
-        travel_phase_d<<<(n_halfedges + BSIZE - 1)/BSIZE,BSIZE>>>(output_HalfEdges_d, halfedges_d, max_edges_d, frontier_edges_d, n_halfedges);
-        gpuErrchk( cudaDeviceSynchronize() );
-        
-        t_end = std::chrono::high_resolution_clock::now();
-        t_traversal_1_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"[GPU] Traversal phase 1 in "<<t_traversal_1_d<<" ms"<<std::endl;
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Repair search frontier edge
-
-        
-        cudaMalloc(&output_seed_d , sizeof(int)*seed_len);        
-
-        dim3 blockDim2(1024,1024,1);
-        dim3 gridDim2((seed_len+1024*1024-1)/(1024*1024),1,1);
-
-
-        gpuErrchk( cudaDeviceSynchronize() );
-        t_start = std::chrono::high_resolution_clock::now();
-        search_frontier_edge_d<<<blockDim2,gridDim2>>>(output_seed_d, halfedges_d, frontier_edges_d, seed_edges_d, seed_len);
-        gpuErrchk( cudaDeviceSynchronize() );
-
-        t_end = std::chrono::high_resolution_clock::now();
-        t_traversal_2_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"[GPU] Traversal phase (search frontier edge) in "<<t_traversal_2_d<<" ms"<<std::endl;
-
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Repair overwrite seed
-
-        gpuErrchk( cudaDeviceSynchronize() );
-        t_start = std::chrono::high_resolution_clock::now();
-        
-        overwrite_seed_d<<<(seed_len + BSIZE - 1)/BSIZE,BSIZE>>>(output_HalfEdges_d, output_seed_d, seed_len);
-        gpuErrchk( cudaDeviceSynchronize() );
-
-        t_end = std::chrono::high_resolution_clock::now();
-        t_overwrite_seed_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        std::cout<<"[GPU] Rapair overwrite seed in "<<t_overwrite_seed_d<<" ms"<<std::endl;
 
         // Back to host
         gpuErrchk( cudaDeviceSynchronize() );
@@ -357,11 +359,11 @@ public:
         cudaMemcpy( h_max_edges, max_edges_d, n_halfedges*sizeof(bit_vector_d), cudaMemcpyDeviceToHost );
         bit_vector_d *h_frontier_edges = new bit_vector_d[n_halfedges];
         cudaMemcpy( h_frontier_edges, frontier_edges_d, n_halfedges*sizeof(bit_vector_d), cudaMemcpyDeviceToHost );
-        int *h_seed_edges = new int[n_halfedges];
+        int *h_seed_edges = new int[seed_len];
         cudaMemcpy( h_seed_edges, seed_edges_d, seed_len*sizeof(int), cudaMemcpyDeviceToHost );
-        int *output_seed_h = new int[seed_len];
-        cudaMemcpy(output_seed_h, output_seed_d, sizeof(int)*seed_len, cudaMemcpyDeviceToHost);
-        gpuErrchk( cudaDeviceSynchronize() );
+        //int *output_seed_h = new int[seed_len];
+        //cudaMemcpy(output_seed_h, output_seed_d, sizeof(int)*seed_len, cudaMemcpyDeviceToHost);
+        //gpuErrchk( cudaDeviceSynchronize() );
 
         t_end = std::chrono::high_resolution_clock::now();
         t_back_to_host_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
@@ -395,8 +397,8 @@ public:
 
         //print output_seed
         for (int i = 0; i < seed_len; i++){
-            //std::cout<<output_seed_h[i]<<" ";
-            output_seeds.push_back(output_seed_h[i]);
+          //  std::cout<<h_seed_edges[i]<<" ";
+            output_seeds.push_back(h_seed_edges[i]);
         }
 
         this->m_polygons = output_seeds.size();

@@ -543,6 +543,8 @@ __global__ void label_extra_frontier_edge_d(halfEdge *HalfEdges, bit_vector_d *f
     }  
 }
 
+/*
+
 //Travel in CCW order around the edges of vertex v from the edge e looking for the next frontier edge
 __global__ void search_frontier_edge_d(int *output, halfEdge *HalfEdges, bit_vector_d *frontier_edges, int *seed_edges, int n)
 {
@@ -563,7 +565,28 @@ __global__ void search_frontier_edge_d(int *output, halfEdge *HalfEdges, bit_vec
     }
 }
 
+*/
 
+__global__ void search_frontier_edge_d(halfEdge *HalfEdges, bit_vector_d *frontier_edges,  half *seed_edges, int n)
+{
+    int off = threadIdx.x + blockIdx.x*blockDim.x;
+    if (off < n){
+        if(seed_edges[off] == __float2half(1.0f)){
+            int nxt = off;
+            //printf("%i %f\n",off,__half2float(seed_edges[off]));
+            while(!frontier_edges[nxt])
+            {
+                nxt = CW_edge_to_vertex_d(HalfEdges, nxt);
+            }  
+            if(nxt != off)
+                seed_edges[off] = 0;
+            seed_edges[nxt] = 1;
+            //printf("%i %i\n",off,nxt);
+        }
+    }
+}
+
+/*
 __global__ void overwrite_seed_d(halfEdge *HalfEdges, int *seed_edges, int n){
         int i = threadIdx.x + blockIdx.x * blockDim.x; 
         if (i < n){        
@@ -585,13 +608,13 @@ __global__ void overwrite_seed_d(halfEdge *HalfEdges, int *seed_edges, int n){
             seed_edges[i] = min_ind;
         }  
 }
+*/
 
-/*
-Esto funciona usando bitvectors
-__global__ void overwrite_seed_d(halfEdge *HalfEdges, int *seed_edges, int n){
+//Esto funciona usando bitvectors
+__global__ void overwrite_seed_d(halfEdge *HalfEdges, half *seed_edges, int n){
     int i = threadIdx.x + blockIdx.x * blockDim.x; 
     if (i < n){        
-        if(seed_edges[i] == 1){
+        if(seed_edges[i] == __float2half(1.0f)){
             int e_init = i;
             int min_ind = e_init;
             int e_curr = next_d(HalfEdges, e_init);
@@ -599,7 +622,7 @@ __global__ void overwrite_seed_d(halfEdge *HalfEdges, int *seed_edges, int n){
                 min_ind = min(min_ind, e_curr);
                 e_curr = next_d(HalfEdges, e_curr);
             }
-            //printf("aca %i %i %i\n", i ,e_init,min_ind);
+            //printf("overwrite_seed_d %i %i %i\n", i ,e_init,min_ind);
             
             if(min_ind != i){
                 seed_edges[i] = 0;
@@ -608,4 +631,3 @@ __global__ void overwrite_seed_d(halfEdge *HalfEdges, int *seed_edges, int n){
         }
     }  
 }
-*/
