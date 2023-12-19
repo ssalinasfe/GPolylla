@@ -1,0 +1,704 @@
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 2739.12
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 7.00425 ms
+[GPU] Labered max edges in 0.347803 ms
+[GPU] Labeled frontier edges in 0.249705 ms
+[GPU] Labeled seed edges in 0.237857 ms
+[GPU] Labeled extra frontier edge in 0.354023 ms
+[GPU] Traversal phase 1 in 0.333161 ms
+[GPU] Traversal phase (search frontier edge) in 0.231017 ms
+[GPU] Rapair overwrite seed in 0.191768 ms
+[GPU] Labeled seed scan in 0.213401 ms
+[GPU] Labeled seed compaction in 0.031367 ms
+[GPU] Back to host in 9.81991 ms
+[GPU] Mesh with 998001 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_1000000.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_1000000.json
+Tiempo de ejecución: 4.703 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 12787.6
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 28.6016 ms
+[GPU] Labered max edges in 1.44713 ms
+[GPU] Labeled frontier edges in 1.02489 ms
+[GPU] Labeled seed edges in 1.06663 ms
+[GPU] Labeled extra frontier edge in 1.35754 ms
+[GPU] Traversal phase 1 in 1.56413 ms
+[GPU] Traversal phase (search frontier edge) in 0.734034 ms
+[GPU] Rapair overwrite seed in 0.774295 ms
+[GPU] Labeled seed scan in 0.507794 ms
+[GPU] Labeled seed compaction in 0.301173 ms
+[GPU] Back to host in 40.1918 ms
+[GPU] Mesh with 4190209 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_4194304.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_4194304.json
+Tiempo de ejecución: 14.975 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 23743.9
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 50.4939 ms
+[GPU] Labered max edges in 2.49832 ms
+[GPU] Labeled frontier edges in 1.79078 ms
+[GPU] Labeled seed edges in 1.86455 ms
+[GPU] Labeled extra frontier edge in 2.34147 ms
+[GPU] Traversal phase 1 in 2.80151 ms
+[GPU] Traversal phase (search frontier edge) in 1.25012 ms
+[GPU] Rapair overwrite seed in 1.3475 ms
+[GPU] Labeled seed scan in 0.827103 ms
+[GPU] Labeled seed compaction in 0.471578 ms
+[GPU] Back to host in 70.3514 ms
+[GPU] Mesh with 7382089 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_7387524.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_7387524.json
+Tiempo de ejecución: 27.096 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 33954.8
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 72.1271 ms
+[GPU] Labered max edges in 3.55543 ms
+[GPU] Labeled frontier edges in 2.55917 ms
+[GPU] Labeled seed edges in 2.61983 ms
+[GPU] Labeled extra frontier edge in 3.34154 ms
+[GPU] Traversal phase 1 in 4.02116 ms
+[GPU] Traversal phase (search frontier edge) in 1.74178 ms
+[GPU] Rapair overwrite seed in 1.92549 ms
+[GPU] Labeled seed scan in 1.13477 ms
+[GPU] Labeled seed compaction in 0.644335 ms
+[GPU] Back to host in 97.0842 ms
+[GPU] Mesh with 10575504 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_10582009.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_10582009.json
+Tiempo de ejecución: 38.373 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 41678.7
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 93.4526 ms
+[GPU] Labered max edges in 4.59786 ms
+[GPU] Labeled frontier edges in 3.32708 ms
+[GPU] Labeled seed edges in 3.39124 ms
+[GPU] Labeled extra frontier edge in 4.33867 ms
+[GPU] Traversal phase 1 in 5.21532 ms
+[GPU] Traversal phase (search frontier edge) in 2.25221 ms
+[GPU] Rapair overwrite seed in 2.49985 ms
+[GPU] Labeled seed scan in 1.4325 ms
+[GPU] Labeled seed compaction in 0.819906 ms
+[GPU] Back to host in 125.977 ms
+[GPU] Mesh with 13764100 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_13771521.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_13771521.json
+Tiempo de ejecución: 48.637 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 51129.7
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 116.191 ms
+[GPU] Labered max edges in 5.66433 ms
+[GPU] Labeled frontier edges in 4.09469 ms
+[GPU] Labeled seed edges in 4.16376 ms
+[GPU] Labeled extra frontier edge in 5.32831 ms
+[GPU] Traversal phase 1 in 6.43086 ms
+[GPU] Traversal phase (search frontier edge) in 2.74341 ms
+[GPU] Rapair overwrite seed in 3.07817 ms
+[GPU] Labeled seed scan in 1.74427 ms
+[GPU] Labeled seed compaction in 0.98955 ms
+[GPU] Back to host in 158.539 ms
+[GPU] Mesh with 16957924 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_16966161.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_16966161.json
+Tiempo de ejecución: 59.061 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 63016.2
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 136.989 ms
+[GPU] Labered max edges in 6.71838 ms
+[GPU] Labeled frontier edges in 4.86691 ms
+[GPU] Labeled seed edges in 4.93152 ms
+[GPU] Labeled extra frontier edge in 6.33981 ms
+[GPU] Traversal phase 1 in 7.63986 ms
+[GPU] Traversal phase (search frontier edge) in 3.25677 ms
+[GPU] Rapair overwrite seed in 3.65653 ms
+[GPU] Labeled seed scan in 2.03885 ms
+[GPU] Labeled seed compaction in 1.16417 ms
+[GPU] Back to host in 187.63 ms
+[GPU] Mesh with 20151121 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_20160100.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_20160100.json
+Tiempo de ejecución: 71.881 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 67516.1
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 159.124 ms
+[GPU] Labered max edges in 7.74561 ms
+[GPU] Labeled frontier edges in 5.64682 ms
+[GPU] Labeled seed edges in 5.70187 ms
+[GPU] Labeled extra frontier edge in 7.2667 ms
+[GPU] Traversal phase 1 in 8.87609 ms
+[GPU] Traversal phase (search frontier edge) in 3.75019 ms
+[GPU] Rapair overwrite seed in 4.2365 ms
+[GPU] Labeled seed scan in 2.36645 ms
+[GPU] Labeled seed compaction in 1.33542 ms
+[GPU] Back to host in 215.136 ms
+[GPU] Mesh with 23348224 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_23357889.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_23357889.json
+Tiempo de ejecución: 77.304 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 82437.9
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 181.2 ms
+[GPU] Labered max edges in 8.78182 ms
+[GPU] Labeled frontier edges in 6.227 ms
+[GPU] Labeled seed edges in 6.47434 ms
+[GPU] Labeled extra frontier edge in 8.25854 ms
+[GPU] Traversal phase 1 in 10.1315 ms
+[GPU] Traversal phase (search frontier edge) in 4.25678 ms
+[GPU] Rapair overwrite seed in 4.81376 ms
+[GPU] Labeled seed scan in 2.71164 ms
+[GPU] Labeled seed compaction in 1.51189 ms
+[GPU] Back to host in 243.094 ms
+[GPU] Mesh with 26543104 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_26553409.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_26553409.json
+Tiempo de ejecución: 92.289 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 95802
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 201.924 ms
+[GPU] Labered max edges in 9.80963 ms
+[GPU] Labeled frontier edges in 7.18932 ms
+[GPU] Labeled seed edges in 7.25125 ms
+[GPU] Labeled extra frontier edge in 9.21959 ms
+[GPU] Traversal phase 1 in 11.2884 ms
+[GPU] Traversal phase (search frontier edge) in 4.75861 ms
+[GPU] Rapair overwrite seed in 5.39578 ms
+[GPU] Labeled seed scan in 3.01953 ms
+[GPU] Labeled seed compaction in 1.6872 ms
+[GPU] Back to host in 276.256 ms
+[GPU] Mesh with 29735209 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_29746116.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_29746116.json
+Tiempo de ejecución: 106.793 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 113251
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 223.94 ms
+[GPU] Labered max edges in 10.8741 ms
+[GPU] Labeled frontier edges in 7.96393 ms
+[GPU] Labeled seed edges in 8.02505 ms
+[GPU] Labeled extra frontier edge in 10.186 ms
+[GPU] Traversal phase 1 in 12.5214 ms
+[GPU] Traversal phase (search frontier edge) in 5.26914 ms
+[GPU] Rapair overwrite seed in 5.96893 ms
+[GPU] Labeled seed scan in 6.19063 ms
+[GPU] Labeled seed compaction in 1.85464 ms
+[GPU] Back to host in 336.489 ms
+[GPU] Mesh with 32924644 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_32936121.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_32936121.json
+Tiempo de ejecución: 125.054 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 112088
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 246.01 ms
+[GPU] Labered max edges in 11.8664 ms
+[GPU] Labeled frontier edges in 8.67603 ms
+[GPU] Labeled seed edges in 8.77377 ms
+[GPU] Labeled extra frontier edge in 11.1965 ms
+[GPU] Traversal phase 1 in 13.7393 ms
+[GPU] Traversal phase (search frontier edge) in 5.76641 ms
+[GPU] Rapair overwrite seed in 6.54969 ms
+[GPU] Labeled seed scan in 3.6005 ms
+[GPU] Labeled seed compaction in 2.02984 ms
+[GPU] Back to host in 356.843 ms
+[GPU] Mesh with 36120100 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_36132121.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_36132121.json
+Tiempo de ejecución: 125.220 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 123215
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 266.591 ms
+[GPU] Labered max edges in 12.8914 ms
+[GPU] Labeled frontier edges in 9.27596 ms
+[GPU] Labeled seed edges in 9.59597 ms
+[GPU] Labeled extra frontier edge in 12.1978 ms
+[GPU] Traversal phase 1 in 14.969 ms
+[GPU] Traversal phase (search frontier edge) in 6.26648 ms
+[GPU] Rapair overwrite seed in 7.12659 ms
+[GPU] Labeled seed scan in 3.92996 ms
+[GPU] Labeled seed compaction in 2.20093 ms
+[GPU] Back to host in 364.021 ms
+[GPU] Mesh with 39312900 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_39325441.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_39325441.json
+Tiempo de ejecución: 137.541 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 160359
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 296.54 ms
+[GPU] Labered max edges in 13.9485 ms
+[GPU] Labeled frontier edges in 10.2876 ms
+[GPU] Labeled seed edges in 10.3562 ms
+[GPU] Labeled extra frontier edge in 13.2358 ms
+[GPU] Traversal phase 1 in 16.1625 ms
+[GPU] Traversal phase (search frontier edge) in 6.77422 ms
+[GPU] Rapair overwrite seed in 7.70143 ms
+[GPU] Labeled seed scan in 4.2542 ms
+[GPU] Labeled seed compaction in 2.38112 ms
+[GPU] Back to host in 418.327 ms
+[GPU] Mesh with 42497361 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_42510400.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_42510400.json
+Tiempo de ejecución: 176.738 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 144284
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 313.151 ms
+[GPU] Labered max edges in 14.9871 ms
+[GPU] Labeled frontier edges in 10.9871 ms
+[GPU] Labeled seed edges in 11.1381 ms
+[GPU] Labeled extra frontier edge in 14.1364 ms
+[GPU] Traversal phase 1 in 17.3092 ms
+[GPU] Traversal phase (search frontier edge) in 7.27162 ms
+[GPU] Rapair overwrite seed in 8.27658 ms
+[GPU] Labeled seed scan in 4.49177 ms
+[GPU] Labeled seed compaction in 2.55124 ms
+[GPU] Back to host in 430.518 ms
+[GPU] Mesh with 45697600 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_45711121.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_45711121.json
+Tiempo de ejecución: 159.850 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 155785
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 332.702 ms
+[GPU] Labered max edges in 15.9624 ms
+[GPU] Labeled frontier edges in 11.8765 ms
+[GPU] Labeled seed edges in 11.939 ms
+[GPU] Labeled extra frontier edge in 15.1227 ms
+[GPU] Traversal phase 1 in 18.6139 ms
+[GPU] Traversal phase (search frontier edge) in 7.76637 ms
+[GPU] Rapair overwrite seed in 8.86245 ms
+[GPU] Labeled seed scan in 4.78444 ms
+[GPU] Labeled seed compaction in 2.72262 ms
+[GPU] Back to host in 451.174 ms
+[GPU] Mesh with 48888064 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_48902049.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_48902049.json
+Tiempo de ejecución: 172.413 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 175585
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 361.664 ms
+[GPU] Labered max edges in 17.0575 ms
+[GPU] Labeled frontier edges in 12.4979 ms
+[GPU] Labeled seed edges in 12.719 ms
+[GPU] Labeled extra frontier edge in 16.0312 ms
+[GPU] Traversal phase 1 in 19.8534 ms
+[GPU] Traversal phase (search frontier edge) in 8.27807 ms
+[GPU] Rapair overwrite seed in 9.43806 ms
+[GPU] Labeled seed scan in 5.15674 ms
+[GPU] Labeled seed compaction in 2.89444 ms
+[GPU] Back to host in 490.927 ms
+[GPU] Mesh with 52085089 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_52099524.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_52099524.json
+Tiempo de ejecución: 193.274 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 186611
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 375.154 ms
+[GPU] Labered max edges in 18.0179 ms
+[GPU] Labeled frontier edges in 13.4054 ms
+[GPU] Labeled seed edges in 13.5174 ms
+[GPU] Labeled extra frontier edge in 17.1438 ms
+[GPU] Traversal phase 1 in 21.0509 ms
+[GPU] Traversal phase (search frontier edge) in 8.78736 ms
+[GPU] Rapair overwrite seed in 10.0124 ms
+[GPU] Labeled seed scan in 5.40414 ms
+[GPU] Labeled seed compaction in 3.07052 ms
+[GPU] Back to host in 502.813 ms
+[GPU] Mesh with 55279225 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_55294096.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_55294096.json
+Tiempo de ejecución: 205.573 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 204765
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 397.1 ms
+[GPU] Labered max edges in 19.0299 ms
+[GPU] Labeled frontier edges in 14.1878 ms
+[GPU] Labeled seed edges in 14.3579 ms
+[GPU] Labeled extra frontier edge in 17.9832 ms
+[GPU] Traversal phase 1 in 22.2388 ms
+[GPU] Traversal phase (search frontier edge) in 9.28065 ms
+[GPU] Rapair overwrite seed in 10.5891 ms
+[GPU] Labeled seed scan in 5.7038 ms
+[GPU] Labeled seed compaction in 3.23717 ms
+[GPU] Back to host in 547.025 ms
+[GPU] Mesh with 58461316 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_58476609.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_58476609.json
+Tiempo de ejecución: 226.590 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 200330
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 425.816 ms
+[GPU] Labered max edges in 20.0507 ms
+[GPU] Labeled frontier edges in 14.9444 ms
+[GPU] Labeled seed edges in 15.0909 ms
+[GPU] Labeled extra frontier edge in 19.0014 ms
+[GPU] Traversal phase 1 in 23.4785 ms
+[GPU] Traversal phase (search frontier edge) in 9.78775 ms
+[GPU] Rapair overwrite seed in 11.1696 ms
+[GPU] Labeled seed scan in 6.03284 ms
+[GPU] Labeled seed compaction in 3.41459 ms
+[GPU] Back to host in 586.905 ms
+[GPU] Mesh with 61653904 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_61669609.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_61669609.json
+Tiempo de ejecución: 221.621 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 216894
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 451.855 ms
+[GPU] Labered max edges in 21.0784 ms
+[GPU] Labeled frontier edges in 15.7795 ms
+[GPU] Labeled seed edges in 15.9134 ms
+[GPU] Labeled extra frontier edge in 20.0359 ms
+[GPU] Traversal phase 1 in 24.6816 ms
+[GPU] Traversal phase (search frontier edge) in 10.2864 ms
+[GPU] Rapair overwrite seed in 11.7463 ms
+[GPU] Labeled seed scan in 6.36557 ms
+[GPU] Labeled seed compaction in 3.5869 ms
+[GPU] Back to host in 613.339 ms
+[GPU] Mesh with 64850809 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_64866916.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_64866916.json
+Tiempo de ejecución: 239.813 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 221232
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 460.664 ms
+[GPU] Labered max edges in 22.1328 ms
+[GPU] Labeled frontier edges in 16.5351 ms
+[GPU] Labeled seed edges in 16.672 ms
+[GPU] Labeled extra frontier edge in 21.0296 ms
+[GPU] Traversal phase 1 in 25.9022 ms
+[GPU] Traversal phase (search frontier edge) in 10.7946 ms
+[GPU] Rapair overwrite seed in 12.3242 ms
+[GPU] Labeled seed scan in 6.6604 ms
+[GPU] Labeled seed compaction in 3.75946 ms
+[GPU] Back to host in 628.43 ms
+[GPU] Mesh with 68046001 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_68062500.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_68062500.json
+Tiempo de ejecución: 244.769 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 245419
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 488.727 ms
+[GPU] Labered max edges in 23.0895 ms
+[GPU] Labeled frontier edges in 17.2847 ms
+[GPU] Labeled seed edges in 17.4489 ms
+[GPU] Labeled extra frontier edge in 21.9745 ms
+[GPU] Traversal phase 1 in 27.1549 ms
+[GPU] Traversal phase (search frontier edge) in 11.3024 ms
+[GPU] Rapair overwrite seed in 12.9045 ms
+[GPU] Labeled seed scan in 6.92137 ms
+[GPU] Labeled seed compaction in 3.93928 ms
+[GPU] Back to host in 665.414 ms
+[GPU] Mesh with 71233600 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_71250481.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_71250481.json
+Tiempo de ejecución: 270.363 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 265307
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 504.192 ms
+[GPU] Labered max edges in 24.0207 ms
+[GPU] Labeled frontier edges in 18.0529 ms
+[GPU] Labeled seed edges in 18.2341 ms
+[GPU] Labeled extra frontier edge in 22.9018 ms
+[GPU] Traversal phase 1 in 28.3749 ms
+[GPU] Traversal phase (search frontier edge) in 11.8012 ms
+[GPU] Rapair overwrite seed in 13.4797 ms
+[GPU] Labeled seed scan in 7.228 ms
+[GPU] Labeled seed compaction in 4.10811 ms
+[GPU] Back to host in 691.513 ms
+[GPU] Mesh with 74442384 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_74459641.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_74459641.json
+Tiempo de ejecución: 289.766 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 277251
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 528.571 ms
+[GPU] Labered max edges in 25.1067 ms
+[GPU] Labeled frontier edges in 18.927 ms
+[GPU] Labeled seed edges in 19.0592 ms
+[GPU] Labeled extra frontier edge in 23.9434 ms
+[GPU] Traversal phase 1 in 29.5997 ms
+[GPU] Traversal phase (search frontier edge) in 12.3016 ms
+[GPU] Rapair overwrite seed in 14.0569 ms
+[GPU] Labeled seed scan in 7.54764 ms
+[GPU] Labeled seed compaction in 4.27614 ms
+[GPU] Back to host in 724.101 ms
+[GPU] Mesh with 77633721 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_77651344.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_77651344.json
+Tiempo de ejecución: 305.613 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 274693
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 556.744 ms
+[GPU] Labered max edges in 26.0685 ms
+[GPU] Labeled frontier edges in 19.7388 ms
+[GPU] Labeled seed edges in 19.8632 ms
+[GPU] Labeled extra frontier edge in 24.8834 ms
+[GPU] Traversal phase 1 in 30.8066 ms
+[GPU] Traversal phase (search frontier edge) in 12.8054 ms
+[GPU] Rapair overwrite seed in 14.6355 ms
+[GPU] Labeled seed scan in 7.83607 ms
+[GPU] Labeled seed compaction in 4.45189 ms
+[GPU] Back to host in 752.544 ms
+[GPU] Mesh with 80820100 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_80838081.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_80838081.json
+Tiempo de ejecución: 302.408 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 284731
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 571.748 ms
+[GPU] Labered max edges in 27.1028 ms
+[GPU] Labeled frontier edges in 20.4547 ms
+[GPU] Labeled seed edges in 20.5984 ms
+[GPU] Labeled extra frontier edge in 25.0712 ms
+[GPU] Traversal phase 1 in 32.0066 ms
+[GPU] Traversal phase (search frontier edge) in 13.3078 ms
+[GPU] Rapair overwrite seed in 15.2102 ms
+[GPU] Labeled seed scan in 8.14526 ms
+[GPU] Labeled seed compaction in 4.62198 ms
+[GPU] Back to host in 835.352 ms
+[GPU] Mesh with 84015556 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_84033889.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_84033889.json
+Tiempo de ejecución: 312.291 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 307736
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 590.596 ms
+[GPU] Labered max edges in 28.1035 ms
+[GPU] Labeled frontier edges in 21.2167 ms
+[GPU] Labeled seed edges in 21.3671 ms
+[GPU] Labeled extra frontier edge in 26.761 ms
+[GPU] Traversal phase 1 in 33.2124 ms
+[GPU] Traversal phase (search frontier edge) in 13.8081 ms
+[GPU] Rapair overwrite seed in 15.7894 ms
+[GPU] Labeled seed scan in 8.47658 ms
+[GPU] Labeled seed compaction in 4.79751 ms
+[GPU] Back to host in 826.954 ms
+[GPU] Mesh with 87198244 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_87216921.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_87216921.json
+Tiempo de ejecución: 336.682 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 306226
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 615.304 ms
+[GPU] Labered max edges in 29.0962 ms
+[GPU] Labeled frontier edges in 22.039 ms
+[GPU] Labeled seed edges in 22.1765 ms
+[GPU] Labeled extra frontier edge in 27.6226 ms
+[GPU] Traversal phase 1 in 34.482 ms
+[GPU] Traversal phase (search frontier edge) in 14.3066 ms
+[GPU] Rapair overwrite seed in 16.3696 ms
+[GPU] Labeled seed scan in 8.73274 ms
+[GPU] Labeled seed compaction in 4.96665 ms
+[GPU] Back to host in 1002.02 ms
+[GPU] Mesh with 90402064 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_90421081.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_90421081.json
+Tiempo de ejecución: 337.693 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 328306
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 639.315 ms
+[GPU] Labered max edges in 30.1037 ms
+[GPU] Labeled frontier edges in 22.8136 ms
+[GPU] Labeled seed edges in 22.9725 ms
+[GPU] Labeled extra frontier edge in 28.8285 ms
+[GPU] Traversal phase 1 in 35.6713 ms
+[GPU] Traversal phase (search frontier edge) in 14.7995 ms
+[GPU] Rapair overwrite seed in 16.9436 ms
+[GPU] Labeled seed scan in 9.03954 ms
+[GPU] Labeled seed compaction in 5.14032 ms
+[GPU] Back to host in 881.668 ms
+[GPU] Mesh with 93586276 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_93605625.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_93605625.json
+Tiempo de ejecución: 360.201 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 338063
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 660.63 ms
+[GPU] Labered max edges in 31.1413 ms
+[GPU] Labeled frontier edges in 23.5432 ms
+[GPU] Labeled seed edges in 23.7124 ms
+[GPU] Labeled extra frontier edge in 29.525 ms
+[GPU] Traversal phase 1 in 36.9287 ms
+[GPU] Traversal phase (search frontier edge) in 15.3094 ms
+[GPU] Rapair overwrite seed in 17.5272 ms
+[GPU] Labeled seed scan in 9.33904 ms
+[GPU] Labeled seed compaction in 5.31529 ms
+[GPU] Back to host in 939.808 ms
+[GPU] Mesh with 96786244 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_96805921.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_96805921.json
+Tiempo de ejecución: 375.010 segundos
+
+Generating points  
+Generating triangles 
+Constructing halfedges 
+Triangulation generation time: 337718
+[Polylla] Input mesh generated
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 687.89 ms
+[GPU] Labered max edges in 32.1087 ms
+[GPU] Labeled frontier edges in 24.39 ms
+[GPU] Labeled seed edges in 24.5449 ms
+[GPU] Labeled extra frontier edge in 30.6685 ms
+[GPU] Traversal phase 1 in 38.0983 ms
+[GPU] Traversal phase (search frontier edge) in 15.8047 ms
+[GPU] Rapair overwrite seed in 18.0987 ms
+[GPU] Labeled seed scan in 9.72358 ms
+[GPU] Labeled seed compaction in 5.486 ms
+[GPU] Back to host in 1094.69 ms
+[GPU] Mesh with 99980001 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_100000000.json
+output json in /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-grid-results/2/uniform_100000000.json
+Tiempo de ejecución: 375.777 segundos
+

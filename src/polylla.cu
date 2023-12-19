@@ -248,7 +248,7 @@ public:
         
         label_extra_frontier_edge_d<<<(n_vertices + BSIZE - 1)/BSIZE,BSIZE>>>(halfedges_d, frontier_edges_d, vertices_d, seed_edges_ad, n_vertices);
         gpuErrchk( cudaDeviceSynchronize() );
-//
+        
         t_end = std::chrono::high_resolution_clock::now();
         t_label_extra_frontier_edge_d = std::chrono::duration<double, std::milli>(t_end-t_start).count();
         std::cout<<"[GPU] Labeled extra frontier edge in "<<t_label_extra_frontier_edge_d<<" ms"<<std::endl;
@@ -305,7 +305,7 @@ public:
         std::cout<<"[GPU] Rapair overwrite seed in "<<t_overwrite_seed_d<<" ms"<<std::endl;
 
 
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Label seed edges 2, Scan...
 
         gpuErrchk( cudaDeviceSynchronize() );

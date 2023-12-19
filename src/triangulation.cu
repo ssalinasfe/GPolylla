@@ -499,7 +499,7 @@ public:
         }
 
         n_faces = faces.size()/3;
-        std::cout<<"estimao "<< n_faces<<" final "<<n_faces<<std::endl;
+        //std::cout<<"estimao "<< n_faces<<" final "<<n_faces<<std::endl;
 
         std::cout<<"Constructing halfedges "<<std::endl;
         auto t_start = std::chrono::high_resolution_clock::now();
