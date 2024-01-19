@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH --job-name=gpolylla           # Nombre del trabajo
-#SBATCH --output=gpolylla_%j.out      # Nombre del archivo de salida
-#SBATCH --error=gpolylla_%j.err       # Nombre del archivo de error
+#SBATCH --job-name=GPolylla           # Nombre del trabajo
+#SBATCH --output=GPolylla_%j.out      # Nombre del archivo de salida
+#SBATCH --error=GPolylla_%j.err       # Nombre del archivo de error
 #SBATCH --ntasks=1                   # Numero de tareas
 #SBATCH --partition=rtx
 #SBATCH --gpus=1
 
 # run as:
-# sbatch run_benchmark.slurm /home/rcarrasco/GPolylla/build /home/rcarrasco/GPolylla/data /home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-result/1 32
+# sbatch run_benchmark.slurm ../../../build ../../../data 1 32
 
 date
 
@@ -30,18 +30,20 @@ echo "Start: $START, End: $END, Intervalo: $interval, Diferencia: $diff, NSAMPLE
 # Llamamos al programa con los NSAMPLEs valores como argumentos
 for ((i=$START; i<=$END; i+=interval)); do
     date
-
     echo "Ejecutando Polylla con tamaño $i"
+
+    # Agrega esto para depurar
+    echo "Comando a ejecutar: srun --container-workdir=${PWD} --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ${FOLDER}/Polylla -o ${INPUT}/${i}_points.1.off ${OUTPUT}/uniform_${i}"
 
     # Medir el tiempo de ejecución del programa Polylla
     TIMEFORMAT="%E"
-    ELAPSED_TIME=$(time (srun --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ${FOLDER}/Polylla -s ${INPUT}/${i}_points.1.off -o ${OUTPUT}/uniform_${i} >> ${OUTPUT}/Polylla_${SLURM_JOB_ID}.out) 2>&1 >/dev/null)
+    ELAPSED_TIME=$(time (srun --container-workdir=${PWD} --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ${FOLDER}/Polylla -o ${INPUT}/${i}_points.1.off ${OUTPUT}/uniform_${i} >> ${OUTPUT}/GPolylla_${SLURM_JOB_ID}.out) 2>&1 >/dev/null)
 
-    # Imprimir el tiempo de ejecución en los archivos de salida y error
-    echo "Tiempo de ejecución: $ELAPSED_TIME segundos" >> ${OUTPUT}/Polylla_${SLURM_JOB_ID}.out
-    echo "Tiempo de ejecución: $ELAPSED_TIME segundos" >> ${OUTPUT}/Polylla_${SLURM_JOB_ID}.err
-    echo "" >> ${OUTPUT}/Polylla_${SLURM_JOB_ID}.out
-    echo "" >> ${OUTPUT}/Polylla_${SLURM_JOB_ID}.err
+    echo "Tiempo de ejecución: $ELAPSED_TIME segundos" >> ${OUTPUT}/GPolylla_${SLURM_JOB_ID}.out
+    echo "Tiempo de ejecución: $ELAPSED_TIME segundos" >> ${OUTPUT}/GPolylla_${SLURM_JOB_ID}.err
+    echo "" >> ${OUTPUT}/GPolylla_${SLURM_JOB_ID}.out
+    echo "" >> ${OUTPUT}/GPolylla_${SLURM_JOB_ID}.err
 done
+
 
 date

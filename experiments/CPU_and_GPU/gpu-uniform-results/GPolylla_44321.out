@@ -1,0 +1,102 @@
+Tue Dec 19 02:20:42 PM UTC 2023
+Start: 1000000, End: 44312500, Intervalo: 1353515, Diferencia: 43312500, NSAMPLES: 32
+Tue Dec 19 02:20:42 PM UTC 2023
+Ejecutando Polylla con tamaño 1000000
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/1000000_points.1.off 1/uniform_1000000
+Tue Dec 19 02:20:50 PM UTC 2023
+Ejecutando Polylla con tamaño 2353515
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/2353515_points.1.off 1/uniform_2353515
+Tue Dec 19 02:21:09 PM UTC 2023
+Ejecutando Polylla con tamaño 3707030
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/3707030_points.1.off 1/uniform_3707030
+Tue Dec 19 02:21:40 PM UTC 2023
+Ejecutando Polylla con tamaño 5060545
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/5060545_points.1.off 1/uniform_5060545
+Tue Dec 19 02:22:20 PM UTC 2023
+Ejecutando Polylla con tamaño 6414060
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/6414060_points.1.off 1/uniform_6414060
+Tue Dec 19 02:23:14 PM UTC 2023
+Ejecutando Polylla con tamaño 7767575
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/7767575_points.1.off 1/uniform_7767575
+Tue Dec 19 02:24:16 PM UTC 2023
+Ejecutando Polylla con tamaño 9121090
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/9121090_points.1.off 1/uniform_9121090
+Tue Dec 19 02:25:29 PM UTC 2023
+Ejecutando Polylla con tamaño 10474605
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/10474605_points.1.off 1/uniform_10474605
+Tue Dec 19 02:26:54 PM UTC 2023
+Ejecutando Polylla con tamaño 11828120
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/11828120_points.1.off 1/uniform_11828120
+Tue Dec 19 02:28:30 PM UTC 2023
+Ejecutando Polylla con tamaño 13181635
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/13181635_points.1.off 1/uniform_13181635
+Tue Dec 19 02:30:18 PM UTC 2023
+Ejecutando Polylla con tamaño 14535150
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/14535150_points.1.off 1/uniform_14535150
+Tue Dec 19 02:32:19 PM UTC 2023
+Ejecutando Polylla con tamaño 15888665
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/15888665_points.1.off 1/uniform_15888665
+Tue Dec 19 02:34:30 PM UTC 2023
+Ejecutando Polylla con tamaño 17242180
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/17242180_points.1.off 1/uniform_17242180
+Tue Dec 19 02:36:52 PM UTC 2023
+Ejecutando Polylla con tamaño 18595695
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/18595695_points.1.off 1/uniform_18595695
+Tue Dec 19 02:39:27 PM UTC 2023
+Ejecutando Polylla con tamaño 19949210
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/19949210_points.1.off 1/uniform_19949210
+Tue Dec 19 02:42:12 PM UTC 2023
+Ejecutando Polylla con tamaño 21302725
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/21302725_points.1.off 1/uniform_21302725
+Tue Dec 19 02:45:14 PM UTC 2023
+Ejecutando Polylla con tamaño 22656240
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/22656240_points.1.off 1/uniform_22656240
+Tue Dec 19 02:48:27 PM UTC 2023
+Ejecutando Polylla con tamaño 24009755
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/24009755_points.1.off 1/uniform_24009755
+Tue Dec 19 02:51:49 PM UTC 2023
+Ejecutando Polylla con tamaño 25363270
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/25363270_points.1.off 1/uniform_25363270
+Tue Dec 19 02:55:24 PM UTC 2023
+Ejecutando Polylla con tamaño 26716785
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/26716785_points.1.off 1/uniform_26716785
+Tue Dec 19 02:59:15 PM UTC 2023
+Ejecutando Polylla con tamaño 28070300
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/28070300_points.1.off 1/uniform_28070300
+Tue Dec 19 03:03:16 PM UTC 2023
+Ejecutando Polylla con tamaño 29423815
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/29423815_points.1.off 1/uniform_29423815
+Tue Dec 19 03:07:27 PM UTC 2023
+Ejecutando Polylla con tamaño 30777330
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/30777330_points.1.off 1/uniform_30777330
+Tue Dec 19 03:11:53 PM UTC 2023
+Ejecutando Polylla con tamaño 32130845
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/32130845_points.1.off 1/uniform_32130845
+Tue Dec 19 03:16:25 PM UTC 2023
+Ejecutando Polylla con tamaño 33484360
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/33484360_points.1.off 1/uniform_33484360
+Tue Dec 19 03:21:13 PM UTC 2023
+Ejecutando Polylla con tamaño 34837875
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/34837875_points.1.off 1/uniform_34837875
+Tue Dec 19 03:26:14 PM UTC 2023
+Ejecutando Polylla con tamaño 36191390
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/36191390_points.1.off 1/uniform_36191390
+Tue Dec 19 03:31:32 PM UTC 2023
+Ejecutando Polylla con tamaño 37544905
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/37544905_points.1.off 1/uniform_37544905
+Tue Dec 19 03:36:58 PM UTC 2023
+Ejecutando Polylla con tamaño 38898420
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/38898420_points.1.off 1/uniform_38898420
+Tue Dec 19 03:42:37 PM UTC 2023
+Ejecutando Polylla con tamaño 40251935
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/40251935_points.1.off 1/uniform_40251935
+Tue Dec 19 03:48:23 PM UTC 2023
+Ejecutando Polylla con tamaño 41605450
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/41605450_points.1.off 1/uniform_41605450
+Tue Dec 19 03:54:28 PM UTC 2023
+Ejecutando Polylla con tamaño 42958965
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/42958965_points.1.off 1/uniform_42958965
+Tue Dec 19 04:00:47 PM UTC 2023
+Ejecutando Polylla con tamaño 44312480
+Comando a ejecutar: srun --container-workdir=/home/rcarrasco/GPolylla/experiments/CPU_and_GPU/gpu-uniform-results --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ../../../build/GPolylla -o ../../../data/44312480_points.1.off 1/uniform_44312480
+Tue Dec 19 04:07:16 PM UTC 2023

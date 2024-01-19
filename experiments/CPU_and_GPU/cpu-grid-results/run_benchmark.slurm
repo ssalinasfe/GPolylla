@@ -10,7 +10,7 @@ date
 
 EXECUTABLE_FOLDER=$1
 OUTPUT_FOLDER=$2
-NSAMPLES=$(($3-1))
+NSAMPLES=$(($3))
 
 START=1000000
 END=100000000
@@ -74,7 +74,7 @@ for value in "${values[@]}"; do
 
     # Medir el tiempo de ejecución del programa Polylla
     TIMEFORMAT="%E"
-    ELAPSED_TIME=$(time (srun --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ${EXECUTABLE_FOLDER}/Polylla -s $value -o ${OUTPUT_FOLDER}/uniform_${value} >> ${OUTPUT_FOLDER}/gpolylla_${SLURM_JOB_ID}.out) 2>&1 >/dev/null)
+    ELAPSED_TIME=$(time (srun --container-workdir=${PWD} --container-name=cuda-12.1.0-brew -p rtx --gpus=1 ${EXECUTABLE_FOLDER}/Polylla -i $value ${OUTPUT_FOLDER}/grid_${value} >> ${OUTPUT_FOLDER}/gpolylla_${SLURM_JOB_ID}.out) 2>&1 >/dev/null)
 
     # Imprimir el tiempo de ejecución en los archivos de salida y error
     echo "Tiempo de ejecución: $ELAPSED_TIME segundos" >> ${OUTPUT_FOLDER}/Polylla_${SLURM_JOB_ID}.out

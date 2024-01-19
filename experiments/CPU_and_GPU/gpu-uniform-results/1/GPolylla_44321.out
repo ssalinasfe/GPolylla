@@ -1,0 +1,594 @@
+Reading OFF file ../../../data/1000000_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 6.99576 ms
+[GPU] Labered max edges in 0.358349 ms
+[GPU] Labeled frontier edges in 0.249562 ms
+[GPU] Labeled seed edges in 0.238135 ms
+[GPU] Labeled extra frontier edge in 1.21506 ms
+[GPU] Traversal phase 1 in 0.364248 ms
+[GPU] Traversal phase (search frontier edge) in 0.240329 ms
+[GPU] Rapair overwrite seed in 0.277796 ms
+[GPU] Labeled seed scan in 0.218895 ms
+[GPU] Labeled seed compaction in 0.030207 ms
+[GPU] Back to host in 9.48236 ms
+[GPU] Mesh with 322161 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_1000000.json
+output json in 1/uniform_1000000.json
+Tiempo de ejecución: 8.211 segundos
+
+Reading OFF file ../../../data/2353515_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 16.2272 ms
+[GPU] Labered max edges in 1.06299 ms
+[GPU] Labeled frontier edges in 0.577904 ms
+[GPU] Labeled seed edges in 0.563763 ms
+[GPU] Labeled extra frontier edge in 4.48766 ms
+[GPU] Traversal phase 1 in 0.896773 ms
+[GPU] Traversal phase (search frontier edge) in 0.482318 ms
+[GPU] Rapair overwrite seed in 0.625227 ms
+[GPU] Labeled seed scan in 0.283835 ms
+[GPU] Labeled seed compaction in 0.0913 ms
+[GPU] Back to host in 22.54 ms
+[GPU] Mesh with 757245 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_2353515.json
+output json in 1/uniform_2353515.json
+Tiempo de ejecución: 19.089 segundos
+
+Reading OFF file ../../../data/3707030_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 25.4032 ms
+[GPU] Labered max edges in 1.68736 ms
+[GPU] Labeled frontier edges in 0.894187 ms
+[GPU] Labeled seed edges in 0.884743 ms
+[GPU] Labeled extra frontier edge in 7.52952 ms
+[GPU] Traversal phase 1 in 1.42291 ms
+[GPU] Traversal phase (search frontier edge) in 0.72581 ms
+[GPU] Rapair overwrite seed in 0.973168 ms
+[GPU] Labeled seed scan in 0.428305 ms
+[GPU] Labeled seed compaction in 0.225194 ms
+[GPU] Back to host in 34.3552 ms
+[GPU] Mesh with 1193303 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_3707030.json
+output json in 1/uniform_3707030.json
+Tiempo de ejecución: 30.993 segundos
+
+Reading OFF file ../../../data/5060545_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 34.4856 ms
+[GPU] Labered max edges in 2.32158 ms
+[GPU] Labeled frontier edges in 1.21143 ms
+[GPU] Labeled seed edges in 1.21156 ms
+[GPU] Labeled extra frontier edge in 10.6505 ms
+[GPU] Traversal phase 1 in 1.95736 ms
+[GPU] Traversal phase (search frontier edge) in 0.966516 ms
+[GPU] Rapair overwrite seed in 1.32045 ms
+[GPU] Labeled seed scan in 0.584212 ms
+[GPU] Labeled seed compaction in 0.269252 ms
+[GPU] Back to host in 45.0673 ms
+[GPU] Mesh with 1630104 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_5060545.json
+output json in 1/uniform_5060545.json
+Tiempo de ejecución: 40.008 segundos
+
+Reading OFF file ../../../data/6414060_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 43.5606 ms
+[GPU] Labered max edges in 2.91819 ms
+[GPU] Labeled frontier edges in 1.52825 ms
+[GPU] Labeled seed edges in 1.52645 ms
+[GPU] Labeled extra frontier edge in 13.7048 ms
+[GPU] Traversal phase 1 in 2.48674 ms
+[GPU] Traversal phase (search frontier edge) in 1.20888 ms
+[GPU] Rapair overwrite seed in 1.66511 ms
+[GPU] Labeled seed scan in 0.722752 ms
+[GPU] Labeled seed compaction in 0.319046 ms
+[GPU] Back to host in 61.4503 ms
+[GPU] Mesh with 2065984 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_6414060.json
+output json in 1/uniform_6414060.json
+Tiempo de ejecución: 53.535 segundos
+
+Reading OFF file ../../../data/7767575_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 52.8105 ms
+[GPU] Labered max edges in 3.54814 ms
+[GPU] Labeled frontier edges in 1.84999 ms
+[GPU] Labeled seed edges in 1.85059 ms
+[GPU] Labeled extra frontier edge in 16.7497 ms
+[GPU] Traversal phase 1 in 3.02305 ms
+[GPU] Traversal phase (search frontier edge) in 1.44941 ms
+[GPU] Rapair overwrite seed in 2.01412 ms
+[GPU] Labeled seed scan in 0.845067 ms
+[GPU] Labeled seed compaction in 0.371666 ms
+[GPU] Back to host in 72.7262 ms
+[GPU] Mesh with 2501415 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_7767575.json
+output json in 1/uniform_7767575.json
+Tiempo de ejecución: 61.728 segundos
+
+Reading OFF file ../../../data/9121090_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 61.9712 ms
+[GPU] Labered max edges in 4.16738 ms
+[GPU] Labeled frontier edges in 2.16566 ms
+[GPU] Labeled seed edges in 2.15395 ms
+[GPU] Labeled extra frontier edge in 19.864 ms
+[GPU] Traversal phase 1 in 3.55193 ms
+[GPU] Traversal phase (search frontier edge) in 1.69409 ms
+[GPU] Rapair overwrite seed in 2.36515 ms
+[GPU] Labeled seed scan in 1.00773 ms
+[GPU] Labeled seed compaction in 0.422071 ms
+[GPU] Back to host in 82.6525 ms
+[GPU] Mesh with 2937287 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_9121090.json
+output json in 1/uniform_9121090.json
+Tiempo de ejecución: 73.155 segundos
+
+Reading OFF file ../../../data/10474605_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 71.3409 ms
+[GPU] Labered max edges in 4.78328 ms
+[GPU] Labeled frontier edges in 2.48286 ms
+[GPU] Labeled seed edges in 2.44318 ms
+[GPU] Labeled extra frontier edge in 22.9279 ms
+[GPU] Traversal phase 1 in 4.08829 ms
+[GPU] Traversal phase (search frontier edge) in 1.93765 ms
+[GPU] Rapair overwrite seed in 2.71255 ms
+[GPU] Labeled seed scan in 1.12065 ms
+[GPU] Labeled seed compaction in 0.473499 ms
+[GPU] Back to host in 94.4518 ms
+[GPU] Mesh with 3374009 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_10474605.json
+output json in 1/uniform_10474605.json
+Tiempo de ejecución: 84.710 segundos
+
+Reading OFF file ../../../data/11828120_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 80.4743 ms
+[GPU] Labered max edges in 5.37303 ms
+[GPU] Labeled frontier edges in 2.80411 ms
+[GPU] Labeled seed edges in 2.743 ms
+[GPU] Labeled extra frontier edge in 25.8407 ms
+[GPU] Traversal phase 1 in 4.60487 ms
+[GPU] Traversal phase (search frontier edge) in 2.17597 ms
+[GPU] Rapair overwrite seed in 3.05699 ms
+[GPU] Labeled seed scan in 1.24485 ms
+[GPU] Labeled seed compaction in 0.526978 ms
+[GPU] Back to host in 99.573 ms
+[GPU] Mesh with 3810420 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_11828120.json
+output json in 1/uniform_11828120.json
+Tiempo de ejecución: 96.144 segundos
+
+Reading OFF file ../../../data/13181635_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 89.8566 ms
+[GPU] Labered max edges in 5.99765 ms
+[GPU] Labeled frontier edges in 3.11898 ms
+[GPU] Labeled seed edges in 3.04365 ms
+[GPU] Labeled extra frontier edge in 28.8147 ms
+[GPU] Traversal phase 1 in 5.1417 ms
+[GPU] Traversal phase (search frontier edge) in 2.41954 ms
+[GPU] Rapair overwrite seed in 3.40708 ms
+[GPU] Labeled seed scan in 1.36998 ms
+[GPU] Labeled seed compaction in 0.576632 ms
+[GPU] Back to host in 117.504 ms
+[GPU] Mesh with 4247003 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_13181635.json
+output json in 1/uniform_13181635.json
+Tiempo de ejecución: 108.360 segundos
+
+Reading OFF file ../../../data/14535150_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 98.7375 ms
+[GPU] Labered max edges in 6.60419 ms
+[GPU] Labeled frontier edges in 3.44438 ms
+[GPU] Labeled seed edges in 3.35011 ms
+[GPU] Labeled extra frontier edge in 31.8678 ms
+[GPU] Traversal phase 1 in 5.65192 ms
+[GPU] Traversal phase (search frontier edge) in 2.65606 ms
+[GPU] Rapair overwrite seed in 3.75608 ms
+[GPU] Labeled seed scan in 1.49688 ms
+[GPU] Labeled seed compaction in 0.62879 ms
+[GPU] Back to host in 125.857 ms
+[GPU] Mesh with 4682779 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_14535150.json
+output json in 1/uniform_14535150.json
+Tiempo de ejecución: 120.251 segundos
+
+Reading OFF file ../../../data/15888665_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 108.077 ms
+[GPU] Labered max edges in 7.20599 ms
+[GPU] Labeled frontier edges in 3.75864 ms
+[GPU] Labeled seed edges in 3.64884 ms
+[GPU] Labeled extra frontier edge in 34.9046 ms
+[GPU] Traversal phase 1 in 6.17783 ms
+[GPU] Traversal phase (search frontier edge) in 2.8987 ms
+[GPU] Rapair overwrite seed in 4.10206 ms
+[GPU] Labeled seed scan in 1.64269 ms
+[GPU] Labeled seed compaction in 0.679966 ms
+[GPU] Back to host in 141.64 ms
+[GPU] Mesh with 5118824 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_15888665.json
+output json in 1/uniform_15888665.json
+Tiempo de ejecución: 131.358 segundos
+
+Reading OFF file ../../../data/17242180_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 116.738 ms
+[GPU] Labered max edges in 7.87512 ms
+[GPU] Labeled frontier edges in 4.0808 ms
+[GPU] Labeled seed edges in 3.95367 ms
+[GPU] Labeled extra frontier edge in 37.9991 ms
+[GPU] Traversal phase 1 in 6.72843 ms
+[GPU] Traversal phase (search frontier edge) in 3.13877 ms
+[GPU] Rapair overwrite seed in 4.44972 ms
+[GPU] Labeled seed scan in 1.75755 ms
+[GPU] Labeled seed compaction in 0.730341 ms
+[GPU] Back to host in 144.21 ms
+[GPU] Mesh with 5554534 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_17242180.json
+output json in 1/uniform_17242180.json
+Tiempo de ejecución: 142.285 segundos
+
+Reading OFF file ../../../data/18595695_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 126.276 ms
+[GPU] Labered max edges in 8.44632 ms
+[GPU] Labeled frontier edges in 4.39835 ms
+[GPU] Labeled seed edges in 4.25719 ms
+[GPU] Labeled extra frontier edge in 41.1194 ms
+[GPU] Traversal phase 1 in 7.26123 ms
+[GPU] Traversal phase (search frontier edge) in 3.38113 ms
+[GPU] Rapair overwrite seed in 4.79678 ms
+[GPU] Labeled seed scan in 1.89606 ms
+[GPU] Labeled seed compaction in 0.78256 ms
+[GPU] Back to host in 159.712 ms
+[GPU] Mesh with 5991763 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_18595695.json
+output json in 1/uniform_18595695.json
+Tiempo de ejecución: 154.401 segundos
+
+Reading OFF file ../../../data/19949210_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 135.141 ms
+[GPU] Labered max edges in 9.05728 ms
+[GPU] Labeled frontier edges in 4.71568 ms
+[GPU] Labeled seed edges in 4.56487 ms
+[GPU] Labeled extra frontier edge in 44.2528 ms
+[GPU] Traversal phase 1 in 7.77432 ms
+[GPU] Traversal phase (search frontier edge) in 3.626 ms
+[GPU] Rapair overwrite seed in 5.1448 ms
+[GPU] Labeled seed scan in 2.0235 ms
+[GPU] Labeled seed compaction in 0.833225 ms
+[GPU] Back to host in 177.785 ms
+[GPU] Mesh with 6427839 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_19949210.json
+output json in 1/uniform_19949210.json
+Tiempo de ejecución: 165.586 segundos
+
+Reading OFF file ../../../data/21302725_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 144.975 ms
+[GPU] Labered max edges in 9.67779 ms
+[GPU] Labeled frontier edges in 5.03234 ms
+[GPU] Labeled seed edges in 4.86721 ms
+[GPU] Labeled extra frontier edge in 47.3114 ms
+[GPU] Traversal phase 1 in 8.31175 ms
+[GPU] Traversal phase (search frontier edge) in 3.87189 ms
+[GPU] Rapair overwrite seed in 5.49624 ms
+[GPU] Labeled seed scan in 2.20779 ms
+[GPU] Labeled seed compaction in 0.885984 ms
+[GPU] Back to host in 198.93 ms
+[GPU] Mesh with 6863907 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_21302725.json
+output json in 1/uniform_21302725.json
+Tiempo de ejecución: 181.333 segundos
+
+Reading OFF file ../../../data/22656240_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 154.105 ms
+[GPU] Labered max edges in 10.2617 ms
+[GPU] Labeled frontier edges in 5.34453 ms
+[GPU] Labeled seed edges in 5.15567 ms
+[GPU] Labeled extra frontier edge in 50.2981 ms
+[GPU] Traversal phase 1 in 8.8392 ms
+[GPU] Traversal phase (search frontier edge) in 4.1123 ms
+[GPU] Rapair overwrite seed in 5.84089 ms
+[GPU] Labeled seed scan in 2.34544 ms
+[GPU] Labeled seed compaction in 0.936139 ms
+[GPU] Back to host in 194.505 ms
+[GPU] Mesh with 7299516 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_22656240.json
+output json in 1/uniform_22656240.json
+Tiempo de ejecución: 193.327 segundos
+
+Reading OFF file ../../../data/24009755_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 163.111 ms
+[GPU] Labered max edges in 10.88 ms
+[GPU] Labeled frontier edges in 5.66868 ms
+[GPU] Labeled seed edges in 5.46499 ms
+[GPU] Labeled extra frontier edge in 53.3352 ms
+[GPU] Traversal phase 1 in 9.36288 ms
+[GPU] Traversal phase (search frontier edge) in 4.35256 ms
+[GPU] Rapair overwrite seed in 6.18326 ms
+[GPU] Labeled seed scan in 2.43566 ms
+[GPU] Labeled seed compaction in 0.985553 ms
+[GPU] Back to host in 201.242 ms
+[GPU] Mesh with 7734945 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_24009755.json
+output json in 1/uniform_24009755.json
+Tiempo de ejecución: 201.992 segundos
+
+Reading OFF file ../../../data/25363270_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 172.116 ms
+[GPU] Labered max edges in 11.5061 ms
+[GPU] Labeled frontier edges in 5.98215 ms
+[GPU] Labeled seed edges in 5.77088 ms
+[GPU] Labeled extra frontier edge in 56.3441 ms
+[GPU] Traversal phase 1 in 9.87902 ms
+[GPU] Traversal phase (search frontier edge) in 4.58893 ms
+[GPU] Rapair overwrite seed in 6.53059 ms
+[GPU] Labeled seed scan in 2.59307 ms
+[GPU] Labeled seed compaction in 1.03586 ms
+[GPU] Back to host in 216.5 ms
+[GPU] Mesh with 8169616 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_25363270.json
+output json in 1/uniform_25363270.json
+Tiempo de ejecución: 214.887 segundos
+
+Reading OFF file ../../../data/26716785_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 181.271 ms
+[GPU] Labered max edges in 12.1311 ms
+[GPU] Labeled frontier edges in 6.30643 ms
+[GPU] Labeled seed edges in 6.07247 ms
+[GPU] Labeled extra frontier edge in 59.4361 ms
+[GPU] Traversal phase 1 in 10.4027 ms
+[GPU] Traversal phase (search frontier edge) in 4.83568 ms
+[GPU] Rapair overwrite seed in 6.88504 ms
+[GPU] Labeled seed scan in 2.72977 ms
+[GPU] Labeled seed compaction in 1.08762 ms
+[GPU] Back to host in 227.067 ms
+[GPU] Mesh with 8604682 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_26716785.json
+output json in 1/uniform_26716785.json
+Tiempo de ejecución: 231.299 segundos
+
+Reading OFF file ../../../data/28070300_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 190.597 ms
+[GPU] Labered max edges in 12.7033 ms
+[GPU] Labeled frontier edges in 6.62073 ms
+[GPU] Labeled seed edges in 6.3658 ms
+[GPU] Labeled extra frontier edge in 62.4599 ms
+[GPU] Traversal phase 1 in 10.9332 ms
+[GPU] Traversal phase (search frontier edge) in 5.07155 ms
+[GPU] Rapair overwrite seed in 7.23293 ms
+[GPU] Labeled seed scan in 2.86273 ms
+[GPU] Labeled seed compaction in 1.13982 ms
+[GPU] Back to host in 223.386 ms
+[GPU] Mesh with 9042768 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_28070300.json
+output json in 1/uniform_28070300.json
+Tiempo de ejecución: 240.444 segundos
+
+Reading OFF file ../../../data/29423815_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 199.821 ms
+[GPU] Labered max edges in 13.2971 ms
+[GPU] Labeled frontier edges in 6.93552 ms
+[GPU] Labeled seed edges in 6.6754 ms
+[GPU] Labeled extra frontier edge in 65.53 ms
+[GPU] Traversal phase 1 in 11.4441 ms
+[GPU] Traversal phase (search frontier edge) in 5.31215 ms
+[GPU] Rapair overwrite seed in 7.57524 ms
+[GPU] Labeled seed scan in 2.98699 ms
+[GPU] Labeled seed compaction in 1.18996 ms
+[GPU] Back to host in 238.768 ms
+[GPU] Mesh with 9478834 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_29423815.json
+output json in 1/uniform_29423815.json
+Tiempo de ejecución: 251.177 segundos
+
+Reading OFF file ../../../data/30777330_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 209.183 ms
+[GPU] Labered max edges in 13.9542 ms
+[GPU] Labeled frontier edges in 7.2572 ms
+[GPU] Labeled seed edges in 6.96289 ms
+[GPU] Labeled extra frontier edge in 68.5916 ms
+[GPU] Traversal phase 1 in 12.0221 ms
+[GPU] Traversal phase (search frontier edge) in 5.55487 ms
+[GPU] Rapair overwrite seed in 7.92948 ms
+[GPU] Labeled seed scan in 3.09859 ms
+[GPU] Labeled seed compaction in 1.24014 ms
+[GPU] Back to host in 248.221 ms
+[GPU] Mesh with 9915096 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_30777330.json
+output json in 1/uniform_30777330.json
+Tiempo de ejecución: 265.711 segundos
+
+Reading OFF file ../../../data/32130845_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 217.978 ms
+[GPU] Labered max edges in 14.5743 ms
+[GPU] Labeled frontier edges in 7.57892 ms
+[GPU] Labeled seed edges in 7.27348 ms
+[GPU] Labeled extra frontier edge in 71.7332 ms
+[GPU] Traversal phase 1 in 12.517 ms
+[GPU] Traversal phase (search frontier edge) in 5.80071 ms
+[GPU] Rapair overwrite seed in 8.27946 ms
+[GPU] Labeled seed scan in 3.24685 ms
+[GPU] Labeled seed compaction in 1.29799 ms
+[GPU] Back to host in 258.707 ms
+[GPU] Mesh with 10351392 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_32130845.json
+output json in 1/uniform_32130845.json
+Tiempo de ejecución: 272.424 segundos
+
+Reading OFF file ../../../data/33484360_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 227.086 ms
+[GPU] Labered max edges in 15.2116 ms
+[GPU] Labeled frontier edges in 7.90314 ms
+[GPU] Labeled seed edges in 7.56553 ms
+[GPU] Labeled extra frontier edge in 74.8599 ms
+[GPU] Traversal phase 1 in 12.9789 ms
+[GPU] Traversal phase (search frontier edge) in 6.04417 ms
+[GPU] Rapair overwrite seed in 8.61585 ms
+[GPU] Labeled seed scan in 3.36924 ms
+[GPU] Labeled seed compaction in 1.34469 ms
+[GPU] Back to host in 267.861 ms
+[GPU] Mesh with 10787553 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_33484360.json
+output json in 1/uniform_33484360.json
+Tiempo de ejecución: 287.702 segundos
+
+Reading OFF file ../../../data/34837875_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 236.303 ms
+[GPU] Labered max edges in 15.8221 ms
+[GPU] Labeled frontier edges in 8.21058 ms
+[GPU] Labeled seed edges in 7.88523 ms
+[GPU] Labeled extra frontier edge in 77.9271 ms
+[GPU] Traversal phase 1 in 13.591 ms
+[GPU] Traversal phase (search frontier edge) in 6.29009 ms
+[GPU] Rapair overwrite seed in 8.97198 ms
+[GPU] Labeled seed scan in 3.48474 ms
+[GPU] Labeled seed compaction in 1.3988 ms
+[GPU] Back to host in 272.313 ms
+[GPU] Mesh with 11224100 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_34837875.json
+output json in 1/uniform_34837875.json
+Tiempo de ejecución: 300.823 segundos
+
+Reading OFF file ../../../data/36191390_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 245.504 ms
+[GPU] Labered max edges in 16.394 ms
+[GPU] Labeled frontier edges in 8.52738 ms
+[GPU] Labeled seed edges in 8.17601 ms
+[GPU] Labeled extra frontier edge in 81.091 ms
+[GPU] Traversal phase 1 in 14.0935 ms
+[GPU] Traversal phase (search frontier edge) in 6.53018 ms
+[GPU] Rapair overwrite seed in 9.3229 ms
+[GPU] Labeled seed scan in 3.60673 ms
+[GPU] Labeled seed compaction in 1.45038 ms
+[GPU] Back to host in 288.946 ms
+[GPU] Mesh with 11660291 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_36191390.json
+output json in 1/uniform_36191390.json
+Tiempo de ejecución: 318.024 segundos
+
+Reading OFF file ../../../data/37544905_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 255.252 ms
+[GPU] Labered max edges in 17.064 ms
+[GPU] Labeled frontier edges in 8.84321 ms
+[GPU] Labeled seed edges in 8.48874 ms
+[GPU] Labeled extra frontier edge in 84.1844 ms
+[GPU] Traversal phase 1 in 14.4465 ms
+[GPU] Traversal phase (search frontier edge) in 6.7782 ms
+[GPU] Rapair overwrite seed in 9.67232 ms
+[GPU] Labeled seed scan in 3.76362 ms
+[GPU] Labeled seed compaction in 1.49955 ms
+[GPU] Back to host in 298.521 ms
+[GPU] Mesh with 12096780 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_37544905.json
+output json in 1/uniform_37544905.json
+Tiempo de ejecución: 325.976 segundos
+
+Reading OFF file ../../../data/38898420_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 263.398 ms
+[GPU] Labered max edges in 17.5986 ms
+[GPU] Labeled frontier edges in 9.17319 ms
+[GPU] Labeled seed edges in 8.79083 ms
+[GPU] Labeled extra frontier edge in 87.2371 ms
+[GPU] Traversal phase 1 in 15.1601 ms
+[GPU] Traversal phase (search frontier edge) in 7.01696 ms
+[GPU] Rapair overwrite seed in 10.0129 ms
+[GPU] Labeled seed scan in 3.87913 ms
+[GPU] Labeled seed compaction in 1.5519 ms
+[GPU] Back to host in 308.891 ms
+[GPU] Mesh with 12533536 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_38898420.json
+output json in 1/uniform_38898420.json
+Tiempo de ejecución: 338.816 segundos
+
+Reading OFF file ../../../data/40251935_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 272.18 ms
+[GPU] Labered max edges in 18.2718 ms
+[GPU] Labeled frontier edges in 9.48854 ms
+[GPU] Labeled seed edges in 9.07964 ms
+[GPU] Labeled extra frontier edge in 90.204 ms
+[GPU] Traversal phase 1 in 15.7173 ms
+[GPU] Traversal phase (search frontier edge) in 7.25632 ms
+[GPU] Rapair overwrite seed in 10.3635 ms
+[GPU] Labeled seed scan in 4.01362 ms
+[GPU] Labeled seed compaction in 1.6025 ms
+[GPU] Back to host in 316.468 ms
+[GPU] Mesh with 12970215 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_40251935.json
+output json in 1/uniform_40251935.json
+Tiempo de ejecución: 346.030 segundos
+
+Reading OFF file ../../../data/41605450_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 281.796 ms
+[GPU] Labered max edges in 18.8759 ms
+[GPU] Labeled frontier edges in 9.81026 ms
+[GPU] Labeled seed edges in 9.3884 ms
+[GPU] Labeled extra frontier edge in 93.3042 ms
+[GPU] Traversal phase 1 in 16.2207 ms
+[GPU] Traversal phase (search frontier edge) in 7.49941 ms
+[GPU] Rapair overwrite seed in 10.7141 ms
+[GPU] Labeled seed scan in 4.15444 ms
+[GPU] Labeled seed compaction in 1.65455 ms
+[GPU] Back to host in 341.941 ms
+[GPU] Mesh with 13405632 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_41605450.json
+output json in 1/uniform_41605450.json
+Tiempo de ejecución: 365.674 segundos
+
+Reading OFF file ../../../data/42958965_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 290.618 ms
+[GPU] Labered max edges in 19.5004 ms
+[GPU] Labeled frontier edges in 10.1206 ms
+[GPU] Labeled seed edges in 9.68613 ms
+[GPU] Labeled extra frontier edge in 96.1721 ms
+[GPU] Traversal phase 1 in 16.7497 ms
+[GPU] Traversal phase (search frontier edge) in 7.73977 ms
+[GPU] Rapair overwrite seed in 11.0541 ms
+[GPU] Labeled seed scan in 4.26055 ms
+[GPU] Labeled seed compaction in 1.70472 ms
+[GPU] Back to host in 343.548 ms
+[GPU] Mesh with 13841275 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_42958965.json
+output json in 1/uniform_42958965.json
+Tiempo de ejecución: 378.072 segundos
+
+Reading OFF file ../../../data/44312480_points.1.off
+[Polylla] Constructing Polylla...
+[GPU] Copy vectors to device in 300.111 ms
+[GPU] Labered max edges in 20.0893 ms
+[GPU] Labeled frontier edges in 10.4306 ms
+[GPU] Labeled seed edges in 9.99791 ms
+[GPU] Labeled extra frontier edge in 99.1846 ms
+[GPU] Traversal phase 1 in 17.2391 ms
+[GPU] Traversal phase (search frontier edge) in 7.98372 ms
+[GPU] Rapair overwrite seed in 11.4087 ms
+[GPU] Labeled seed scan in 4.40325 ms
+[GPU] Labeled seed compaction in 1.75648 ms
+[GPU] Back to host in 373.351 ms
+[GPU] Mesh with 14277133 polygons 0 edges and 0 barrier-edge tips.
+Printing JSON file as 1/uniform_44312480.json
+output json in 1/uniform_44312480.json
+Tiempo de ejecución: 389.062 segundos
+

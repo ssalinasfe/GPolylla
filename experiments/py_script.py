@@ -1,9 +1,8 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.collections import PatchCollection
 from scipy.stats import qmc
 from scipy.spatial import Delaunay
-import matplotlib.tri as tri
+
+import meshio
 
 #Aux functions for generate samples
 def move_point(max_number, xPoint , yPoint, tolerance):
@@ -42,39 +41,37 @@ def add_box(arr, tolerance):
         arr[i,1] = new_p[1]
     return arr
 
-np.random.seed(545)
-rng = 4554
+# get time for seed
+from time import time
 
+t_seed = int(time())
 
-numVertices = 7000000
-tolerance = 1/numVertices
+print("seed", t_seed)
 
-RandomSample = np.random.rand(numVertices - 2,2)
-print("step 1 done!")
+np.random.seed(t_seed)
 
-RandomSample = add_box(RandomSample, tolerance)
+start = 1000000
+stop = 44312480
+step = (44312480-1000000)//32
 
-print("step 2 done!")
+for numVertices in range(start, stop, step):
+    tolerance = 1/numVertices
 
-randomDelaunay = Delaunay(RandomSample)
+    RandomSample = np.random.rand(numVertices - 2,2)
+    print("step 1 done!")
 
-print("step 3 done!")
+    RandomSample = add_box(RandomSample, tolerance)
 
-randomPoints = RandomSample
-randomTriangles = [("triangle", randomDelaunay.simplices)]
+    print("step 2 done!")
 
-import meshio
-name = str(numVertices)
+    randomDelaunay = Delaunay(RandomSample)
 
-meshio.write_points_cells(name+"_uniform.off", randomPoints, randomTriangles)
+    print("step 3 done!")
 
-print("step 4 done!")
+    randomPoints = RandomSample
+    randomTriangles = [("triangle", randomDelaunay.simplices)]
 
-import os
+    name = str(numVertices)
 
-folder = "../build"
+    meshio.write_points_cells(name+"_uniform_"+str(t_seed)+".off", randomPoints, randomTriangles)
 
-os.system(folder + "/Polylla "+name+"_uniform.off "+name+"_uniform_out")
-
-
-print("step 5 done!")
