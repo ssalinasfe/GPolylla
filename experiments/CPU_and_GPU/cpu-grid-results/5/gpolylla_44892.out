@@ -1,0 +1,736 @@
+Generating points  
+Generating triangles 
+estimao 1996002 final 1996002
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 2811.19
+Creating Polylla...
+Labered max edges in 674.53 ms
+Labeled frontier edges in 179.035 ms
+Labeled seed edges in 273.515 ms
+Mesh with 998001 polygons 1998000 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 2811.19 ms
+Time to label max edges 674.53 ms
+Time to label frontier edges 179.035 ms
+Time to label seed edges 273.515 ms
+Time to label total1127.08 ms
+Time to traversal and repair 303.656 ms
+Time to traversal 303.656 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 1430.74 ms
+Printing JSON file as 5//grid_1000000.json
+output json in 5//grid_1000000.json
+Generating points  
+Generating triangles 
+estimao 8380418 final 8380418
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 13083.5
+Creating Polylla...
+Labered max edges in 2860.5 ms
+Labeled frontier edges in 762.164 ms
+Labeled seed edges in 1150.38 ms
+Mesh with 4190209 polygons 8384512 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 13083.5 ms
+Time to label max edges 2860.5 ms
+Time to label frontier edges 762.164 ms
+Time to label seed edges 1150.38 ms
+Time to label total4773.04 ms
+Time to traversal and repair 1299.23 ms
+Time to traversal 1299.23 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 6072.27 ms
+Printing JSON file as 5//grid_4194304.json
+output json in 5//grid_4194304.json
+Generating points  
+Generating triangles 
+estimao 14764178 final 14764178
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 24417.4
+Creating Polylla...
+Labered max edges in 5029.93 ms
+Labeled frontier edges in 1344.71 ms
+Labeled seed edges in 2026.19 ms
+Mesh with 7382089 polygons 14769612 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 24417.4 ms
+Time to label max edges 5029.93 ms
+Time to label frontier edges 1344.71 ms
+Time to label seed edges 2026.19 ms
+Time to label total8400.84 ms
+Time to traversal and repair 2317.97 ms
+Time to traversal 2317.97 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 10718.8 ms
+Printing JSON file as 5//grid_7387524.json
+output json in 5//grid_7387524.json
+Generating points  
+Generating triangles 
+estimao 21151008 final 21151008
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 34338.9
+Creating Polylla...
+Labered max edges in 7250.43 ms
+Labeled frontier edges in 1920.21 ms
+Labeled seed edges in 2912.39 ms
+Mesh with 10575504 polygons 21157512 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 34338.9 ms
+Time to label max edges 7250.43 ms
+Time to label frontier edges 1920.21 ms
+Time to label seed edges 2912.39 ms
+Time to label total12083 ms
+Time to traversal and repair 3247.65 ms
+Time to traversal 3247.65 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 15330.7 ms
+Printing JSON file as 5//grid_10582009.json
+output json in 5//grid_10582009.json
+Generating points  
+Generating triangles 
+estimao 27528200 final 27528200
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 43027.2
+Creating Polylla...
+Labered max edges in 9416.49 ms
+Labeled frontier edges in 2520.12 ms
+Labeled seed edges in 3817.36 ms
+Mesh with 13764100 polygons 27535620 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 43027.2 ms
+Time to label max edges 9416.49 ms
+Time to label frontier edges 2520.12 ms
+Time to label seed edges 3817.36 ms
+Time to label total15754 ms
+Time to traversal and repair 4275.74 ms
+Time to traversal 4275.74 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 20029.7 ms
+Printing JSON file as 5//grid_13771521.json
+output json in 5//grid_13771521.json
+Generating points  
+Generating triangles 
+estimao 33915848 final 33915848
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 52171.8
+Creating Polylla...
+Labered max edges in 11609.8 ms
+Labeled frontier edges in 3098.32 ms
+Labeled seed edges in 4682.22 ms
+Mesh with 16957924 polygons 33924084 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 52171.8 ms
+Time to label max edges 11609.8 ms
+Time to label frontier edges 3098.32 ms
+Time to label seed edges 4682.22 ms
+Time to label total19390.4 ms
+Time to traversal and repair 5262.4 ms
+Time to traversal 5262.4 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 24652.8 ms
+Printing JSON file as 5//grid_16966161.json
+output json in 5//grid_16966161.json
+Generating points  
+Generating triangles 
+estimao 40302242 final 40302242
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 64614.1
+Creating Polylla...
+Labered max edges in 13869.3 ms
+Labeled frontier edges in 3675.06 ms
+Labeled seed edges in 5590.79 ms
+Mesh with 20151121 polygons 40311220 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 64614.1 ms
+Time to label max edges 13869.3 ms
+Time to label frontier edges 3675.06 ms
+Time to label seed edges 5590.79 ms
+Time to label total23135.2 ms
+Time to traversal and repair 6272.02 ms
+Time to traversal 6272.02 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 29407.2 ms
+Printing JSON file as 5//grid_20160100.json
+output json in 5//grid_20160100.json
+Generating points  
+Generating triangles 
+estimao 46696448 final 46696448
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 70428.4
+Creating Polylla...
+Labered max edges in 16012.6 ms
+Labeled frontier edges in 4280.94 ms
+Labeled seed edges in 6468.49 ms
+Mesh with 23348224 polygons 46706112 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 70428.4 ms
+Time to label max edges 16012.6 ms
+Time to label frontier edges 4280.94 ms
+Time to label seed edges 6468.49 ms
+Time to label total26762 ms
+Time to traversal and repair 7274.09 ms
+Time to traversal 7274.09 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 34036.1 ms
+Printing JSON file as 5//grid_23357889.json
+output json in 5//grid_23357889.json
+Generating points  
+Generating triangles 
+estimao 53086208 final 53086208
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 85177.8
+Creating Polylla...
+Labered max edges in 18263.2 ms
+Labeled frontier edges in 4841.27 ms
+Labeled seed edges in 7358.39 ms
+Mesh with 26543104 polygons 53096512 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 85177.8 ms
+Time to label max edges 18263.2 ms
+Time to label frontier edges 4841.27 ms
+Time to label seed edges 7358.39 ms
+Time to label total30462.8 ms
+Time to traversal and repair 8237.71 ms
+Time to traversal 8237.71 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 38700.6 ms
+Printing JSON file as 5//grid_26553409.json
+output json in 5//grid_26553409.json
+Generating points  
+Generating triangles 
+estimao 59470418 final 59470418
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 99570.2
+Creating Polylla...
+Labered max edges in 20467.2 ms
+Labeled frontier edges in 5443.13 ms
+Labeled seed edges in 8230.85 ms
+Mesh with 29735209 polygons 59481324 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 99570.2 ms
+Time to label max edges 20467.2 ms
+Time to label frontier edges 5443.13 ms
+Time to label seed edges 8230.85 ms
+Time to label total34141.2 ms
+Time to traversal and repair 9230 ms
+Time to traversal 9230 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 43371.2 ms
+Printing JSON file as 5//grid_29746116.json
+output json in 5//grid_29746116.json
+Generating points  
+Generating triangles 
+estimao 65849288 final 65849288
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 117359
+Creating Polylla...
+Labered max edges in 22579.9 ms
+Labeled frontier edges in 5997.04 ms
+Labeled seed edges in 9099.93 ms
+Mesh with 32924644 polygons 65860764 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 117359 ms
+Time to label max edges 22579.9 ms
+Time to label frontier edges 5997.04 ms
+Time to label seed edges 9099.93 ms
+Time to label total37676.8 ms
+Time to traversal and repair 10216 ms
+Time to traversal 10216 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 47892.8 ms
+Printing JSON file as 5//grid_32936121.json
+output json in 5//grid_32936121.json
+Generating points  
+Generating triangles 
+estimao 72240200 final 72240200
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 116493
+Creating Polylla...
+Labered max edges in 24761.4 ms
+Labeled frontier edges in 6553.48 ms
+Labeled seed edges in 9994.16 ms
+Mesh with 36120100 polygons 72252220 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 116493 ms
+Time to label max edges 24761.4 ms
+Time to label frontier edges 6553.48 ms
+Time to label seed edges 9994.16 ms
+Time to label total41309 ms
+Time to traversal and repair 11248.4 ms
+Time to traversal 11248.4 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 52557.4 ms
+Printing JSON file as 5//grid_36132121.json
+output json in 5//grid_36132121.json
+Generating points  
+Generating triangles 
+estimao 78625800 final 78625800
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 127555
+Creating Polylla...
+Labered max edges in 26965 ms
+Labeled frontier edges in 7215.61 ms
+Labeled seed edges in 11180.9 ms
+Mesh with 39312900 polygons 78638340 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 127555 ms
+Time to label max edges 26965 ms
+Time to label frontier edges 7215.61 ms
+Time to label seed edges 11180.9 ms
+Time to label total45361.5 ms
+Time to traversal and repair 12267.3 ms
+Time to traversal 12267.3 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 57628.8 ms
+Printing JSON file as 5//grid_39325441.json
+output json in 5//grid_39325441.json
+Generating points  
+Generating triangles 
+estimao 84994722 final 84994722
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 162852
+Creating Polylla...
+Labered max edges in 29142 ms
+Labeled frontier edges in 7770.08 ms
+Labeled seed edges in 11775.6 ms
+Mesh with 42497361 polygons 85007760 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 162852 ms
+Time to label max edges 29142 ms
+Time to label frontier edges 7770.08 ms
+Time to label seed edges 11775.6 ms
+Time to label total48687.7 ms
+Time to traversal and repair 13270.4 ms
+Time to traversal 13270.4 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 61958.1 ms
+Printing JSON file as 5//grid_42510400.json
+output json in 5//grid_42510400.json
+Generating points  
+Generating triangles 
+estimao 91395200 final 91395200
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 147244
+Creating Polylla...
+Labered max edges in 31303.6 ms
+Labeled frontier edges in 8344.57 ms
+Labeled seed edges in 12625.2 ms
+Mesh with 45697600 polygons 91408720 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 147244 ms
+Time to label max edges 31303.6 ms
+Time to label frontier edges 8344.57 ms
+Time to label seed edges 12625.2 ms
+Time to label total52273.4 ms
+Time to traversal and repair 14195.1 ms
+Time to traversal 14195.1 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 66468.5 ms
+Printing JSON file as 5//grid_45711121.json
+output json in 5//grid_45711121.json
+Generating points  
+Generating triangles 
+estimao 97776128 final 97776128
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 158971
+Creating Polylla...
+Labered max edges in 33559.9 ms
+Labeled frontier edges in 8963.45 ms
+Labeled seed edges in 13506 ms
+Mesh with 48888064 polygons 97790112 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 158971 ms
+Time to label max edges 33559.9 ms
+Time to label frontier edges 8963.45 ms
+Time to label seed edges 13506 ms
+Time to label total56029.3 ms
+Time to traversal and repair 15199.1 ms
+Time to traversal 15199.1 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 71228.4 ms
+Printing JSON file as 5//grid_48902049.json
+output json in 5//grid_48902049.json
+Generating points  
+Generating triangles 
+estimao 104170178 final 104170178
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 181128
+Creating Polylla...
+Labered max edges in 35744.7 ms
+Labeled frontier edges in 9534.81 ms
+Labeled seed edges in 14402.1 ms
+Mesh with 52085089 polygons 104184612 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 181128 ms
+Time to label max edges 35744.7 ms
+Time to label frontier edges 9534.81 ms
+Time to label seed edges 14402.1 ms
+Time to label total59681.6 ms
+Time to traversal and repair 16208.5 ms
+Time to traversal 16208.5 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 75890.1 ms
+Printing JSON file as 5//grid_52099524.json
+output json in 5//grid_52099524.json
+Generating points  
+Generating triangles 
+estimao 110558450 final 110558450
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 191046
+Creating Polylla...
+Labered max edges in 38196.6 ms
+Labeled frontier edges in 10110 ms
+Labeled seed edges in 15338.9 ms
+Mesh with 55279225 polygons 110573320 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 191046 ms
+Time to label max edges 38196.6 ms
+Time to label frontier edges 10110 ms
+Time to label seed edges 15338.9 ms
+Time to label total63645.5 ms
+Time to traversal and repair 17263.3 ms
+Time to traversal 17263.3 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 80908.8 ms
+Printing JSON file as 5//grid_55294096.json
+output json in 5//grid_55294096.json
+Generating points  
+Generating triangles 
+estimao 116922632 final 116922632
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 208572
+Creating Polylla...
+Labered max edges in 40244.4 ms
+Labeled frontier edges in 10696.6 ms
+Labeled seed edges in 16188 ms
+Mesh with 58461316 polygons 116937924 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 208572 ms
+Time to label max edges 40244.4 ms
+Time to label frontier edges 10696.6 ms
+Time to label seed edges 16188 ms
+Time to label total67129.1 ms
+Time to traversal and repair 18243.9 ms
+Time to traversal 18243.9 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 85373 ms
+Printing JSON file as 5//grid_58476609.json
+output json in 5//grid_58476609.json
+Generating points  
+Generating triangles 
+estimao 123307808 final 123307808
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 208014
+Creating Polylla...
+Labered max edges in 42343.6 ms
+Labeled frontier edges in 11279.8 ms
+Labeled seed edges in 17104.9 ms
+Mesh with 61653904 polygons 123323512 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 208014 ms
+Time to label max edges 42343.6 ms
+Time to label frontier edges 11279.8 ms
+Time to label seed edges 17104.9 ms
+Time to label total70728.2 ms
+Time to traversal and repair 19210 ms
+Time to traversal 19210 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 89938.2 ms
+Printing JSON file as 5//grid_61669609.json
+output json in 5//grid_61669609.json
+Generating points  
+Generating triangles 
+estimao 129701618 final 129701618
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 219762
+Creating Polylla...
+Labered max edges in 44503.3 ms
+Labeled frontier edges in 11861.8 ms
+Labeled seed edges in 17992.3 ms
+Mesh with 64850809 polygons 129717724 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 219762 ms
+Time to label max edges 44503.3 ms
+Time to label frontier edges 11861.8 ms
+Time to label seed edges 17992.3 ms
+Time to label total74357.4 ms
+Time to traversal and repair 20253.3 ms
+Time to traversal 20253.3 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 94610.7 ms
+Printing JSON file as 5//grid_64866916.json
+output json in 5//grid_64866916.json
+Generating points  
+Generating triangles 
+estimao 136092002 final 136092002
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 227102
+Creating Polylla...
+Labered max edges in 46823.2 ms
+Labeled frontier edges in 12408.3 ms
+Labeled seed edges in 18870.5 ms
+Mesh with 68046001 polygons 136108500 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 227102 ms
+Time to label max edges 46823.2 ms
+Time to label frontier edges 12408.3 ms
+Time to label seed edges 18870.5 ms
+Time to label total78101.9 ms
+Time to traversal and repair 21259.8 ms
+Time to traversal 21259.8 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 99361.7 ms
+Printing JSON file as 5//grid_68062500.json
+output json in 5//grid_68062500.json
+Generating points  
+Generating triangles 
+estimao 142467200 final 142467200
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 251930
+Creating Polylla...
+Labered max edges in 49348.2 ms
+Labeled frontier edges in 13071.7 ms
+Labeled seed edges in 19849.8 ms
+Mesh with 71233600 polygons 142484080 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 251930 ms
+Time to label max edges 49348.2 ms
+Time to label frontier edges 13071.7 ms
+Time to label seed edges 19849.8 ms
+Time to label total82269.8 ms
+Time to traversal and repair 22279.4 ms
+Time to traversal 22279.4 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 104549 ms
+Printing JSON file as 5//grid_71250481.json
+output json in 5//grid_71250481.json
+Generating points  
+Generating triangles 
+estimao 148884768 final 148884768
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 273519
+Creating Polylla...
+Labered max edges in 51399.4 ms
+Labeled frontier edges in 13708.4 ms
+Labeled seed edges in 20639.6 ms
+Mesh with 74442384 polygons 148902024 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 273519 ms
+Time to label max edges 51399.4 ms
+Time to label frontier edges 13708.4 ms
+Time to label seed edges 20639.6 ms
+Time to label total85747.3 ms
+Time to traversal and repair 23440.3 ms
+Time to traversal 23440.3 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 109188 ms
+Printing JSON file as 5//grid_74459641.json
+output json in 5//grid_74459641.json
+Generating points  
+Generating triangles 
+estimao 155267442 final 155267442
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 286815
+Creating Polylla...
+Labered max edges in 53463.3 ms
+Labeled frontier edges in 14255.4 ms
+Labeled seed edges in 21534.3 ms
+Mesh with 77633721 polygons 155285064 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 286815 ms
+Time to label max edges 53463.3 ms
+Time to label frontier edges 14255.4 ms
+Time to label seed edges 21534.3 ms
+Time to label total89253 ms
+Time to traversal and repair 24261.3 ms
+Time to traversal 24261.3 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 113514 ms
+Printing JSON file as 5//grid_77651344.json
+output json in 5//grid_77651344.json
+Generating points  
+Generating triangles 
+estimao 161640200 final 161640200
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 276608
+Creating Polylla...
+Labered max edges in 55625.8 ms
+Labeled frontier edges in 14673 ms
+Labeled seed edges in 22331.4 ms
+Mesh with 80820100 polygons 161658180 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 276608 ms
+Time to label max edges 55625.8 ms
+Time to label frontier edges 14673 ms
+Time to label seed edges 22331.4 ms
+Time to label total92630.2 ms
+Time to traversal and repair 25130.2 ms
+Time to traversal 25130.2 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 117760 ms
+Printing JSON file as 5//grid_80838081.json
+output json in 5//grid_80838081.json
+Generating points  
+Generating triangles 
+estimao 168031112 final 168031112
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 289389
+Creating Polylla...
+Labered max edges in 57755.4 ms
+Labeled frontier edges in 15412.7 ms
+Labeled seed edges in 23325.9 ms
+Mesh with 84015556 polygons 168049444 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 289389 ms
+Time to label max edges 57755.4 ms
+Time to label frontier edges 15412.7 ms
+Time to label seed edges 23325.9 ms
+Time to label total96494 ms
+Time to traversal and repair 26285.3 ms
+Time to traversal 26285.3 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 122779 ms
+Printing JSON file as 5//grid_84033889.json
+output json in 5//grid_84033889.json
+Generating points  
+Generating triangles 
+estimao 174396488 final 174396488
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 311728
+Creating Polylla...
+Labered max edges in 59744.4 ms
+Labeled frontier edges in 16037.7 ms
+Labeled seed edges in 24206.9 ms
+Mesh with 87198244 polygons 174415164 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 311728 ms
+Time to label max edges 59744.4 ms
+Time to label frontier edges 16037.7 ms
+Time to label seed edges 24206.9 ms
+Time to label total99989 ms
+Time to traversal and repair 27306.6 ms
+Time to traversal 27306.6 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 127296 ms
+Printing JSON file as 5//grid_87216921.json
+output json in 5//grid_87216921.json
+Generating points  
+Generating triangles 
+estimao 180804128 final 180804128
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 313886
+Creating Polylla...
+Labered max edges in 62053.1 ms
+Labeled frontier edges in 16435.6 ms
+Labeled seed edges in 24929.9 ms
+Mesh with 90402064 polygons 180823144 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 313886 ms
+Time to label max edges 62053.1 ms
+Time to label frontier edges 16435.6 ms
+Time to label seed edges 24929.9 ms
+Time to label total103419 ms
+Time to traversal and repair 28200.7 ms
+Time to traversal 28200.7 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 131619 ms
+Printing JSON file as 5//grid_90421081.json
+output json in 5//grid_90421081.json
+Generating points  
+Generating triangles 
+estimao 187172552 final 187172552
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 332623
+Creating Polylla...
+Labered max edges in 63833.1 ms
+Labeled frontier edges in 17001.5 ms
+Labeled seed edges in 25781.1 ms
+Mesh with 93586276 polygons 187191900 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 332623 ms
+Time to label max edges 63833.1 ms
+Time to label frontier edges 17001.5 ms
+Time to label seed edges 25781.1 ms
+Time to label total106616 ms
+Time to traversal and repair 29066.7 ms
+Time to traversal 29066.7 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 135682 ms
+Printing JSON file as 5//grid_93605625.json
+output json in 5//grid_93605625.json
+Generating points  
+Generating triangles 
+estimao 193572488 final 193572488
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 349605
+Creating Polylla...
+Labered max edges in 66199.9 ms
+Labeled frontier edges in 18005.8 ms
+Labeled seed edges in 27325.2 ms
+Mesh with 96786244 polygons 193592164 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 349605 ms
+Time to label max edges 66199.9 ms
+Time to label frontier edges 18005.8 ms
+Time to label seed edges 27325.2 ms
+Time to label total111531 ms
+Time to traversal and repair 30062.7 ms
+Time to traversal 30062.7 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 141594 ms
+Printing JSON file as 5//grid_96805921.json
+output json in 5//grid_96805921.json
+Generating points  
+Generating triangles 
+estimao 199960002 final 199960002
+Constructing halfedges...
+Constructing interior halfedges
+Constructing exterior halfedges
+Triangulation generation time: 354792
+Creating Polylla...
+Labered max edges in 68384.6 ms
+Labeled frontier edges in 18283.2 ms
+Labeled seed edges in 27499.3 ms
+Mesh with 99980001 polygons 199980000 edges and 0 barrier-edge tips.
+Time to generate Triangulation: 354792 ms
+Time to label max edges 68384.6 ms
+Time to label frontier edges 18283.2 ms
+Time to label seed edges 27499.3 ms
+Time to label total114167 ms
+Time to traversal and repair 31089.5 ms
+Time to traversal 31089.5 ms
+Time to repair 0 ms
+Time to generate polygonal mesh 145257 ms
+Printing JSON file as 5//grid_100000000.json
+output json in 5//grid_100000000.json
