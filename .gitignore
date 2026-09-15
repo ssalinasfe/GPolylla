@@ -21,3 +21,5 @@ experiments/*/*/*.off
 
 .vscode
 .vscode/*
+*.off
+*.json

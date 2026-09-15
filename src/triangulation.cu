@@ -95,8 +95,19 @@ public:
     double t_triangulation_generation = 0; //time to generate the triangulation
 
 
-    std::vector<vertex> Vertices;
-    std::vector<halfEdge> HalfEdges; //list of edges
+    
+    std::vector<double> v_x;
+    std::vector<double> v_y;
+    std::vector<int> v_is_border;
+    std::vector<int> v_incident_halfedge;
+
+    
+    std::vector<int> he_origin;
+    std::vector<int> he_twin;
+    std::vector<int> he_next;
+    std::vector<int> he_prev;
+    std::vector<int> he_is_border;
+
     //std::vector<char> triangle_flags; //list of edges that generate a unique triangles, 
     std::vector<int> triangle_list; //list of edges that generate a unique triangles, 
     
@@ -113,7 +124,7 @@ public:
         {
             nodefile >> n_vertices;
             //std::cout<<pnumber<<std::endl;
-            Vertices.reserve(n_vertices);
+            v_x.reserve(n_vertices); v_y.reserve(n_vertices); v_is_border.reserve(n_vertices); v_incident_halfedge.reserve(n_vertices);
             std::getline(nodefile, line); //skip the first line
             while (std::getline(nodefile, line))
             {
@@ -122,7 +133,7 @@ public:
                 ve.x =  a2;
                 ve.y =  a3;
                 ve.is_border = (a4 == 1) ? true : false;
-                Vertices.push_back(ve);
+                v_x.push_back(ve.x); v_y.push_back(ve.y); v_is_border.push_back(ve.is_border); v_incident_halfedge.push_back(ve.incident_halfedge);
             }  
         }
         else 
@@ -224,9 +235,9 @@ public:
                 he.prev = i*3+(j+2)%3;
                 he.is_border = false;
                 he.twin = -1;
-                Vertices.at(v_origin).incident_halfedge = i*3+j;
+                v_incident_halfedge.at(v_origin) = i*3+j;
                 map_edges[std::make_pair(v_origin, v_target)] = i*3+j;
-                HalfEdges.push_back(he);
+                he_origin.push_back(he.origin); he_twin.push_back(he.twin); he_next.push_back(he.next); he_prev.push_back(he.prev); he_is_border.push_back(he.is_border);
             }
             //std::cout << i << std::endl;
         }
@@ -234,9 +245,9 @@ public:
         
         //Calculate twin halfedge and boundary halfedges from set_edges
         std::unordered_map<_edge,int, decltype(hash_for_pair)>::iterator it;
-        for(std::size_t i = 0; i < HalfEdges.size(); i++){
+        for(std::size_t i = 0; i < he_origin.size(); i++){
             //if halfedge has no twin
-            if(HalfEdges.at(i).twin == -1){
+            if(he_twin.at(i) == -1){
                 int tgt = origin(next(i));
                 int org = origin(i);
                 _edge twin = std::make_pair(tgt, org);
@@ -244,12 +255,12 @@ public:
                 //if twin is found
                 if(it!=map_edges.end()){
                     int index_twin = it->second;
-                    HalfEdges.at(i).twin = index_twin;
-                    HalfEdges.at(index_twin).twin = i;
+                    he_twin.at(i) = index_twin;
+                    he_twin.at(index_twin) = i;
                 }else{ //if twin is not found and halfedge is on the boundary
-                    HalfEdges.at(i).is_border = true;
-                    Vertices.at(org).is_border = true;
-                    Vertices.at(tgt).is_border = true;
+                    he_is_border.at(i) = true;
+                    v_is_border.at(org) = true;
+                    v_is_border.at(tgt) = true;
                 }
             }
         }
@@ -284,8 +295,8 @@ public:
                 }else
                     he.twin = -1;
 
-                HalfEdges.push_back(he);
-                Vertices[he.origin].incident_halfedge = i*3 + j;
+                he_origin.push_back(he.origin); he_twin.push_back(he.twin); he_next.push_back(he.next); he_prev.push_back(he.prev); he_is_border.push_back(he.is_border);
+                v_incident_halfedge[he.origin] = i*3 + j;
             }
         }
     }
@@ -297,38 +308,38 @@ public:
 
         //search interior edges labed as border, generates exterior edges
         //with the origin and target inverted and add at the of HalfEdges vector
-        //std::cout<<"Size vector: "<<HalfEdges.size()<<std::endl;
-        this->n_halfedges = HalfEdges.size();
+        //std::cout<<"Size vector: "<<he_origin.size()<<std::endl;
+        this->n_halfedges = he_origin.size();
         for(std::size_t i = 0; i < this->n_halfedges; i++){
-            if(HalfEdges.at(i).is_border){
+            if(he_is_border.at(i)){
                 halfEdge he_aux;
                 //he_aux.face = -1;
                 he_aux.twin = i;
                 he_aux.origin = origin(next(i));
-                //he_aux.target = HalfEdges.at(i).origin;
+                //he_aux.target = he_origin.at(i);
                 he_aux.is_border = true;
-                HalfEdges.at(i).is_border = false;
+                he_is_border.at(i) = false;
                 
-                HalfEdges.push_back(he_aux);
-                HalfEdges.at(i).twin = HalfEdges.size() - 1 ;
+                he_origin.push_back(he_aux.origin); he_twin.push_back(he_aux.twin); he_next.push_back(he_aux.next); he_prev.push_back(he_aux.prev); he_is_border.push_back(he_aux.is_border);
+                he_twin.at(i) = he_origin.size() - 1 ;
             }    
         }
         //traverse the exterior edges and search their next prev halfedge
         int nxtCCW, prvCCW;
-        for(std::size_t i = n_halfedges; i < HalfEdges.size(); i++){
-            if(HalfEdges.at(i).is_border){
-                nxtCCW = CCW_edge_to_vertex(HalfEdges.at(i).twin);
-                while (HalfEdges.at(nxtCCW).is_border != true)
+        for(std::size_t i = n_halfedges; i < he_origin.size(); i++){
+            if(he_is_border.at(i)){
+                nxtCCW = CCW_edge_to_vertex(he_twin.at(i));
+                while (he_is_border.at(nxtCCW) != true)
                     nxtCCW = this->CCW_edge_to_vertex(nxtCCW);
-                HalfEdges.at(i).next = nxtCCW;
+                he_next.at(i) = nxtCCW;
 
                 prvCCW = this->next(twin(i));
-                while (HalfEdges.at(HalfEdges.at(prvCCW).twin).is_border != true)
+                while (he_is_border.at(he_twin.at(prvCCW)) != true)
                     prvCCW = this->CW_edge_to_vertex(prvCCW);
-                HalfEdges.at(i).prev = HalfEdges.at(prvCCW).twin;
+                he_prev.at(i) = he_twin.at(prvCCW);
             }
         }
-        this->n_halfedges = HalfEdges.size();
+        this->n_halfedges = he_origin.size();
     }
 
 
@@ -364,7 +375,7 @@ public:
 				if (tmp[0] != '#' && !isWhitespace(line))
                 { 
                             std::istringstream(line) >> this->n_vertices >> this->n_faces;
-                            this->Vertices.reserve(this->n_vertices);
+                            this->v_x.reserve(this->n_vertices); v_y.reserve(this->n_vertices); v_is_border.reserve(this->n_vertices); v_incident_halfedge.reserve(this->n_vertices);
                             faces.reserve(3*this->n_faces);
                             break;
                             
@@ -383,7 +394,7 @@ public:
 					vertex ve;
                     ve.x =  a1;
                     ve.y =  a2;
-                    this->Vertices.push_back(ve);
+                    this->v_x.push_back(ve.x); v_y.push_back(ve.y); v_is_border.push_back(ve.is_border); v_incident_halfedge.push_back(ve.incident_halfedge);
                     index++;
 				}
 			}
@@ -433,7 +444,7 @@ public:
 
         //calculation of the time to build the data structure
         auto t_start = std::chrono::high_resolution_clock::now();
-        HalfEdges.reserve(3*n_vertices - 3 - n_border_edges);
+        he_origin.reserve(3*n_vertices - 3 - n_border_edges); he_twin.reserve(3*n_vertices - 3 - n_border_edges); he_next.reserve(3*n_vertices - 3 - n_border_edges); he_prev.reserve(3*n_vertices - 3 - n_border_edges); he_is_border.reserve(3*n_vertices - 3 - n_border_edges);
         //std::cout<<"Constructing interior halfedges"<<std::endl;
         construct_interior_halfEdges_from_faces_and_neighs(faces, neighs);
         //std::cout<<"Constructing exterior halfedges"<<std::endl;
@@ -469,7 +480,7 @@ public:
 
         std::vector<int> faces;
 
-        this->Vertices.reserve(this->n_vertices);
+        this->v_x.reserve(this->n_vertices); v_y.reserve(this->n_vertices); v_is_border.reserve(this->n_vertices); v_incident_halfedge.reserve(this->n_vertices);
         faces.reserve(2*(n-sqrt_n));
 
         //int estimado = 2*(n-sqrt_n);
@@ -481,7 +492,7 @@ public:
                 vertex ve;
                 ve.x =  (float)i;
                 ve.y =  (float)j;
-                this->Vertices.push_back(ve);
+                this->v_x.push_back(ve.x); v_y.push_back(ve.y); v_is_border.push_back(ve.is_border); v_incident_halfedge.push_back(ve.incident_halfedge);
             }
         
         std::cout<<"Generating triangles "<<std::endl;
@@ -505,7 +516,7 @@ public:
         auto t_start = std::chrono::high_resolution_clock::now();
 
         
-        HalfEdges.reserve(3*n_vertices);
+        he_origin.reserve(3*n_vertices); he_twin.reserve(3*n_vertices); he_next.reserve(3*n_vertices); he_prev.reserve(3*n_vertices); he_is_border.reserve(3*n_vertices);
 
         construct_interior_halfEdges_from_faces(faces);
         construct_exterior_halfEdges();
@@ -521,15 +532,15 @@ public:
         this->n_vertices = t.n_vertices;
         this->n_faces = t.n_faces;
         this->n_halfedges = t.n_halfedges;
-        this->Vertices = t.Vertices;
-        this->HalfEdges = t.HalfEdges;
+        this->v_x = t.v_x; this->v_y = t.v_y; this->v_is_border = t.v_is_border; this->v_incident_halfedge = t.v_incident_halfedge;
+        this->he_origin = t.he_origin; this->he_twin = t.he_twin; this->he_next = t.he_next; this->he_prev = t.he_prev; this->he_is_border = t.he_is_border;
         this-> t_triangulation_generation = t.t_triangulation_generation;
     }
 
     // destructor
     ~Triangulation() {
-        Vertices.clear();
-        HalfEdges.clear();
+        v_x.clear(); v_y.clear(); v_is_border.clear(); v_incident_halfedge.clear();
+        he_origin.clear(); he_twin.clear(); he_next.clear(); he_prev.clear(); he_is_border.clear();
     }
 
     double get_triangulation_generation_time() {
@@ -537,19 +548,19 @@ public:
     }
 
     long long get_size_vertex_struct() {
-        return sizeof(decltype(Vertices.back())) * Vertices.capacity();
+        return (sizeof(double)*v_x.capacity() + sizeof(double)*v_y.capacity() + sizeof(int)*v_is_border.capacity() + sizeof(int)*v_incident_halfedge.capacity());
     }
 
     long long get_size_vertex_half_edge() {
-        return sizeof(decltype(HalfEdges.back())) * HalfEdges.capacity();
+        return (sizeof(int)*he_origin.capacity() + sizeof(int)*he_twin.capacity() + sizeof(int)*he_next.capacity() + sizeof(int)*he_prev.capacity() + sizeof(int)*he_is_border.capacity());
     }
 
     // Calculates the distante of edge e
     double distance(int e){
-        double x1 = Vertices.at(origin(e)).x;
-        double y1 = Vertices.at(origin(e)).y;
-        double x2 = Vertices.at(target(e)).x;
-        double y2 = Vertices.at(target(e)).y;
+        double x1 = v_x.at(origin(e));
+        double y1 = v_y.at(origin(e));
+        double x2 = v_x.at(target(e));
+        double y2 = v_y.at(target(e));
         return pow(x1-x2,2) + pow(y1-y2,2); //no sqrt for performance
     }
 
@@ -588,7 +599,7 @@ public:
         int v2 = tr.at(2);
         double area = 0.0;
             //int val = (p2.y - p1.y) * (p3.x - p2.x) - (p2.x - p1.x) * (p3.y - p2.y);
-        area = (Vertices.at(v2).x - Vertices.at(v1).x) * (Vertices.at(v1).y - Vertices.at(v0).y) - (Vertices.at(v2).y - Vertices.at(v1).y) * (Vertices.at(v1).x - Vertices.at(v0).x);
+        area = (v_x.at(v2) - v_x.at(v1)) * (v_y.at(v1) - v_y.at(v0)) - (v_y.at(v2) - v_y.at(v1)) * (v_x.at(v1) - v_x.at(v0));
         if(area < 0)
             return true;
         return false;
@@ -600,8 +611,8 @@ public:
     int CCW_edge_to_vertex(int e)
     {
         int twn, nxt;
-        nxt = HalfEdges.at(e).prev;
-        twn = HalfEdges.at(nxt).twin;
+        nxt = he_prev.at(e);
+        twn = he_twin.at(nxt);
         return twn;
     }    
 
@@ -611,8 +622,8 @@ public:
     int CW_edge_to_vertex(int e)
     {
         int twn, nxt;
-        twn = HalfEdges.at(e).twin;
-        nxt = HalfEdges.at(twn).next;
+        twn = he_twin.at(e);
+        nxt = he_next.at(twn);
         return nxt;
     }    
 
@@ -638,25 +649,25 @@ public:
     }
 
     double get_PointX(int i){
-        return Vertices.at(i).x;
+        return v_x.at(i);
     }
 
     double get_PointY(int i){
-        return Vertices.at(i).y;
+        return v_y.at(i);
     }
 
     //Calculates the next edge of the face incident to edge e
     //Input: e is the edge
     //Output: the next edge of the face incident to e
     int next(int e){
-        return HalfEdges.at(e).next;
+        return he_next.at(e);
     }
 
     //Calculates the tail vertex of the edge e
     //Input: e is the edge
     //Output: the tail vertex v of the edge e
     int origin(int e){
-        return HalfEdges.at(e).origin;
+        return he_origin.at(e);
     }
 
 
@@ -665,14 +676,14 @@ public:
     //Output: the head vertex v of the edge e
     int target(int e){
         //return HalfEdges.at(e).target;
-        return this->origin(HalfEdges.at(e).twin);
+        return this->origin(he_twin.at(e));
     }
 
     //Return the twin edge of the edge e
     //Input: e is the edge
     //Output: the twin edge of e
     int twin(int e){
-        return HalfEdges.at(e).twin;
+        return he_twin.at(e);
     }
 
     //Return the twin edge of the edge e
@@ -680,7 +691,7 @@ public:
     //Output: the twin edge of e
     int prev(int e)
     {
-        return HalfEdges.at(e).prev;
+        return he_prev.at(e);
     }
 
 
@@ -690,7 +701,7 @@ public:
     //Output: the edge associate to the node v
     int edge_of_vertex(int v)
     {
-        return Vertices.at(v).incident_halfedge;
+        return v_incident_halfedge.at(v);
     }
 
     //Input: edge e
@@ -698,7 +709,7 @@ public:
     //        false otherwise
     bool is_border_face(int e)
     {
-        return HalfEdges.at(e).is_border;
+        return he_is_border.at(e);
     }
 
     // Input: edge e of compressTriangulation
@@ -713,18 +724,18 @@ public:
     //Output: the edge incident to v, wiht v as origin
     bool is_border_vertex(int v)
     {
-        return Vertices.at(v).is_border;
+        return v_is_border.at(v);
     }
 
     //Halfedge update operations
     void set_next(int e, int nxt)
     {
-        HalfEdges.at(e).next = nxt;
+        he_next.at(e) = nxt;
     }
 
     void set_prev(int e, int prv)
     {
-        HalfEdges.at(e).prev = prv;
+        he_prev.at(e) = prv;
     }
 
     //void set_face(int e, int f)

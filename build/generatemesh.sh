@@ -19,5 +19,5 @@ cd ../build
 echo "done"
 
 echo -n "Generating mesh..."
-make && ./Polylla ${file_folder}${node_file} ${file_folder}${ele_file} ${file_folder}${neigh_file} ${file_folder}${output}
+make && ./GPolylla ${file_folder}${node_file} ${file_folder}${ele_file} ${file_folder}${neigh_file} ${file_folder}${output}
 echo "done"

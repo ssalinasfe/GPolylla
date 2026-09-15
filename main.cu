@@ -54,14 +54,18 @@ int main(int argc, char **argv) {
         // Process node, ele, neigh files
         Polylla mesh(node_file, ele_file, neigh_file);
         mesh.print_stats(output + ".json");
+        mesh.print_OFF(output + ".off");
         std::cout << "output json in " << output << ".json" << std::endl;
+        std::cout << "output OFF in " << output << ".off" << std::endl;
 
     } else if (!off_file.empty()) {
 
         // Process off file
         Polylla mesh(off_file);
         mesh.print_stats(output + ".json");
+        mesh.print_OFF(output + ".off");
         std::cout << "output json in " << output << ".json" << std::endl;
+        std::cout << "output OFF in " << output << ".off" << std::endl;
 
     } else if (size > 0) {
 
@@ -69,7 +73,9 @@ int main(int argc, char **argv) {
         Polylla mesh(size);
 
         mesh.print_stats(output + ".json");
+        mesh.print_OFF(output + ".off");
         std::cout << "output json in " << output << ".json" << std::endl;
+        std::cout << "output OFF in " << output << ".off" << std::endl;
         
     } else {
         std::cerr << "Invalid arguments.\n";

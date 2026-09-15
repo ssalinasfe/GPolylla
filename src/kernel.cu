@@ -2,40 +2,53 @@
 
 // Here starts the gpu code!!!!!!!
 
+struct HalfEdges_SoA {
+    int *origin;
+    int *twin;
+    int *next;
+    int *prev;
+    int *is_border;
+};
+struct Vertices_SoA {
+    double *x;
+    double *y;
+    int *incident_halfedge;
+};
+
 typedef int bit_vector_d;
 
 // device code, basic operations
-__device__ int twin_d(halfEdge *HalfEdges, int e)
+__device__ int twin_d(HalfEdges_SoA HalfEdges, int e)
 {
-    return HalfEdges[e].twin;
+    return HalfEdges.twin[e];
 }
 
-__device__ int next_d(halfEdge *HalfEdges, int e)
+__device__ int next_d(HalfEdges_SoA HalfEdges, int e)
 {
-    return HalfEdges[e].next;
+    return HalfEdges.next[e];
 }
 
-__device__ int prev_d(halfEdge *HalfEdges, int e)
+__device__ int prev_d(HalfEdges_SoA HalfEdges, int e)
 {
-    return HalfEdges[e].prev;
+    return HalfEdges.prev[e];
 }
 
-__device__ bool is_border_face_d(halfEdge *HalfEdges, int e)
+__device__ bool is_border_face_d(HalfEdges_SoA HalfEdges, int e)
 {
-    return HalfEdges[e].is_border;
+    return HalfEdges.is_border[e];
 }
 
-__device__ bool is_interior_face_d(halfEdge *HalfEdges, int e)
+__device__ bool is_interior_face_d(HalfEdges_SoA HalfEdges, int e)
 {
    return !is_border_face_d(HalfEdges, e);
 }
 
-__device__ int origin_d(halfEdge *HalfEdges, int e)
+__device__ int origin_d(HalfEdges_SoA HalfEdges, int e)
 {
-    return HalfEdges[e].origin;
+    return HalfEdges.origin[e];
 }
 
-__device__ int target_d(halfEdge *HalfEdges, int e)
+__device__ int target_d(HalfEdges_SoA HalfEdges, int e)
 {
     //this->origin(HalfEdges.at(e).twin);
     return origin_d(HalfEdges, twin_d(HalfEdges, e));
@@ -46,23 +59,23 @@ __device__ int incident_halfedge_d(int f)
     return 3*f;
 }
 
-__device__ int edge_of_vertex_d(vertex *vertices, int v)
+__device__ int edge_of_vertex_d(Vertices_SoA Vertices, int v)
 {
-    return vertices[v].incident_halfedge;
+    return Vertices.incident_halfedge[v];
 }
 
-__device__ int CW_edge_to_vertex_d(halfEdge *HalfEdges, int e)
+__device__ int CW_edge_to_vertex_d(HalfEdges_SoA HalfEdges, int e)
 {   int twn, nxt;
     twn = twin_d(HalfEdges, e);
     nxt = next_d(HalfEdges, twn);
     return nxt;
 }    
 
-__device__ int CCW_edge_to_vertex_d(halfEdge *HalfEdges, int e)
+__device__ int CCW_edge_to_vertex_d(HalfEdges_SoA HalfEdges, int e)
 {
     int twn, prv;
-    prv = HalfEdges[e].prev;
-    twn = HalfEdges[prv].twin;
+    prv = HalfEdges.prev[e];
+    twn = HalfEdges.twin[prv];
     return twn;
 }    
 
@@ -89,11 +102,11 @@ inline void gpuAssert(cudaError_t code, const char *file, int line, bool abort=t
 
 
 // Compute the distante of edge e
-__device__ float distance_d(halfEdge *HalfEdges, vertex *Vertices, int e){
-    float x1 = Vertices[origin_d(HalfEdges, e)].x;
-    float y1 = Vertices[origin_d(HalfEdges, e)].y;
-    float x2 = Vertices[target_d(HalfEdges, e)].x;
-    float y2 = Vertices[target_d(HalfEdges, e)].y;
+__device__ float distance_d(HalfEdges_SoA HalfEdges, Vertices_SoA Vertices, int e){
+    float x1 = Vertices.x[origin_d(HalfEdges, e)];
+    float y1 = Vertices.y[origin_d(HalfEdges, e)];
+    float x2 = Vertices.x[target_d(HalfEdges, e)];
+    float y2 = Vertices.y[target_d(HalfEdges, e)];
 
     //printf ("distance_d: %i %f %f %f %f\n", e, (float) x1, (float) y1, (float) x2, (float) y2);
     //printf ("origin_d: %i %f %f and target_d: %i %f %f\n", origin_d(HalfEdges, e), (float) x1, (float) y1, target_d(HalfEdges, e), (float) x2, (float) y2);
@@ -110,53 +123,49 @@ __device__ int GreaterEqualthan(double a, double b, double epsilon){
         return Equality(a,b,epsilon) || a > b;
 }
 
-__device__ int compute_max_edge_d(halfEdge *HalfEdges, vertex *Vertices, int e){
+__device__ int compute_max_edge_d(HalfEdges_SoA HalfEdges, Vertices_SoA Vertices, int e){
     double epsion = 0.0000000001f;
-    float l0 = distance_d(HalfEdges, Vertices, e); //min
-    float l1 = distance_d(HalfEdges, Vertices, next_d(HalfEdges, e)); //mid
-    float l2 = distance_d(HalfEdges, Vertices, prev_d(HalfEdges, e)); //max
+    
+    // We only need the 3 vertices of the triangle to calculate all 3 distances.
+    int e_next = next_d(HalfEdges, e);
+    int e_prev = prev_d(HalfEdges, e);
+    
+    int v0_idx = origin_d(HalfEdges, e);
+    int v1_idx = origin_d(HalfEdges, e_next);
+    int v2_idx = origin_d(HalfEdges, e_prev);
+    
+    // Cache the vertices using read-only texture cache (__ldg)
+    double v0_x = __ldg(&Vertices.x[v0_idx]);
+    double v0_y = __ldg(&Vertices.y[v0_idx]);
+    
+    double v1_x = __ldg(&Vertices.x[v1_idx]);
+    double v1_y = __ldg(&Vertices.y[v1_idx]);
+    
+    double v2_x = __ldg(&Vertices.x[v2_idx]);
+    double v2_y = __ldg(&Vertices.y[v2_idx]);
+    
+    float l0 = sqrtf((v0_x - v1_x)*(v0_x - v1_x) + (v0_y - v1_y)*(v0_y - v1_y));
+    float l1 = sqrtf((v1_x - v2_x)*(v1_x - v2_x) + (v1_y - v2_y)*(v1_y - v2_y));
+    float l2 = sqrtf((v2_x - v0_x)*(v2_x - v0_x) + (v2_y - v0_y)*(v2_y - v0_y));
 
-    /*float m1 = fmaxf(dist0, dist1);
-    float m2 = fmaxf(m1, dist2);    
-
-    //__syncthreads();
-    //printf ("off: %i dist0: %f, dist1: %f, dist2: %f, m1: %f, m2: %f\n", e, (float) dist0, (float) dist1, (float) dist2, (float) m1, (float) m2);
-
-    //if (m1 == m2)
-    //    printf ("off: %i dist0: %f, dist1: %f, dist2: %f, m1: %f, m2: %f\n", e, (float) dist0, (float) dist1, (float) dist2, (float) m1, (float) m2);
-
-    if(m2 == dist0)
-        return e;
-    else if(m2 == dist1)
-        return next_d(HalfEdges, e);
-    else
-        return prev_d(HalfEdges, e);
-    return -1;*/
-
-    __syncthreads();
-    // compare two numbers at a time
-   //if((l0 >= l1 && l1 >= l2) || (l0 >= l2 && l2 >= l1))
    if( (GreaterEqualthan(l0,l1,epsion) && GreaterEqualthan(l1,l2,epsion)) || ( GreaterEqualthan(l0,l2,epsion) && GreaterEqualthan(l2,l1,epsion)))
    {
            return e;
    }
-   //else if((l1 >= l0 && l0 >= l2) || (l1 >= l2 && l2 >= l0))
    else if((GreaterEqualthan(l1,l0,epsion) && GreaterEqualthan(l0,l2,epsion)) || ( GreaterEqualthan(l1,l2,epsion) && GreaterEqualthan(l2,l0,epsion)))
    {
-           return next_d(HalfEdges, e);
+           return e_next;
    }
    else
    {
-           return prev_d(HalfEdges, e);
+           return e_prev;
    }
-   __syncthreads();
-
 }
 
-__device__ bool is_frontier_edge_d(halfEdge *halfedges, bit_vector_d *max_edges, const int e)
+__device__ bool is_frontier_edge_d(HalfEdges_SoA HalfEdges, bit_vector_d *max_edges, const int e)
 {
-    int twin = twin_d(halfedges, e);
-    bool is_border_edge = is_border_face_d(halfedges, e) || is_border_face_d(halfedges, twin);
+    int twin = twin_d(HalfEdges, e);
+    bool is_border_edge = is_border_face_d(HalfEdges, e) || is_border_face_d(HalfEdges, twin);
     bool is_not_max_edge = !(max_edges[e] || max_edges[twin]);
     if(is_border_edge || is_not_max_edge)
         return 1;
@@ -164,32 +173,17 @@ __device__ bool is_frontier_edge_d(halfEdge *halfedges, bit_vector_d *max_edges,
         return 0;
 }
 
-__global__ void label_phase(halfEdge *halfedges, bit_vector_d *max_edges, bit_vector_d *frontier_edges, int n){
-    int off = threadIdx.x + blockDim.x*blockIdx.x;
-    if (off < n){
-        frontier_edges[off] = 0;
-        if(is_frontier_edge_d(halfedges, max_edges, off))
-            frontier_edges[off] = 1;
-        //printf("off: %i, frontier_edges: %i\n", off, frontier_edges[off]);
-    }
-}
-
-__global__ void label_edges_max_d(bit_vector_d *output, vertex *Vertices, halfEdge *HalfEdges, int n)
+__global__ void label_edges_max_d(bit_vector_d *output, Vertices_SoA Vertices, HalfEdges_SoA HalfEdges, int n)
 {
     int off = (blockIdx.x * blockDim.x + threadIdx.x);
     if(off < n)
     {
         int edge_max_index = compute_max_edge_d(HalfEdges, Vertices, incident_halfedge_d(off));
-        __syncthreads();
-        //output[off] = max;
-        //output[off] = 0;
-        //printf("thread: %i, edge_max_index: %i\n", off, (int)edge_max_index);
-        //atomicAdd(output+edge_max_index, 1);
         output[edge_max_index] = 1;
     }
 }
 
-__device__ bool is_seed_edge_d(halfEdge *HalfEdges, bit_vector_d *max_edges, int e){
+__device__ bool is_seed_edge_d(HalfEdges_SoA HalfEdges, bit_vector_d *max_edges, int e){
     int twin = twin_d(HalfEdges, e);
 
     bool is_terminal_edge = (is_interior_face_d(HalfEdges, twin) &&  (max_edges[e] && max_edges[twin]) );
@@ -202,18 +196,24 @@ __device__ bool is_seed_edge_d(halfEdge *HalfEdges, bit_vector_d *max_edges, int
     return false;
 }
 
-__global__ void seed_phase_d(halfEdge *HalfEdges, bit_vector_d *max_edges, half *seed_edges, int n){
-    int x = threadIdx.x + blockIdx.x * blockDim.x; 
-    // Calculate the row index of the Pd element, denote by y
-    int y = threadIdx.y + blockIdx.y * blockDim.y;
-    int off = x + y * blockDim.x * gridDim.x;
+
+
+
+
+
+
+
+__global__ void label_and_seed_phase(HalfEdges_SoA HalfEdges, bit_vector_d *max_edges, bit_vector_d *frontier_edges, int *seed_edges, int n){
+    int off = threadIdx.x + blockDim.x*blockIdx.x;
     if (off < n){
-        //seed_edges[off] = 0;
+        frontier_edges[off] = 0;
+        if(is_frontier_edge_d(HalfEdges, max_edges, off))
+            frontier_edges[off] = 1;
+        
         if(is_interior_face_d(HalfEdges, off) && is_seed_edge_d(HalfEdges, max_edges, off))
             seed_edges[off] = 1;
-        }
+    }
 }
-
 
 __global__ void compaction_d(int *output, int *input, half *condition, int n){
     int off = threadIdx.x + blockDim.x*blockIdx.x;
@@ -246,7 +246,7 @@ int scan(int *d_out, int *d_in, int num_items){
 }
 
 
-__device__ int search_next_frontier_edge_d(halfEdge *HalfEdges, bit_vector_d *frontier_edges, const int e)
+__device__ int search_next_frontier_edge_d(HalfEdges_SoA HalfEdges, bit_vector_d *frontier_edges, const int e)
 {
     int nxt = e;
     while(!frontier_edges[nxt])
@@ -256,7 +256,7 @@ __device__ int search_next_frontier_edge_d(halfEdge *HalfEdges, bit_vector_d *fr
     return nxt;
 }
 
-__device__ int search_prev_frontier_edge_d(halfEdge *HalfEdges, bit_vector_d *frontier_edges, const int e)
+__device__ int search_prev_frontier_edge_d(HalfEdges_SoA HalfEdges, bit_vector_d *frontier_edges, const int e)
 {
     int prv = e;
     while(!frontier_edges[prv])
@@ -266,17 +266,21 @@ __device__ int search_prev_frontier_edge_d(halfEdge *HalfEdges, bit_vector_d *fr
     return prv;
 }
 
-__global__ void travel_phase_d(halfEdge *output, halfEdge *HalfEdges, bit_vector_d *max_edges, bit_vector_d *frontier_edges, int n){
+__global__ void travel_phase_d(HalfEdges_SoA output, HalfEdges_SoA HalfEdges, bit_vector_d *max_edges, bit_vector_d *frontier_edges, int n){
     int off = threadIdx.x + blockIdx.x*blockDim.x;
     if (off < n){
-        output[off] = HalfEdges[off];
+        output.origin[off] = HalfEdges.origin[off];
+        output.twin[off] = HalfEdges.twin[off];
+        output.next[off] = HalfEdges.next[off];
+        output.prev[off] = HalfEdges.prev[off];
+        output.is_border[off] = HalfEdges.is_border[off];
         //printf ("aca-gpu %i\n", off);
         //if (is_frontier_edge_d(HalfEdges,max_edges,off)){
-            output[off].next = search_next_frontier_edge_d(HalfEdges,frontier_edges,next_d(HalfEdges,off));
-            output[off].prev = search_prev_frontier_edge_d(HalfEdges,frontier_edges,prev_d(HalfEdges,off));
+            output.next[off] = search_next_frontier_edge_d(HalfEdges,frontier_edges,next_d(HalfEdges,off));
+            output.prev[off] = search_prev_frontier_edge_d(HalfEdges,frontier_edges,prev_d(HalfEdges,off));
         /*}else{
-            output[off].next = search_next_frontier_edge_d(HalfEdges,frontier_edges,next_d(HalfEdges,off));
-            output[off].prev = search_prev_frontier_edge_d(HalfEdges,frontier_edges,prev_d(HalfEdges,off));
+            output.next[off] = search_next_frontier_edge_d(HalfEdges,frontier_edges,next_d(HalfEdges,off));
+            output.prev[off] = search_prev_frontier_edge_d(HalfEdges,frontier_edges,prev_d(HalfEdges,off));
         }*/
     }
 }
@@ -458,20 +462,20 @@ __global__ void kernel (bit_vector_d *d_in, int n) {
        printf ("in[%i] = %i\n", i, d_in[i]);
     }
 }
-__global__ void print_all_halfedges(halfEdge *HalfEdges, int n) {
+__global__ void print_all_halfedges(HalfEdges_SoA HalfEdges, int n) {
     int i = blockIdx.x * blockDim.x + threadIdx.x;
     if (i < n) {
- //      printf ("halfedge[%i] = %i %i %i %i %i %i \n", i, HalfEdges[i].origin, target_d(HalfEdges,i), HalfEdges[i].twin, HalfEdges[i].next, HalfEdges[i].prev, HalfEdges[i].is_border);
-        printf ("[%i, %i, %i],\n", i, HalfEdges[i].origin, target_d(HalfEdges,i));
+ //      printf ("halfedge[%i] = %i %i %i %i %i %i \n", i, HalfEdges.twin[i].origin, target_d(HalfEdges,i), HalfEdges.next[i], HalfEdges.prev[i], HalfEdges.is_border[i], HalfEdges[i]);
+        printf ("[%i, %i, %i],\n", i, HalfEdges.origin[i], target_d(HalfEdges,i));
     }
 }
 
 
 
 
-__device__ int degree_d(halfEdge *HalfEdges, vertex *vertices, int v)
+__device__ int degree_d(HalfEdges_SoA HalfEdges, Vertices_SoA Vertices, int v)
 {
-    int e_curr = edge_of_vertex_d(vertices, v);
+    int e_curr = edge_of_vertex_d(Vertices, v);
     int e_next = CCW_edge_to_vertex_d(HalfEdges, e_curr);
     int adv = 1;
     while (e_next != e_curr)
@@ -489,10 +493,10 @@ __device__ int degree_d(halfEdge *HalfEdges, vertex *vertices, int v)
 //The function first calculate the degree of v - 1 and then divide it by 2, after travel to until the middle-edge
 //input: vertex v
 //output: edge incident to v
-__device__ int calculate_middle_edge_d(halfEdge *HalfEdges, bit_vector_d *frontier_edges, vertex *vertices, const int v){
+__device__ int calculate_middle_edge_d(HalfEdges_SoA HalfEdges, bit_vector_d *frontier_edges, Vertices_SoA Vertices, const int v){
     //print x
-    int frontieredge_with_bet = search_next_frontier_edge_d(HalfEdges, frontier_edges, edge_of_vertex_d(vertices, v));
-    int internal_edges = degree_d(HalfEdges, vertices, v) - 1; //internal-edges incident to v
+    int frontieredge_with_bet = search_next_frontier_edge_d(HalfEdges, frontier_edges, edge_of_vertex_d(Vertices, v));
+    int internal_edges = degree_d(HalfEdges, Vertices, v) - 1; //internal-edges incident to v
     int adv = (internal_edges%2 == 0) ? internal_edges/2 - 1 : internal_edges/2 ;
     int nxt = CW_edge_to_vertex_d(HalfEdges, frontieredge_with_bet);
     //back to traversing the edges of v_bet until select the middle-edge
@@ -504,28 +508,28 @@ __device__ int calculate_middle_edge_d(halfEdge *HalfEdges, bit_vector_d *fronti
 }
 
 //Return the number of frontier edges of a vertex
-__device__ int count_frontier_edges_d(halfEdge *HalfEdges, bit_vector_d *frontier_edges, vertex *vertices, int v){
-    int e = edge_of_vertex_d(vertices, v);
+__device__ int count_frontier_edges_d(HalfEdges_SoA HalfEdges, bit_vector_d *frontier_edges, Vertices_SoA Vertices, int v){
+    int e = edge_of_vertex_d(Vertices, v);
     int count = 0;
     do{
         if(frontier_edges[e] == 1)
             count++;
         e = CW_edge_to_vertex_d(HalfEdges, e);
-    }while(e != edge_of_vertex_d( vertices, v));
+    }while(e != edge_of_vertex_d( Vertices, v));
     //if (count == 1)
     //    printf("--> %i %i\n",origin_d(HalfEdges,v),target_d(HalfEdges,v));
     return count;
 }
 
     // new repair phase
-__global__ void label_extra_frontier_edge_d(halfEdge *HalfEdges, bit_vector_d *frontier_edges, vertex *vertices, half *seed_edges, int n){
+__global__ void label_extra_frontier_edge_d(HalfEdges_SoA HalfEdges, bit_vector_d *frontier_edges, Vertices_SoA Vertices, int *seed_edges, int n){
     int v = threadIdx.x + blockDim.x*blockIdx.x;
     if (v < n){
 
-        if(count_frontier_edges_d(HalfEdges, frontier_edges, vertices, v) == 1){
+        if(count_frontier_edges_d(HalfEdges, frontier_edges, Vertices, v) == 1){
         //if (v == 80){
             //middle edge that contains v_bet
-            int middle_edge = calculate_middle_edge_d(HalfEdges, frontier_edges, vertices, v);
+            int middle_edge = calculate_middle_edge_d(HalfEdges, frontier_edges, Vertices, v);
 
             //middle edge that contains v_bet
             int t1 = middle_edge;
@@ -546,7 +550,7 @@ __global__ void label_extra_frontier_edge_d(halfEdge *HalfEdges, bit_vector_d *f
 /*
 
 //Travel in CCW order around the edges of vertex v from the edge e looking for the next frontier edge
-__global__ void search_frontier_edge_d(int *output, halfEdge *HalfEdges, bit_vector_d *frontier_edges, int *seed_edges, int n)
+__global__ void search_frontier_edge_d(int *output, HalfEdges_SoA HalfEdges, bit_vector_d *frontier_edges, int *seed_edges, int n)
 {
     //int off = threadIdx.x + blockIdx.x*blockDim.x;
     
@@ -567,13 +571,13 @@ __global__ void search_frontier_edge_d(int *output, halfEdge *HalfEdges, bit_vec
 
 */
 
-__global__ void search_frontier_edge_d(halfEdge *HalfEdges, bit_vector_d *frontier_edges,  half *seed_edges, int n)
+__global__ void search_frontier_edge_d(HalfEdges_SoA HalfEdges, bit_vector_d *frontier_edges,  int *seed_edges, int n)
 {
     int off = threadIdx.x + blockIdx.x*blockDim.x;
     if (off < n){
-        if(seed_edges[off] == __float2half(1.0f)){
+        if(seed_edges[off] == 1){
             int nxt = off;
-            //printf("%i %f\n",off,__half2float(seed_edges[off]));
+            //printf("%i %f\n",off,seed_edges[off]);
             while(!frontier_edges[nxt])
             {
                 nxt = CW_edge_to_vertex_d(HalfEdges, nxt);
@@ -587,7 +591,7 @@ __global__ void search_frontier_edge_d(halfEdge *HalfEdges, bit_vector_d *fronti
 }
 
 /*
-__global__ void overwrite_seed_d(halfEdge *HalfEdges, int *seed_edges, int n){
+__global__ void overwrite_seed_d(HalfEdges_SoA HalfEdges, int *seed_edges, int n){
         int i = threadIdx.x + blockIdx.x * blockDim.x; 
         if (i < n){        
             
@@ -611,10 +615,10 @@ __global__ void overwrite_seed_d(halfEdge *HalfEdges, int *seed_edges, int n){
 */
 
 //Esto funciona usando bitvectors
-__global__ void overwrite_seed_d(halfEdge *HalfEdges, half *seed_edges, int n){
+__global__ void overwrite_seed_d(HalfEdges_SoA HalfEdges, int *seed_edges, int n){
     int i = threadIdx.x + blockIdx.x * blockDim.x; 
     if (i < n){        
-        if(seed_edges[i] == __float2half(1.0f)){
+        if(seed_edges[i] == 1){
             int e_init = i;
             int min_ind = e_init;
             int e_curr = next_d(HalfEdges, e_init);

@@ -8,5 +8,5 @@ output_off="$1.off"
 
 
 echo -n "Generating mesh..."
-make && ./Polylla ${node_file} ${ele_file} ${neigh_file} ${output}&& geomview -nopanels ${output_off}
+make && ./GPolylla ${node_file} ${ele_file} ${neigh_file} ${output}&& geomview -nopanels ${output_off}
 echo "done"

@@ -31,7 +31,7 @@ The algorithm supports two file formats as input, the output is an [.off file](h
 
 Compile as
 
-   cmake -DCMAKE_CUDA_ARCHITECTURES=70 ..
+   cmake -DCMAKE_CUDA_ARCHITECTURES=80 ..
 
 ### Input as  .node, .ele, .neigh files
 
