@@ -456,6 +456,9 @@ public:
         out<<"\"n_polygons_added_after_repair\": "<<n_polygons_added_after_repair<<","<<std::endl;
         out<<"\"time_triangulation_generation\": "<<mesh_input->get_triangulation_generation_time()<<","<<std::endl;
 
+        double t_traversal_and_repair_calc = t_label_extra_frontier_edge_d + t_traversal_1_d + t_traversal_2_d + t_overwrite_seed_d + t_label_seed_compaction_d;
+        double t_gpu_total = t_label_max_edges_d + t_label_frontier_edges_d + t_label_seed_edges_d + t_traversal_and_repair_calc;
+
         out<<"\"d_time_copy_to_device\": "<<t_copy_to_device_d<<","<<std::endl;
         out<<"\"d_time_to_label_max_edges\": "<<t_label_max_edges_d<<","<<std::endl;
         out<<"\"d_time_to_label_frontier_edges\": "<<t_label_frontier_edges_d<<","<<std::endl;
@@ -464,12 +467,12 @@ public:
         out<<"\"d_time_to_label_scan_edges\": "<<t_label_seed_scan_d<<","<<std::endl;
         out<<"\"d_time_to_label_compaction_edges\": "<<t_label_seed_compaction_d<<","<<std::endl;
         out<<"\"d_time_to_label_total\": "<<t_label_max_edges_d+t_label_frontier_edges_d+t_label_seed_edges_d<<","<<std::endl;
-        out<<"\"d_time_to_traversal_and_repair\": "<<t_traversal_and_repair_d<<","<<std::endl;
+        out<<"\"d_time_to_traversal_and_repair\": "<<t_traversal_and_repair_calc<<","<<std::endl;
         out<<"\"d_time_to_traversal\": "<<t_traversal_1_d<<","<<std::endl;
         out<<"\"d_time_to_traversal_search_frontier_edge\": "<<t_traversal_2_d<<","<<std::endl;
         out<<"\"d_time_to_back_to_host\": "<<t_back_to_host_d<<","<<std::endl;
         out<<"\"d_time_to_overwrite_seed\": "<<t_overwrite_seed_d<<","<<std::endl;
-        out<<"\"d_time_to_generate_polygonal_mesh\": "<<t_label_max_edges_d + t_label_frontier_edges_d + t_label_seed_edges_d + t_traversal_and_repair_d<<","<<std::endl;
+        out<<"\"d_time_to_generate_polygonal_mesh\": "<<t_gpu_total<<","<<std::endl;
         
         out<<"\t\"memory_max_edges\": "<<m_max_edges<<","<<std::endl;
         out<<"\t\"memory_frontier_edge\": "<<m_frontier_edge<<","<<std::endl;
